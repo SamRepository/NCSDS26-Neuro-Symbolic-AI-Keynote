@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Speaker notes — Neuro-Symbolic AI · NCSDS-26</title>
+<style>
+  @page { size: A4 portrait; margin: 16mm 14mm; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Georgia, serif;
+    color: #111;
+    background: #fff;
+    font-size: 11pt;
+    line-height: 1.55;
+  }
+  .doc { max-width: 180mm; margin: 0 auto; }
+
+  /* Title page header */
+  .titleblock {
+    border-bottom: 2px solid #111;
+    padding-bottom: 12px;
+    margin-bottom: 24px;
+  }
+  .titleblock h1 {
+    font-size: 22pt;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    line-height: 1.15;
+  }
+  .titleblock h1 .accent { color: #4a8272; }
+  .titleblock .sub {
+    margin-top: 8px;
+    color: #555;
+    font-size: 11pt;
+    font-style: italic;
+  }
+  .titleblock .meta {
+    margin-top: 10px;
+    font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 9pt;
+    color: #555;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  /* Arc / outline strip */
+  .arc {
+    margin: 18px 0 26px;
+    padding: 10px 14px;
+    background: #f4f8f6;
+    border-left: 3px solid #4a8272;
+    font-size: 10pt;
+    color: #333;
+    line-height: 1.5;
+  }
+  .arc strong { color: #2d4a3e; }
+
+  /* Slide block */
+  .slide {
+    page-break-inside: avoid;
+    margin-bottom: 18px;
+    padding: 12px 14px 14px;
+    border: 0.6px solid #d8d8d8;
+    border-radius: 6px;
+  }
+  .slide.hot {
+    border-color: #d49846;
+    background: #fffaf0;
+  }
+  .slide.close {
+    border-color: #2d4a3e;
+    background: #f1f6f3;
+  }
+  .slide-head {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    padding-bottom: 6px;
+    border-bottom: 0.6px solid #e6e6e6;
+    margin-bottom: 8px;
+  }
+  .slide-num {
+    font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 14pt;
+    font-weight: 700;
+    color: #4a8272;
+    min-width: 32px;
+  }
+  .slide-title {
+    font-size: 12pt;
+    font-weight: 600;
+    color: #111;
+    flex: 1;
+  }
+  .slide-time {
+    font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 9pt;
+    color: #777;
+    letter-spacing: 0.04em;
+  }
+  .slide-shows {
+    font-size: 8.5pt;
+    color: #888;
+    font-style: italic;
+    margin-bottom: 8px;
+    letter-spacing: 0.02em;
+  }
+  .note {
+    font-size: 12pt;
+    line-height: 1.65;
+    color: #1a1a1a;
+  }
+  .note .key { font-weight: 700; color: #111; }
+  .note .em { font-style: italic; }
+  .note .accent { color: #2d4a3e; font-weight: 600; }
+  .note + .note { margin-top: 8px; }
+
+  /* Page break helpers */
+  .pb { page-break-before: always; }
+
+  /* Act dividers */
+  .act {
+    margin: 22px 0 10px;
+    padding-top: 14px;
+    border-top: 1px solid #111;
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+  }
+  .act-num {
+    font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 10pt;
+    color: #4a8272;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+  }
+  .act-name {
+    font-size: 12pt;
+    font-weight: 600;
+    color: #111;
+  }
+  .act-band {
+    margin-left: auto;
+    font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 9pt;
+    color: #777;
+  }
+
+  footer.foot {
+    margin-top: 24px;
+    padding-top: 10px;
+    border-top: 1px solid #ccc;
+    font-size: 9pt;
+    color: #666;
+    font-style: italic;
+    text-align: center;
+  }
+
+  /* Screen-only preview */
+  @media screen {
+    body { padding: 24px; background: #f5f5f0; }
+    .doc { background: white; padding: 22mm 18mm; box-shadow: 0 2px 14px rgba(0,0,0,0.08); }
+    .print-hint {
+      max-width: 180mm; margin: 0 auto 14px;
+      font-size: 12px; color: #555; font-style: italic;
+    }
+  }
+  @media print {
+    .print-hint { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="print-hint">Press <strong>Ctrl+P</strong> (Cmd+P on Mac) → Destination: Save as PDF or your printer → Margins: Default → Scale: 100% → Background graphics: ON. Estimated 6–7 A4 pages.</div>
+
+<div class="doc">
+
+<div class="titleblock">
+  <h1>Speaker notes — <span class="accent">Neuro-Symbolic AI</span></h1>
+  <div class="sub">How knowledge graphs and ontologies are learning to live inside large language models — and why that changes everything.</div>
+  <div class="meta">Dr. Samir Sellami · NCSDS-26 · ENSET-Skikda · Target 20:00</div>
+</div>
+
+<div class="arc">
+  <strong>Arc.</strong> <em>History (slides 1–8)</em> → <em>Limits of LLMs (9–10)</em> → <em>Structure returns: KGs &amp; ontologies (11–13)</em> → <em>Synthesis: KiL + evidence + cases (14–20)</em> → <em>Close (21)</em>.
+  &nbsp;&nbsp;<strong>Two key transitions:</strong> slide 8 (Heinlein — the turning point) and slide 14 (KiL — the architecture). The whole talk pivots on these two.
+</div>
+
+<!-- ============ ACT 0 — Open ============ -->
+
+<div class="slide">
+  <div class="slide-head">
+    <span class="slide-num">01</span>
+    <span class="slide-title">Title — Welcome &amp; self-intro</span>
+    <span class="slide-time">0:00 · ~75s</span>
+  </div>
+  <div class="slide-shows">Slide shows: title, your name, affiliation, graph motif, NCSDS &amp; ENSET logos.</div>
+  <div class="note">
+    Good morning all, and thanks to the organizers at ENSET-Skikda. I am <span class="key">Samir SELLAMI</span>, researcher at LIRE Laboratory, Univ-Constantine 2, and Associate teacher at the Department of Mathematics &amp; Computer Science, ENSET-Skikda. Over the next <span class="key">twenty minutes</span> I want to share a short journey. <span class="em">How we got to large language models, LLMs. Why they alone are not enough. And why the next decade belongs to a merge of neural networks and symbolic knowledge.</span> Let's begin.
+  </div>
+</div>
+
+<div class="slide">
+  <div class="slide-head">
+    <span class="slide-num">02</span>
+    <span class="slide-title">Agenda — Four short acts</span>
+    <span class="slide-time">1:15 · ~45s</span>
+  </div>
+  <div class="slide-shows">Slide shows: numbered outline of the four acts.</div>
+  <div class="note">
+    <span class="key">Four short acts</span> for the agenda of today's talk. First, where we came from — symbolic and neural. Second, the honest limits of today's LLMs. Third, the quiet return of knowledge graphs and ontologies. Fourth, the synthesis — Knowledge-Infused Learning — and what it unlocks. Finally, a simple call to action.
+  </div>
+</div>
+
+<!-- ============ ACT 1 — History ============ -->
+
+<div class="act">
+  <span class="act-num">PART 01</span>
+  <span class="act-name">History — two traditions, one goal</span>
+  <span class="act-band">Slides 3–8 · ~5 min</span>
+</div>
+
+<div class="slide">
+  <div class="slide-head">
+    <span class="slide-num">03</span>
+    <span class="slide-title">Two traditions, one goal</span>
+    <span class="slide-time">2:00 · ~45s</span>
+  </div>
+  <div class="slide-shows">Slide shows: section header on accent background — "One goal, two tribes."</div>
+  <div class="note">
+    AI has always had <span class="key">two main directions</span>. <span class="em">Symbolists</span> — intelligence as logic, rules and ontologies. <span class="em">Connectionists</span> — intelligence as patterns learned from data. For seventy years they barely talked. Today, for the first time, they have to collaborate. <span class="accent">That is the story of this talk.</span>
+  </div>
+</div>
+
+<div class="slide">
+  <div class="slide-head">
+    <span class="slide-num">04</span>
+    <span class="slide-title">The symbolic era — 1956 to 2000</span>
+    <span class="slide-time">2:45 · ~60s</span>
+  </div>
+  <div class="slide-shows">Slide shows: timeline — Dartmouth · Expert systems · OWL/Semantic Web · The winter.</div>
+  <div class="note">
+    From the nineteen-fifties to two thousand, symbolic AI ruled. Expert systems. Ontologies. The Semantic Web vision. <span class="em">Beautiful and transparent — you could read the rules.</span> But brittle and too hard. Every edge case had to be coded by hand, and the world had too many edges and entities. By the late nineties, funding collapsed and we entered the <span class="key">AI winter big freeze</span>. <span class="accent">A beautiful theory frozen — and it was time for data and deep learning.</span>
+  </div>
+</div>
+
+<div class="slide">
+  <div class="slide-head">
+    <span class="slide-num">05</span>
+    <span class="slide-title">The neural renaissance — 2012 to 2022</span>
+    <span class="slide-time">3:45 · ~60s</span>
+  </div>
+  <div class="slide-shows">Slide shows: dark frame, ImageNet error-rate sparkline (28% → 2.3%), timeline cells.</div>
+  <div class="note">
+    Twenty-twelve <span class="key">everything changed</span> — ImageNet, deep CNNs, machines could see. Twenty-seventeen — <span class="em">Attention is all you need</span>, the Transformer arrives. Twenty-twenty — GPT-3 and scaling laws. November twenty-twenty-two — ChatGPT. <span class="key">AI left the lab.</span> What symbolic AI could not do — see, hear, translate, converse — the neural tradition did, <span class="em">decisively</span>.
+  </div>
+</div>
+
+<div class="slide">
+  <div class="slide-head">
+    <span class="slide-num">06</span>
+    <span class="slide-title">LLMs — a methodological revolution</span>
+    <span class="slide-time">4:45 · ~45s</span>
+  </div>
+  <div class="slide-shows">Slide shows: pull-quote — "A single prompt now does the work of an entire NLP pipeline."</div>
+  <div class="note">
+    In fact, LLMs started a <span class="key">methodological revolution we are living through</span>. What used to take five tools and a week — tokenisation, parsing, entity extraction, the whole NLP pipeline — now takes <span class="em">one prompt and one second</span>. Raw text in, structured meaning out. For a doctor, a lawyer, a researcher, this is extraordinarily empowering.
+  </div>
+</div>
+
+<div class="slide">
+  <div class="slide-head">
+    <span class="slide-num">07</span>
+    <span class="slide-title">What deep learning got right</span>
+    <span class="slide-time">5:30 · ~45s</span>
+  </div>
+  <div class="slide-shows">Slide shows: three columns — Perception · Language · Science &amp; autonomy.</div>
+  <div class="note">
+    Let me be <span class="key">fair</span>. Deep learning and transformers did things symbolic AI never could. Image and speech recognition. Machine translation. Protein folding. Autonomous driving. Superhuman game-play. The neural camp won the last decade, <span class="em">decisively</span>. <span class="accent">I am not here to argue against that. I am here to argue about what comes next.</span>
+  </div>
+</div>
+
+<div class="slide hot">
+  <div class="slide-head">
+    <span class="slide-num">08</span>
+    <span class="slide-title">No free lunch — the turning point</span>
+    <span class="slide-time">6:15 · ~45s</span>
+  </div>
+  <div class="slide-shows">Slide shows: dark frame, large quote — "There ain't no such thing as a free lunch." — Heinlein, 1966.</div>
+  <div class="note">
+    But — <span class="key">there ain't no such thing as a free lunch</span>. Robert Heinlein said it sixty years ago, and it fits AI perfectly. <span class="em">Every gain in convenience has a hidden cost.</span> The cost of the LLM revolution is now starting to show. <span class="accent">Let's be honest about what it is.</span>
+  </div>
+  <div class="slide-shows" style="margin-top:8px;color:#a06010;">⚑ Pivot moment. Pause here. Don't rush slide 9.</div>
+</div>
+
+<!-- ============ ACT 2 — Limits ============ -->
+
+<div class="act">
+  <span class="act-num">PART 02</span>
+  <span class="act-name">The limits — where LLMs fail</span>
+  <span class="act-band">Slides 9–10 · ~1.5 min</span>
+</div>
+
+<div class="slide">
+  <div class="slide-head">
+    <span class="slide-num">09</span>
+    <span class="slide-title">The LLM trust crisis</span>
+    <span class="slide-time">7:00 · ~50s</span>
+  </div>
+  <div class="slide-shows">Slide shows: five failure modes — hallucination · no provenance · no consistency · hard to update · opaque.</div>
+  <div class="note">
+    LLMs are fluent and confident. But <span class="key">often disconnected from reality</span>. They hallucinate — wrong answers that sound perfect. No provenance. No consistency. Hard to update. <span class="em">GPU and tokens hungry.</span> Their knowledge is entangled in billions of weights. In medicine, law, finance — <span class="em">fluent confidence without grounding is not a feature. It is a liability.</span>
+  </div>
+</div>
+
+<div class="slide">
+  <div class="slide-head">
+    <span class="slide-num">10</span>
+    <span class="slide-title">Statistics is not knowledge</span>
+    <span class="slide-time">7:50 · ~45s</span>
+  </div>
+  <div class="slide-shows">Slide shows: two-column diagram — implicit (LLM weights, black box) vs explicit (KG, glass box).</div>
+  <div class="note">
+    Here is the <span class="key">deeper problem</span>. An LLM learns what words follow what words. It does not really know what a patient, a contract, or a regulation is. The knowledge is implicit — entangled in weights, impossible to inspect. A knowledge graph is the opposite. <span class="em">Explicit. Queryable. Auditable.</span> <span class="accent">A glass box, not a black box.</span>
+  </div>
+</div>
+
+<!-- ============ ACT 3 — Structure ============ -->
+
+<div class="act">
+  <span class="act-num">PART 03</span>
+  <span class="act-name">Structure — the quiet return of meaning</span>
+  <span class="act-band">Slides 11–13 · ~2.75 min</span>
+</div>
+
+<div class="slide">
+  <div class="slide-head">
+    <span class="slide-num">11</span>
+    <span class="slide-title">Knowledge graphs, revisited</span>
+    <span class="slide-time">8:35 · ~75s</span>
+  </div>
+  <div class="slide-shows">Slide shows: accent frame, live KG diagram — Patient · Ibuprofen · NSAID · Medication · Arthritis · Inflammation · Warfarin · Thrombosis.</div>
+  <div class="note">
+    This is what a knowledge graph looks like. <span class="key">Eight nodes, each represents a real thing.</span> For example, Medication, Patient, Ibuprofen, Arthritis, Inflammation. The lines between them are typed relationships — not just lines, but <span class="em">meaning</span>. Patient takes Ibuprofen, which <em>is-a</em> Nonsteroidal Anti-Inflammatory Drug. Ibuprofen treats Arthritis, which has Inflammation as a symptom. Ibuprofen interacts with Warfarin, which treats Thrombosis. Now imagine this at the scale of a hospital, or all of medicine. <span class="accent">Every fact written down, inspectable, updatable.</span> That is what an LLM alone cannot give you.
+  </div>
+</div>
+
+<div class="slide">
+  <div class="slide-head">
+    <span class="slide-num">12</span>
+    <span class="slide-title">Ontologies — the shape of meaning</span>
+    <span class="slide-time">9:50 · ~45s</span>
+  </div>
+  <div class="slide-shows">Slide shows: KG vs OWL vs SHACL — three rows with examples.</div>
+  <div class="note">
+    And above the graph sits the <span class="key">ontology</span>. The ontology is the <span class="em">shape of meaning</span>. For example, a patient has exactly one date of birth. A contract has at least two parties. These are not statistical tendencies — they are <span class="em">truths of the domain</span>. <span class="accent">Remember this line: the graph is the memory, the ontology is the grammar.</span>
+  </div>
+</div>
+
+<div class="slide">
+  <div class="slide-head">
+    <span class="slide-num">13</span>
+    <span class="slide-title">Ontology is having its moment</span>
+    <span class="slide-time">10:35 · ~45s</span>
+  </div>
+  <div class="slide-shows">Slide shows: dark frame, large quote attributed to Tony Seale, 2025.</div>
+  <div class="note">
+    Tony Seale recently wrote on LinkedIn that <span class="key">ontology is having its moment</span>. He is right. For twenty years ontologies were a quiet corner of computer science. <span class="em">Now every major enterprise is building one.</span> Because to deploy AI at scale, inside a regulated business, you need a layer of ground truth the model can consult.
+  </div>
+</div>
+
+<!-- ============ ACT 4 — Synthesis ============ -->
+
+<div class="act">
+  <span class="act-num">PART 04</span>
+  <span class="act-name">The synthesis — Knowledge-Infused Learning</span>
+  <span class="act-band">Slides 14–20 · ~7 min</span>
+</div>
+
+<div class="slide hot">
+  <div class="slide-head">
+    <span class="slide-num">14</span>
+    <span class="slide-title">Knowledge-Infused Learning — the architecture</span>
+    <span class="slide-time">11:20 · ~75s</span>
+  </div>
+  <div class="slide-shows">Slide shows: KiL loop diagram — Query → LLM ↔ KG → Verifier → Output, with feedback arc.</div>
+  <div class="note">
+    Look at this diagram — <span class="key">the architecture of the next decade of AI pipelines</span>. A user asks a question. The LLM does not answer from memory alone. It queries the knowledge graph. The graph returns grounded facts. The LLM drafts an answer. Then a symbolic check — does it satisfy the ontology? Only then does it reach the user and give an output, <span class="em">with provenance attached</span>. And the dashed loop at the bottom — every interaction refines the graph. <span class="accent">Neural intuition, times symbolic truth. More accurate. More explainable. More efficient. This is Knowledge-Infused Learning.</span>
+  </div>
+  <div class="slide-shows" style="margin-top:8px;color:#a06010;">⚑ Densest slide. Don't speed up. Point to the feedback arrow at the bottom — that's the line that makes it stick.</div>
+</div>
+
+<div class="slide hot">
+  <div class="slide-head">
+    <span class="slide-num">15</span>
+    <span class="slide-title">The evidence — numbers behind the claim</span>
+    <span class="slide-time">12:35 · ~60s</span>
+  </div>
+  <div class="slide-shows">Slide shows: four cells with +71% · +77.6% · −40% · Substantial — Soman, Xu, MEGA-RAG, Edge.</div>
+  <div class="note">
+    And the benchmarks now back this up. <span class="key">SPOKE plus Llama-2</span> — a <span class="key">71%</span> boost on biomedical multiple-choice QA. <span class="key">LinkedIn's</span> customer-service knowledge graph cut median resolution time by <span class="key">28.6%</span>. <span class="key">MEGA-RAG</span>, in public health, reduced hallucinations by <span class="key">over 40%</span>. And <span class="key">Microsoft's GraphRAG</span> showed substantial gains on million-token corpora. <span class="em">Different domains. Different metrics. Same direction.</span> <span class="accent">Structure does not replace the model. It makes the model accountable.</span>
+  </div>
+  <div class="slide-shows" style="margin-top:8px;color:#a06010;">⚑ The four numbers must land. Practice these aloud. Hit each one with a slight pause before the percentage.</div>
+</div>
+
+<div class="slide">
+  <div class="slide-head">
+    <span class="slide-num">16</span>
+    <span class="slide-title">Three ways to inject knowledge</span>
+    <span class="slide-time">13:35 · ~45s</span>
+  </div>
+  <div class="slide-shows">Slide shows: pipeline diagram — ① Before (pre-training) · ② During (RAG) · ③ After (Verifier).</div>
+  <div class="note">
+    There are <span class="key">three points</span> where you can inject knowledge. <span class="em">Before</span> the model — pre-training phase on structured data. <span class="em">During</span> inference — this is RAG, and Graph-RAG does it even better. Or <span class="em">after</span> — a symbolic verifier checks the output against the ontology. Real systems combine all three. <span class="accent">The architecture is a pipeline, not a swap.</span>
+  </div>
+</div>
+
+<div class="slide">
+  <div class="slide-head">
+    <span class="slide-num">17</span>
+    <span class="slide-title">In practice — healthcare</span>
+    <span class="slide-time">14:20 · ~45s</span>
+  </div>
+  <div class="slide-shows">Slide shows: case 01 — stethoscope icon, Without KG / With KG / Result.</div>
+  <div class="note">
+    <span class="key">IN PRACTICE — Healthcare, for example.</span> A clinician asks about a drug interaction. Without grounding, the model <em>invents imaginary facts</em>. With ontologies such as UMLS or SNOMED behind it, every claim is traceable. <span class="em">The ontology catches contradictions before they reach the patient.</span> <span class="key">That is the difference between a toy and a tool.</span> Regulators are now asking for this explicitly.
+  </div>
+</div>
+
+<div class="slide">
+  <div class="slide-head">
+    <span class="slide-num">18</span>
+    <span class="slide-title">In practice — legal &amp; compliance</span>
+    <span class="slide-time">15:05 · ~45s</span>
+  </div>
+  <div class="slide-shows">Slide shows: case 02 — dark frame, scales icon.</div>
+  <div class="note">
+    Another use case is <span class="key">Legal and compliance</span>. The goal is to review a thousand contracts without missing a clause. An LLM alone misses obligations and contradicts itself. With a legal ontology — parties, obligations, jurisdictions, dates — <em>cross-document reasoning</em> becomes possible. <span class="accent">For example, European regulators are pushing this direction hard.</span>
+  </div>
+</div>
+
+<div class="slide">
+  <div class="slide-head">
+    <span class="slide-num">19</span>
+    <span class="slide-title">In practice — enterprise knowledge</span>
+    <span class="slide-time">15:50 · ~45s</span>
+  </div>
+  <div class="slide-shows">Slide shows: case 03 — building icon.</div>
+  <div class="note">
+    In <span class="key">Enterprises</span>. <span class="em">Every large company has a decade of documents, databases, wikis, all siloed.</span> Build a knowledge graph over it. Connect the LLM as a natural-language interface. Now you have an assistant that actually <span class="em">knows your business</span> — grounded in your own truth, not a general model guessing. <span class="accent">A competitive advantage that no competitor can simply download.</span>
+  </div>
+</div>
+
+<div class="slide hot">
+  <div class="slide-head">
+    <span class="slide-num">20</span>
+    <span class="slide-title">In practice — education</span>
+    <span class="slide-time">16:35 · ~75s</span>
+  </div>
+  <div class="slide-shows">Slide shows: case 04 — mortarboard icon, three numbered tracks.</div>
+  <div class="note">
+    And finally education — <span class="key">which matters especially to us here in Algeria</span>. How do we train the next generation when LLMs make the basics seem optional? My answer is <span class="em">concrete</span>. Three tracks every CS programme can add now. <span class="key">One</span> — ontology engineering: OWL and SHACL. <span class="key">Two</span> — knowledge-graph systems: SPARQL, Cypher, Graph-RAG. <span class="key">Three</span> — a grounded-AI capstone: build a KG-backed, SHACL-validated RAG system. <span class="accent">The neural layer will commoditise. The knowledge layer is where expertise lives — and where Algerian research can lead.</span>
+  </div>
+  <div class="slide-shows" style="margin-top:8px;color:#a06010;">⚑ The audience-specific moment. Slow down. Look at the room — not the slide.</div>
+</div>
+
+<!-- ============ CLOSE ============ -->
+
+<div class="act">
+  <span class="act-num">CLOSE</span>
+  <span class="act-name">A call to action — build with both hands</span>
+  <span class="act-band">Slide 21 · ~45s</span>
+</div>
+
+<div class="slide close">
+  <div class="slide-head">
+    <span class="slide-num">21</span>
+    <span class="slide-title">The outlook &amp; a call to action</span>
+    <span class="slide-time">17:50 · ~45s</span>
+  </div>
+  <div class="slide-shows">Slide shows: dark frame, large display type — "Build with both hands."</div>
+  <div class="note">
+    Here is what I want you to take away. <span class="em">Generative AI is powerful, accessible, empowering — and it needs control.</span> Knowledge graphs and symbolic reasoning provide that grounding. <span class="key">The future of AI is not neural. It is not symbolic. It is both.</span> <span class="accent">Build with both hands. Thank you very much.</span>
+  </div>
+  <div class="slide-shows" style="margin-top:8px;color:#2d4a3e;">⚑ Land the last three sentences. Don't add anything after "Thank you." Step back. Hold for applause.</div>
+</div>
+
+<footer class="foot">
+  Total content ≈ 18:35 · Target ceiling 20:00 (~1.5-min buffer) · Bold = land it · Italic = lean into it · Sage = key takeaway · Amber slides = highest-risk moments
+</footer>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Presenter view — Neuro-Symbolic AI</title>
+<style>
+  :root {
+    --bg: #0b0f14;
+    --panel: #141a22;
+    --line: #232b38;
+    --ink: #e7ecf3;
+    --muted: #8893a4;
+    --accent: #4a8272;
+    --warn: #e08a3c;
+    --over: #e06464;
+    --f-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, system-ui, sans-serif;
+    --f-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; }
+  body { background: var(--bg); color: var(--ink); font-family: var(--f-sans); overflow: hidden; }
+
+  /* Splash */
+  #splash {
+    position: fixed; inset: 0; display: flex; flex-direction: column;
+    align-items: center; justify-content: center; gap: 24px; padding: 40px;
+    text-align: center;
+  }
+  #splash h1 { font-size: 36px; font-weight: 700; letter-spacing: -0.01em; }
+  #splash p { color: var(--muted); max-width: 560px; line-height: 1.55; font-size: 16px; }
+  #splash button {
+    background: var(--accent); color: white; border: none; padding: 14px 28px;
+    font-size: 17px; font-weight: 600; border-radius: 8px; cursor: pointer;
+    font-family: inherit; letter-spacing: 0.01em;
+  }
+  #splash button:hover { filter: brightness(1.08); }
+  #splash .hint { font-family: var(--f-mono); font-size: 13px; color: var(--muted); margin-top: 18px; }
+
+  /* Presenter */
+  #presenter { display: none; height: 100%; flex-direction: column; }
+  #presenter.on { display: flex; }
+
+  header.bar {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 14px 28px; border-bottom: 1px solid var(--line);
+    background: var(--panel);
+  }
+  .counter { font-family: var(--f-mono); font-size: 18px; letter-spacing: 0.05em; }
+  .counter .now { color: var(--ink); font-weight: 600; font-size: 22px; }
+  .counter .sep { color: var(--muted); margin: 0 6px; }
+  .counter .total { color: var(--muted); }
+  .label-pill {
+    font-family: var(--f-mono); font-size: 11px; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--muted);
+    padding: 4px 10px; border: 1px solid var(--line); border-radius: 999px;
+  }
+  .timer {
+    font-family: var(--f-mono); font-size: 22px; font-weight: 600;
+    display: flex; align-items: baseline; gap: 8px;
+  }
+  .timer .elapsed { color: var(--ink); }
+  .timer .target { color: var(--muted); font-size: 14px; }
+  .timer.warn .elapsed { color: var(--warn); }
+  .timer.over .elapsed { color: var(--over); }
+
+  main.body {
+    flex: 1; display: grid; grid-template-rows: 1.7fr 1fr;
+    gap: 0; min-height: 0;
+  }
+  .block { padding: 28px 36px; display: flex; flex-direction: column; min-height: 0; }
+  .block + .block { border-top: 1px solid var(--line); }
+  .block .head {
+    display: flex; align-items: center; gap: 12px; margin-bottom: 14px;
+  }
+  .block .title-now, .block .title-next {
+    font-family: var(--f-mono); font-size: 12px; letter-spacing: 0.16em;
+    text-transform: uppercase; color: var(--muted);
+  }
+  .block .slide-label {
+    font-size: 14px; color: var(--muted); margin-left: auto;
+    font-family: var(--f-mono);
+  }
+  #nowNote {
+    font-size: clamp(20px, 2.2vw, 30px); line-height: 1.5; color: var(--ink);
+    overflow-y: auto; padding-right: 12px;
+  }
+  #nextNote {
+    font-size: clamp(15px, 1.4vw, 18px); line-height: 1.55; color: var(--muted);
+    overflow-y: auto; padding-right: 12px;
+  }
+
+  footer.bar {
+    padding: 12px 28px; border-top: 1px solid var(--line); background: var(--panel);
+    display: flex; align-items: center; gap: 18px;
+    font-family: var(--f-mono); font-size: 13px; color: var(--muted);
+    flex-wrap: wrap;
+  }
+  .kbd {
+    display: inline-block; min-width: 22px; text-align: center;
+    padding: 2px 7px; border: 1px solid var(--line); border-radius: 4px;
+    background: #0d131b; color: var(--ink); margin: 0 2px;
+    font-size: 12px;
+  }
+  .status { margin-left: auto; }
+  .status.warn { color: var(--warn); }
+
+  /* scrollbars */
+  ::-webkit-scrollbar { width: 8px; }
+  ::-webkit-scrollbar-thumb { background: var(--line); border-radius: 4px; }
+</style>
+</head>
+<body>
+
+<div id="splash">
+  <h1>Presenter view</h1>
+  <p>Click the button below to open the keynote in a second window. Drag that window to your projector display, then press <span style="color:var(--ink)">F11</span> to fullscreen it. This window — the one you're reading now — stays on your laptop and shows your notes for the current slide.</p>
+  <button id="open">Open the deck</button>
+  <p class="hint">Tip · Use ← / → here or on the deck window to navigate. R resets. Esc exits fullscreen.</p>
+</div>
+
+<div id="presenter">
+  <header class="bar">
+    <div class="counter"><span class="now" id="num">1</span><span class="sep">/</span><span class="total" id="total">1</span></div>
+    <div class="label-pill" id="slideLabel">—</div>
+    <div class="timer" id="timer"><span class="elapsed" id="elapsed">00:00</span><span class="target">/ 18:00</span></div>
+  </header>
+
+  <main class="body">
+    <section class="block">
+      <div class="head">
+        <span class="title-now">Now</span>
+        <span class="slide-label" id="nowSlideNum"></span>
+      </div>
+      <div id="nowNote"></div>
+    </section>
+    <section class="block">
+      <div class="head">
+        <span class="title-next">Next</span>
+        <span class="slide-label" id="nextSlideNum"></span>
+      </div>
+      <div id="nextNote"></div>
+    </section>
+  </main>
+
+  <footer class="bar">
+    <span><span class="kbd">&larr;</span><span class="kbd">&rarr;</span> navigate</span>
+    <span><span class="kbd">Space</span> next</span>
+    <span><span class="kbd">R</span> reset timer</span>
+    <span><span class="kbd">F</span> focus deck</span>
+    <span class="status" id="status">Waiting for deck…</span>
+  </footer>
+</div>
+
+<script>
+// Speaker notes — copy of the array in the deck. If you edit the deck's notes,
+// copy them here too. Source of truth lives in `Neuro-Symbolic AI.html`.
+const NOTES = [
+  "Good morning all, and thanks to the organizers at ENSET-Skikda. I am Samir SELLAMI researcher at LIRE Laboratory, Univ-Constantine 2 and Associate teacher at the Department of Mathematics & Computer Science, ENSET-Skikda. Over the next twenty minutes I want to share a short journey. How we got to large language models LLMs. Why they alone are not enough. And why the next decade belongs to a merge of neural networks and symbolic knowledge. Let's begin.",
+  "Four short acts for the agenda of today talk. First, where we came from — symbolic and neural. Second, the honest limits of today's LLMs. Third, the quiet return of knowledge graphs and ontologies. Fourth, the synthesis — Knowledge-Infused Learning — and what it unlocks. Finally, a simple call to action.",
+  "AI has always had two main directions. Symbolists — intelligence as logic, rules and ontologies. Connectionists — intelligence as patterns learned from data. For seventy years they barely talked. Today, for the first time, they have to collaborate. That is the story of this talk.",
+  "From the nineteen-fifties to two thousand, symbolic AI ruled. Expert systems. Ontologies. The Semantic Web vision. Beautiful and transparent — you could read the rules. But brittle and too hard. Every edge case had to be coded by hand, and the world had too many edges and entities. By the late nineties, funding collapsed and we entered the AI winter big freeze. A beautiful theory frozen and it was time for data and deep learning.",
+  "Twenty-twelve everything changed  — ImageNet, deep CNNs, machines could see. Twenty-seventeen — Attention is all you need, the Transformer arrives. Twenty-twenty — GPT3 and scaling laws. November twenty-twenty-two — ChatGPT. AI left the lab. What symbolic AI could not do — see, hear, translate, converse — the neural tradition did, decisively.",
+  "In fact, LLMs started a methodological revolution we are living through. What used to take five tools and a week — tokenisation, parsing, entity extraction, the whole NLP pipeline — now takes one prompt and one second. Raw text in, structured meaning out. For a doctor, a lawyer, a researcher, this is extraordinarily empowering.",
+  "Let me be fair. Deep learning and transformers did things symbolic AI never could. Image and speech recognition. Machine translation. Protein folding. Autonomous driving. Superhuman game-play. The neural camp won the last decade, decisively. I am not here to argue against that. I am here to argue about what comes next.",
+  "But — there ain't no such thing as a free lunch. Robert Heinlein said it sixty years ago, and it fits AI perfectly. Every gain in convenience has a hidden cost. The cost of the LLM revolution is now starting to show. Let's be honest about what it is.",
+  "LLMs are fluent and confident. But often disconnected from reality. They hallucinate — wrong answers that sound perfect. No provenance. No consistency. Hard to update. GPU and Tokens hungry. Their knowledge is entangled in billions of weights. In medicine, law, finance — fluent confidence without grounding is not a feature. It is a liability.",
+  "Here is the deeper problem. An LLM learns what words follow what words. It does not really know what a patient, a contract, or a regulation is. The knowledge is implicit — entangled in weights, impossible to inspect. A knowledge graph is the opposite. Explicit. Queryable. Auditable. A glass box, not a black box.",
+  "This is what a knowledge graph looks like. Eight nodes, each represents a real thing. For example, Medication, Patient, Ibuprofen, Arthritis, Inflammation. The lines between them are typed relationships — not just lines, but meaning. Patient takes Ibuprofen which is Nonsteroidal Anti-Inflammatory Drugs, Ibuprofen treats Arthritis which had Inflammation as symptom. Ibuprofen interacts with Warfarin which treats Thrombosis. Now imagine this at the scale of a hospital, or all of medicine. Every fact written down, inspectable, updatable. That is what an LLM alone cannot give you.",
+  "And above the graph sits the ontology. The ontology is the shape of meaning. For example, a patient has exactly one date of birth. A contract has at least two parties. These are not statistical tendencies — they are truths of the domain. Remember this line: the graph is the memory, the ontology is the grammar.",
+  "Tony Seale recently wrote in LinkedIn that ontology is having its moment. He is right. For twenty years ontologies were a quiet corner of computer science. Now every major enterprise is building one. Because to deploy AI at scale, inside a regulated business, you need a layer of ground truth the model can consult.",
+  "Look at this diagram — the architecture of the next decade of AI pipelines. A user asks a question. The LLM does not answer from memory alone. It queries the knowledge graph. The graph returns grounded facts. The LLM drafts an answer. Then a symbolic check — does it satisfy the ontology? Only then does it reach the user and gives and output, with provenance attached. And the dashed loop at the bottom — every interaction refines the graph. Neural intuition, times symbolic truth. More accurate. More explainable. More efficient. This is Knowledge-Infused Learning.",
+  "And the benchmarks now back this up. SPOKE plus Llama2 — 71% boost on biomedical multiple-choice QA. LinkedIn's customer-service knowledge graph cut median resolution time by 28.6%. MEGA-RAG, in public health, reduced hallucinations by over −40%. And Microsoft's GraphRAG showed substantial gains on million-token corpora. Different domains. Different metrics. Same direction. Structure does not replace the model. It makes the model accountable.",
+  "There are three points where you can inject knowledge. Before the model — pre-training phase on structured data. During inference — this is RAG, and Graph-RAG does it even better. Or after — a symbolic verifier checks the output against the ontology. Real systems combine all three. The architecture is a pipeline, not a swap.",
+  "IN PRACTICE, Healthcare for example. A clinician asks about a drug interaction. Without grounding, the model invents imaginary facts. With ontologies such as UMLS or SNOMED behind it, every claim is traceable. The ontology catches contradictions before they reach the patient. That is the difference between a toy and a tool. Regulators are now asking for this explicitly.",
+  "Another use case is Legal and compliance. The goal is to Review a thousand contracts without missing a clause. An LLM alone misses obligations and contradicts itself. With a legal ontology — parties, obligations, jurisdictions, dates — cross-document reasoning becomes possible. For example European regulators are pushing this direction hard.",
+  "In Enterprises. Every large company has a decade of documents, databases, wikis, all siloed. Build a knowledge graph over it. Connect the LLM as a natural-language interface. Now you have an assistant that actually knows your business — grounded in your own truth, not a general model guessing. A competitive advantage that no competitor can simply download.",
+  "And finally education — which matters especially to us here in Algeria. How do we train the next generation when LLMs make the basics seem optional? My answer is concrete. Three tracks every CS programme can add now. One — ontology engineering: OWL and SHACL. Two — knowledge-graph systems: SPARQL, Cypher, Graph-RAG. Three — a grounded-AI capstone: build KG-backed SHACL-validated RAG system. The neural layer will commoditise. The knowledge layer is where expertise lives — and where Algerian research can lead.",
+  "Here is what I want you to take away. Generative AI is powerful, accessible, empowering — and it needs control. Knowledge graphs and symbolic reasoning provide that grounding. The future of AI is not neural. It is not symbolic. It is both. Build with both hands. Thank you very much."
+];
+
+// Optional: descriptive label for each slide (shown in the corner).
+const SLIDE_LABELS = [
+  "01 Title",
+  "02 An 18-minute map",
+  "03 Two traditions",
+  "04 The symbolic era",
+  "05 The neural renaissance",
+  "06 LLMs: methodological pivot",
+  "07 What deep learning got right",
+  "08 No free lunch",
+  "09 The LLM trust crisis",
+  "10 Statistics is not knowledge",
+  "11 Knowledge graphs revisited",
+  "12 Ontologies",
+  "13 Ontology's moment",
+  "14 Knowledge-Infused Learning",
+  "15 The evidence",
+  "16 Three ways to inject knowledge",
+  "17 Healthcare",
+  "18 Legal & compliance",
+  "19 Enterprise knowledge",
+  "20 Education",
+  "21 Closing"
+];
+
+const DECK_URL = "Neuro-Symbolic AI.html";
+const TARGET_SEC = 18 * 60;
+const WARN_SEC = 16 * 60;
+
+const $ = (id) => document.getElementById(id);
+let deckWin = null;
+let timerStart = null;
+let timerId = null;
+let currentIndex = 0;
+let deckReady = false;
+
+function setStatus(text, warn) {
+  const s = $("status");
+  s.textContent = text;
+  s.classList.toggle("warn", !!warn);
+}
+
+function render(index) {
+  const i = Math.max(0, Math.min(index | 0, NOTES.length - 1));
+  currentIndex = i;
+  $("num").textContent = String(i + 1);
+  $("total").textContent = String(NOTES.length);
+  $("slideLabel").textContent = SLIDE_LABELS[i] || "";
+  $("nowNote").textContent = NOTES[i] || "";
+  $("nowSlideNum").textContent = SLIDE_LABELS[i] || "";
+  if (i + 1 < NOTES.length) {
+    $("nextNote").textContent = NOTES[i + 1];
+    $("nextSlideNum").textContent = SLIDE_LABELS[i + 1] || "";
+  } else {
+    $("nextNote").textContent = "— end of deck —";
+    $("nextSlideNum").textContent = "";
+  }
+  $("nowNote").scrollTop = 0;
+  $("nextNote").scrollTop = 0;
+}
+
+function startTimer() {
+  if (timerStart !== null) return;
+  timerStart = Date.now();
+  const t = $("timer");
+  const el = $("elapsed");
+  timerId = setInterval(() => {
+    const sec = Math.floor((Date.now() - timerStart) / 1000);
+    const mm = String(Math.floor(sec / 60)).padStart(2, "0");
+    const ss = String(sec % 60).padStart(2, "0");
+    el.textContent = mm + ":" + ss;
+    t.classList.toggle("warn", sec >= WARN_SEC && sec < TARGET_SEC);
+    t.classList.toggle("over", sec >= TARGET_SEC);
+  }, 500);
+}
+function resetTimer() {
+  if (timerId) clearInterval(timerId);
+  timerStart = null; timerId = null;
+  $("elapsed").textContent = "00:00";
+  $("timer").classList.remove("warn", "over");
+}
+
+function openDeck() {
+  deckWin = window.open(DECK_URL, "deck-window");
+  if (!deckWin) {
+    alert("Pop-up blocked. Allow pop-ups for this page and try again.");
+    return;
+  }
+  $("splash").style.display = "none";
+  $("presenter").classList.add("on");
+  render(0);
+  setStatus("Waiting for deck…");
+  // Poll for the deck window being closed.
+  const closeCheck = setInterval(() => {
+    if (deckWin && deckWin.closed) {
+      clearInterval(closeCheck);
+      deckReady = false;
+      setStatus("Deck window closed. Reload this page to start over.", true);
+    }
+  }, 1000);
+}
+
+function sendNav(payload) {
+  if (deckWin && !deckWin.closed) {
+    try { deckWin.postMessage(Object.assign({ type: "presenter:nav" }, payload), "*"); } catch (e) {}
+  }
+}
+
+// Receive messages from the deck window.
+window.addEventListener("message", (ev) => {
+  const d = ev.data;
+  if (!d || typeof d !== "object") return;
+  if (d.deckReady) {
+    deckReady = true;
+    setStatus("Deck connected.");
+    setTimeout(() => setStatus("Ready."), 1500);
+    return;
+  }
+  if ("slideIndexChanged" in d) {
+    if (timerStart === null) startTimer();
+    render(d.slideIndexChanged);
+  }
+});
+
+// Keyboard shortcuts in the presenter window.
+window.addEventListener("keydown", (e) => {
+  if (!deckWin || deckWin.closed) return;
+  const k = e.key;
+  if (k === "ArrowRight" || k === "PageDown" || k === " " || k === "Spacebar") {
+    e.preventDefault();
+    sendNav({ dir: "next" });
+  } else if (k === "ArrowLeft" || k === "PageUp") {
+    e.preventDefault();
+    sendNav({ dir: "prev" });
+  } else if (k === "r" || k === "R") {
+    e.preventDefault();
+    sendNav({ dir: "reset" });
+    resetTimer();
+  } else if (k === "f" || k === "F") {
+    e.preventDefault();
+    try { deckWin.focus(); } catch (err) {}
+  }
+});
+
+$("open").addEventListener("click", openDeck);
+</script>
+
+</body>
+</html>

@@ -1,0 +1,1462 @@
+<!DOCTYPE html><html lang="en" data-theme="sage" data-fonts="technical"><head>
+
+
+<meta charset="utf-8">
+<title>Neuro-Symbolic AI — NCSDS-26</title>
+<meta name="viewport" content="width=1920">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&amp;family=Space+Grotesk:wght@400;500;600;700&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+
+<script>
+// Tweakable theme + font defaults — rewritten on disk by the host when user tweaks.
+window.__TWEAKS__ = /*EDITMODE-BEGIN*/{
+  "theme": "sage",
+  "fonts": "technical"
+}/*EDITMODE-END*/;
+</script>
+
+<script type="application/json" id="speaker-notes">
+[
+  "Good afternoon, and thank you to the organisers at ENSET-Skikda. Over the next eighteen minutes I want to share a short journey. How we got to large language models. Why they alone are not enough. And why the next decade belongs to a marriage of neural networks and symbolic knowledge. Let's begin.",
+
+  "Four short acts. First, where we came from — symbolic and neural. Second, the honest limits of today's LLMs. Third, the quiet return of knowledge graphs and ontologies. Fourth, the synthesis — Knowledge-Infused Learning — and what it unlocks. Then a simple call to action.",
+
+  "AI has always had two main directions. Symbolists — intelligence as logic, rules and ontologies. Connectionists — intelligence as patterns learned from data. For seventy years they barely talked. Today, for the first time, they have to collaborate. That is the story of this talk.",
+
+  "From the nineteen-fifties to two thousand, symbolic AI ruled. Expert systems. Ontologies. The Semantic Web vision. Beautiful and transparent — you could read the rules. But brittle. Every edge case had to be coded by hand, and the world had too many edges. By the late nineties, funding collapsed. The AI winter.",
+
+  "Then everything changed. Twenty-twelve — ImageNet, deep CNNs, machines could see. Twenty-seventeen — the Transformer. Twenty-twenty — GPT-three and scaling laws. November twenty-twenty-two — ChatGPT. AI left the lab. What symbolic AI could not do — see, hear, translate, converse — the neural tradition did, decisively.",
+
+  "LLMs started a methodological revolution we are living through. What used to take five tools and a week — tokenisation, parsing, entity extraction, the whole NLP pipeline — now takes one prompt and one second. Raw text in, structured meaning out. For a doctor, a lawyer, a researcher, this is extraordinarily empowering.",
+
+  "Let me be fair. Deep learning did things symbolic AI never could. Image and speech recognition. Machine translation. Protein folding. Autonomous driving. Superhuman game-play. The neural tribe won the last decade, decisively. I am not here to argue against that. I am here to argue about what comes next.",
+
+  "But — there ain't no such thing as a free lunch. Heinlein said it sixty years ago, and it fits AI perfectly. Every gain in convenience has a hidden cost. The cost of the LLM revolution is now starting to show. Let's be honest about what it is.",
+
+  "LLMs are fluent. Confident. And often ungrounded. They hallucinate — wrong answers that sound perfect. No provenance. No consistency. Hard to update. Their knowledge is entangled in billions of weights. In medicine, law, finance — fluent confidence without grounding is not a feature. It is a liability.",
+
+  "Here is the deeper problem. An LLM learns what words follow what words. It does not really know what a patient, a contract, or a regulation is. The knowledge is implicit — entangled in weights, impossible to inspect. A knowledge graph is the opposite. Explicit. Queryable. Auditable. A glass box, not a black box.",
+
+  "This is what a knowledge graph looks like. Seven nodes, each a real thing. A Patient. Ibuprofen. Arthritis. Warfarin. The lines between them are typed relationships — not just lines, but meaning. Patient takes Ibuprofen. Ibuprofen treats Arthritis. Ibuprofen interacts with Warfarin. Now imagine this at the scale of a hospital, or all of medicine. Every fact written down, inspectable, updatable. That is what an LLM alone cannot give you.",
+
+  "And above the graph sits the ontology. The ontology is the shape of meaning. A patient has exactly one date of birth. A contract has at least two parties. These are not statistical tendencies — they are truths of the domain. Remember this line: the graph is the memory, the ontology is the grammar.",
+
+  "Tony Seale recently wrote that ontology is having its moment. He is right. For twenty years ontologies were a quiet corner of computer science. Now every major enterprise is building one. Because to deploy AI at scale, inside a regulated business, you need a layer of ground truth the model can consult.",
+
+  "Look at this diagram — the architecture of the next decade. A user asks a question. The LLM does not answer from memory alone. It queries the knowledge graph. The graph returns grounded facts. The LLM drafts an answer. Then a symbolic check — does it satisfy the ontology? Only then does it reach the user, with provenance attached. And the dashed loop at the bottom — every interaction refines the graph. Neural intuition, times symbolic truth. More accurate. More explainable. More efficient. This is Knowledge-Infused Learning.",
+
+  "And the benchmarks now back this up. SPOKE plus Llama-two — a seventy-one-percent boost on biomedical multiple-choice QA. LinkedIn's customer-service knowledge graph cut median resolution time by twenty-eight point six percent. MEGA-RAG, in public health, reduced hallucinations by over forty percent. And Microsoft's GraphRAG showed substantial gains on million-token corpora. Different domains. Different metrics. Same direction. Structure does not replace the model. It makes the model accountable.",
+
+  "There are three points where you can inject knowledge. Before the model — pre-training on structured data. During inference — this is RAG, and Graph-RAG does it even better. Or after — a symbolic verifier checks the output against the ontology. Real systems combine all three. The architecture is a sandwich, not a swap.",
+
+  "Healthcare. A clinician asks about a drug interaction. Without grounding, the model confabulates. With UMLS or SNOMED behind it, every claim is traceable. The ontology catches contradictions before they reach the patient. That is the difference between a toy and a tool. Regulators are now asking for this explicitly.",
+
+  "Legal and compliance. Review a thousand contracts without missing a clause. An LLM alone misses obligations and contradicts itself. With a legal ontology — parties, obligations, jurisdictions, dates — cross-document reasoning becomes possible. EU regulators are pushing this direction hard, and rightly so.",
+
+  "In Enterprises. Every large company has a decade of documents, databases, wikis, all siloed. Build a knowledge graph over it. Connect the LLM as a natural-language interface. Now you have an assistant that actually knows your business — grounded in your own truth, not a general model guessing. A competitive advantage that no competitor can simply download.",
+
+  "And education — which matters especially to us here in Skikda. How do we train the next generation when LLMs make the basics seem optional? My answer is concrete. Three tracks every CS programme can add now. One — ontology engineering: OWL and SHACL. Two — knowledge-graph systems: SPARQL, Cypher, Graph-RAG. Three — a grounded-AI capstone: build and SHACL-validate a KG-backed RAG system. The neural layer will commoditise. The knowledge layer is where expertise lives — and where Algerian research can lead.",
+
+  "Here is what I want you to take away. Generative AI is powerful, accessible, empowering — and it needs control. Knowledge graphs and symbolic reasoning provide that grounding. The future of AI is not neural. It is not symbolic. It is both. Build with both hands. Thank you very much."
+]
+</script>
+
+<style>
+  :root {
+    /* Cobalt theme (default) */
+    --ink: oklch(0.18 0.015 260);
+    --ink-2: oklch(0.24 0.018 260);
+    --paper: oklch(0.975 0.005 90);
+    --paper-2: oklch(0.94 0.008 85);
+    --muted: oklch(0.55 0.012 260);
+    --line: oklch(0.86 0.01 260);
+    --line-dark: oklch(0.32 0.02 260);
+    --accent: oklch(0.58 0.18 255);
+    --accent-soft: oklch(0.92 0.04 255);
+    --accent-ink: oklch(0.42 0.18 255);
+
+    /* Typography */
+    --f-display: "Inter Tight", -apple-system, system-ui, sans-serif;
+    --f-body: "Inter", -apple-system, system-ui, sans-serif;
+    --f-mono: "JetBrains Mono", ui-monospace, monospace;
+  }
+
+  html[data-theme="ember"] {
+    --ink: oklch(0.19 0.012 40);
+    --ink-2: oklch(0.26 0.016 40);
+    --paper: oklch(0.975 0.008 75);
+    --paper-2: oklch(0.94 0.015 70);
+    --muted: oklch(0.55 0.013 40);
+    --line: oklch(0.86 0.012 60);
+    --line-dark: oklch(0.32 0.02 40);
+    --accent: oklch(0.65 0.17 55);
+    --accent-soft: oklch(0.93 0.05 65);
+    --accent-ink: oklch(0.48 0.17 50);
+  }
+
+  html[data-theme="sage"] {
+    --ink: oklch(0.20 0.015 160);
+    --ink-2: oklch(0.26 0.018 160);
+    --paper: oklch(0.975 0.006 130);
+    --paper-2: oklch(0.94 0.012 140);
+    --muted: oklch(0.52 0.015 160);
+    --line: oklch(0.85 0.012 150);
+    --line-dark: oklch(0.32 0.02 160);
+    --accent: oklch(0.58 0.10 165);
+    --accent-soft: oklch(0.92 0.04 160);
+    --accent-ink: oklch(0.42 0.10 165);
+  }
+
+  html[data-fonts="editorial"] {
+    --f-display: "Fraunces", Georgia, serif;
+    --f-body: "Inter", -apple-system, system-ui, sans-serif;
+    --f-mono: "JetBrains Mono", ui-monospace, monospace;
+  }
+  html[data-fonts="technical"] {
+    --f-display: "Space Grotesk", -apple-system, system-ui, sans-serif;
+    --f-body: "Inter", -apple-system, system-ui, sans-serif;
+    --f-mono: "IBM Plex Mono", ui-monospace, monospace;
+  }
+
+  html, body { margin: 0; padding: 0; background: #000; color: var(--ink); }
+  * { box-sizing: border-box; }
+
+  deck-stage section {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--f-body);
+    font-size: 34px;
+    line-height: 1.4;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: geometricPrecision;
+  }
+
+  /* ----- Shared slide building blocks ----- */
+  .frame {
+    width: 100%; height: 100%;
+    padding: 100px 100px 80px;
+    display: flex; flex-direction: column;
+    position: relative;
+  }
+  .frame-tight { padding: 80px 100px; }
+
+  .topbar {
+    position: absolute; top: 52px; left: 100px; right: 100px;
+    display: flex; align-items: center; justify-content: space-between;
+    font-family: var(--f-mono); font-size: 24px; color: var(--muted);
+    letter-spacing: 0.04em; text-transform: uppercase;
+  }
+  .topbar .dot { width: 8px; height: 8px; background: var(--accent); border-radius: 50%; display: inline-block; margin-right: 14px; vertical-align: middle; }
+  .topbar .chap { display: inline-flex; align-items: center; }
+  .topbar .meta { color: var(--muted); }
+
+  .eyebrow {
+    font-family: var(--f-mono); font-size: 24px;
+    color: var(--accent-ink); letter-spacing: 0.08em; text-transform: uppercase;
+    margin-bottom: 28px;
+  }
+
+  .h-title {
+    font-family: var(--f-display); font-weight: 700;
+    font-size: 104px; line-height: 1.02; letter-spacing: -0.025em;
+    color: var(--ink); margin: 0; text-wrap: balance;
+  }
+  .h-display {
+    font-family: var(--f-display); font-weight: 700;
+    font-size: 140px; line-height: 0.98; letter-spacing: -0.03em;
+    color: var(--ink); margin: 0; text-wrap: balance;
+  }
+  .h-section-num {
+    font-family: var(--f-display); font-weight: 800;
+    font-size: 260px; line-height: 0.9; letter-spacing: -0.05em;
+    color: var(--accent); margin: 0;
+  }
+  .h-slide {
+    font-family: var(--f-display); font-weight: 700;
+    font-size: 72px; line-height: 1.05; letter-spacing: -0.022em;
+    color: var(--ink); margin: 0 0 52px; text-wrap: balance;
+  }
+  .body-lg { font-size: 34px; line-height: 1.45; color: var(--ink-2); max-width: 1400px; }
+  .body-md { font-size: 30px; line-height: 1.5; color: var(--ink-2); max-width: 1300px; }
+  .small-cap { font-family: var(--f-mono); font-size: 24px; color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase; }
+
+  .pill {
+    display: inline-flex; align-items: center; gap: 12px;
+    padding: 10px 20px; border: 1px solid var(--line); border-radius: 999px;
+    font-family: var(--f-mono); font-size: 24px; color: var(--muted);
+    letter-spacing: 0.06em; text-transform: uppercase;
+  }
+  .pill--accent { color: var(--accent-ink); border-color: var(--accent); background: var(--accent-soft); }
+
+  /* Graph motif - subtle dotted background */
+  .grid-bg {
+    position: absolute; inset: 0;
+    background-image:
+      radial-gradient(circle at 1px 1px, var(--line) 1px, transparent 0);
+    background-size: 40px 40px;
+    opacity: 0.5; pointer-events: none;
+  }
+
+  /* Dark slide variant */
+  .dark { background: var(--ink); color: var(--paper); }
+  .dark .h-title, .dark .h-display, .dark .h-slide { color: var(--paper); }
+  .dark .body-lg, .dark .body-md { color: oklch(0.82 0.01 260); }
+  .dark .eyebrow { color: var(--accent); }
+  .dark .small-cap, .dark .topbar { color: oklch(0.65 0.01 260); }
+  .dark .pill { border-color: var(--line-dark); color: oklch(0.75 0.01 260); }
+
+  /* Accent slide variant */
+  .accent-bg { background: var(--accent); color: var(--paper); }
+  .accent-bg .h-title, .accent-bg .h-display, .accent-bg .h-slide { color: var(--paper); }
+  .accent-bg .body-lg, .accent-bg .body-md { color: oklch(0.97 0.02 255); }
+  .accent-bg .eyebrow { color: oklch(0.97 0.02 255); }
+  .accent-bg .small-cap { color: oklch(0.92 0.04 255); }
+
+  /* --- Specific slide layouts --- */
+  .kicker-row { display: flex; align-items: center; justify-content: space-between; width: 100%; }
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+  .two-col-wide { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 100px; align-items: start; }
+  .three-col { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
+
+  .card {
+    background: var(--paper); border: 1px solid var(--line);
+    border-radius: 4px; padding: 40px;
+  }
+  .dark .card { background: var(--ink-2); border-color: var(--line-dark); }
+
+  .stat { font-family: var(--f-display); font-weight: 700; font-size: 180px; line-height: 0.9; letter-spacing: -0.04em; color: var(--accent); }
+  .label { font-family: var(--f-mono); font-size: 24px; color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase; }
+
+  ul.clean { list-style: none; padding: 0; margin: 0; }
+  .clean li {
+    padding: 22px 0; border-top: 1px solid var(--line);
+    font-size: 32px; line-height: 1.35; color: var(--ink-2);
+    display: flex; gap: 28px; align-items: baseline;
+  }
+  .clean li:last-child { border-bottom: 1px solid var(--line); }
+  .clean li .num {
+    font-family: var(--f-mono); font-size: 24px; color: var(--accent-ink);
+    letter-spacing: 0.06em; min-width: 52px;
+  }
+  .dark .clean li { border-top-color: var(--line-dark); color: oklch(0.82 0.01 260); }
+  .dark .clean li:last-child { border-bottom-color: var(--line-dark); }
+
+  /* Quote */
+  .quote {
+    font-family: var(--f-display); font-weight: 500;
+    font-size: 84px; line-height: 1.12; letter-spacing: -0.02em;
+    color: var(--ink); max-width: 1500px; text-wrap: balance;
+  }
+  .dark .quote { color: var(--paper); }
+  .cite { font-family: var(--f-mono); font-size: 24px; color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase; margin-top: 40px; }
+
+  /* Timeline */
+  .timeline { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; margin-top: 40px; border-top: 1px solid var(--line); }
+  .timeline .cell { padding: 32px 28px 28px 0; border-right: 1px solid var(--line); }
+  .timeline .cell:last-child { border-right: 0; }
+  .timeline .year { font-family: var(--f-mono); font-size: 24px; color: var(--accent-ink); letter-spacing: 0.08em; }
+  .timeline .event { font-family: var(--f-display); font-weight: 600; font-size: 34px; line-height: 1.15; margin-top: 16px; color: var(--ink); }
+  .timeline .note { font-size: 24px; color: var(--muted); margin-top: 12px; line-height: 1.35; }
+  .dark .timeline { border-top-color: var(--line-dark); }
+  .dark .timeline .cell { border-right-color: var(--line-dark); }
+  .dark .timeline .event { color: var(--paper); }
+
+  /* Graph visual */
+  .graph-art { position: absolute; right: 80px; bottom: 80px; width: 640px; height: 640px; opacity: 0.95; }
+
+  /* Case-study slide */
+  .case {
+    display: grid; grid-template-columns: 360px 1fr; gap: 80px; align-items: start;
+    margin-top: 20px;
+  }
+  .case .big-n {
+    font-family: var(--f-display); font-weight: 800; font-size: 240px;
+    line-height: 0.82; letter-spacing: -0.06em; color: var(--accent);
+  }
+  .case .domain { font-family: var(--f-mono); font-size: 24px; color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase; margin-top: 0; }
+
+  /* Case-study icon plaque */
+  .case-icon {
+    width: 140px; height: 140px;
+    border: 1.5px solid var(--accent);
+    border-radius: 8px;
+    background: var(--accent-soft);
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 32px;
+    color: var(--accent-ink);
+  }
+  .case-icon svg { width: 84px; height: 84px; stroke: currentColor; fill: none; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+  .dark .case-icon { background: var(--ink-2); border-color: var(--accent); color: var(--accent); }
+  .case h3 { font-family: var(--f-display); font-weight: 700; font-size: 64px; line-height: 1.05; letter-spacing: -0.02em; margin: 16px 0 32px; color: var(--ink); }
+  .case .prob, .case .sol { font-size: 30px; line-height: 1.45; color: var(--ink-2); margin: 0; }
+  .case .row { display: grid; grid-template-columns: 120px 1fr; gap: 32px; margin-bottom: 26px; align-items: baseline; }
+  .case .row .tag { font-family: var(--f-mono); font-size: 24px; color: var(--accent-ink); letter-spacing: 0.1em; text-transform: uppercase; }
+
+  /* signature */
+  .sig { font-family: var(--f-mono); font-size: 24px; color: var(--muted); letter-spacing: 0.06em; }
+
+  /* Tweaks panel */
+  #tweaks {
+    position: fixed; right: 20px; bottom: 20px;
+    background: #0b0f1a; color: #fff; padding: 18px 20px;
+    border: 1px solid #2a3245; border-radius: 12px;
+    font-family: var(--f-body); font-size: 13px;
+    z-index: 2147483646; display: none; min-width: 240px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+  }
+  #tweaks.open { display: none; }
+  #tweaks h4 { margin: 0 0 12px; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: #9aa3b7; font-weight: 500; }
+  #tweaks label { display: block; margin-bottom: 6px; font-size: 11px; color: #9aa3b7; letter-spacing: 0.06em; text-transform: uppercase; }
+  #tweaks .row + h4 { margin-top: 18px; }
+  #tweaks .swatches { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+  #tweaks .sw {
+    border: 1px solid #2a3245; background: #141a2a; color: #fff;
+    padding: 10px 12px; border-radius: 6px; font: inherit; cursor: pointer;
+    text-align: left; line-height: 1.1;
+  }
+  #tweaks .sw[aria-pressed="true"] { border-color: #6b8cff; background: #1b2440; }
+  #tweaks .sw .dot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 8px; vertical-align: middle; }
+</style>
+<style id="deck-stage-print-page">@page { size: 1920px 1080px; margin: 0; } @media print { html, body { margin: 0 !important; padding: 0 !important; background: none !important; overflow: visible !important; height: auto !important; } * { -webkit-print-color-adjust: exact; print-color-adjust: exact; } }</style>
+<template id="__bundler_thumbnail" data-bg-color="#2d4a3e">
+  <svg viewBox="0 0 1920 1080" xmlns="http://www.w3.org/2000/svg">
+    <!-- slide silhouette on sage bg -->
+    <rect width="1920" height="1080" fill="#1e3530"/>
+    <!-- title block -->
+    <rect x="100" y="200" width="800" height="30" rx="4" fill="#4a8272" opacity="0.9"/>
+    <rect x="100" y="260" width="1100" height="16" rx="4" fill="#4a8272" opacity="0.5"/>
+    <rect x="100" y="296" width="960" height="16" rx="4" fill="#4a8272" opacity="0.5"/>
+    <!-- graph motif -->
+    <g stroke="#4a8272" stroke-width="3" fill="none" opacity="0.7">
+      <line x1="1500" y1="400" x2="1650" y2="320"/>
+      <line x1="1500" y1="400" x2="1650" y2="480"/>
+      <line x1="1650" y1="320" x2="1780" y2="400"/>
+      <line x1="1650" y1="480" x2="1780" y2="400"/>
+    </g>
+    <g fill="#4a8272">
+      <circle cx="1500" cy="400" r="14"/>
+      <circle cx="1650" cy="320" r="14"/>
+      <circle cx="1650" cy="480" r="14"/>
+      <circle cx="1780" cy="400" r="14"/>
+    </g>
+    <!-- bottom bar -->
+    <rect x="100" y="800" width="400" height="14" rx="4" fill="#4a8272" opacity="0.4"/>
+    <rect x="100" y="830" width="260" height="10" rx="4" fill="#4a8272" opacity="0.3"/>
+  </svg>
+</template>
+</head>
+<body style="cursor: crosshair; font-family: serif;" data-cc-id="cc-1">
+
+<deck-stage width="1920" height="1080">
+
+  <!-- 01 — Title -->
+  <section data-label="Title" data-screen-label="01 Title" data-om-validate="no_overflowing_text,no_overlapping_text,slide_sized_text" data-deck-slide="0" data-deck-active="">
+    <div class="frame" style="justify-content: space-between;">
+      <div class="topbar">
+        <span class="chap"><span class="dot"></span>NCSDS-26 · KEYNOTE</span>
+        <span class="meta">ENSET-Skikda · Azzaba, Algeria</span>
+      </div>
+
+      <div style="margin-top: 120px; display: grid; grid-template-columns: 1fr auto; gap: 72px; align-items: center;">
+        <div>
+          <div class="eyebrow">The shape of the next decade</div>
+          <h1 class="h-display">Neuro-<br>Symbolic&nbsp;AI.</h1>
+          <p class="body-lg" style="margin-top: 48px; max-width: 1200px;">
+            How knowledge graphs and ontologies are learning to live inside large language models — and why that changes everything.
+          </p>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 40px; align-items: center;">
+          <img src="logos/NCSDS.webp" alt="NCSDS-26" style="height: 180px; width: auto; object-fit: contain; display: block;">
+          <img src="logos/Logo ENSET.png" alt="ENSET-Skikda" style="height: 180px; width: auto; object-fit: contain; display: block;">
+        </div>
+      </div>
+
+      <div class="kicker-row" style="align-items: end;">
+        <div>
+          <div class="small-cap">Speaker</div>
+          <div style="font-family: var(--f-display); font-weight: 600; font-size: 40px; margin-top: 14px; color: var(--ink);">Dr. Samir Sellami</div>
+          <div style="font-size: 24px; color: var(--muted); margin-top: 8px; line-height: 1.4;">
+            LIRE Laboratory, Univ-Constantine 2<br>
+            Dept. of Mathematics &amp; Computer Science, ENSET-Skikda, Azzaba, Algeria
+          </div>
+        </div>
+        <svg width="320" height="120" viewBox="0 0 320 120" fill="none" style="opacity: 0.9;">
+          <!-- graph motif -->
+          <g stroke="currentColor" stroke-width="1.2" stroke-linecap="round" style="color: var(--accent);" opacity="0.7">
+            <line x1="30" y1="60" x2="110" y2="30"></line>
+            <line x1="30" y1="60" x2="110" y2="90"></line>
+            <line x1="110" y1="30" x2="200" y2="60"></line>
+            <line x1="110" y1="90" x2="200" y2="60"></line>
+            <line x1="200" y1="60" x2="290" y2="30"></line>
+            <line x1="200" y1="60" x2="290" y2="90"></line>
+          </g>
+          <g fill="var(--accent)">
+            <circle cx="30" cy="60" r="6"></circle>
+            <circle cx="110" cy="30" r="6"></circle>
+            <circle cx="110" cy="90" r="6"></circle>
+            <circle cx="200" cy="60" r="6"></circle>
+            <circle cx="290" cy="30" r="6"></circle>
+            <circle cx="290" cy="90" r="6"></circle>
+          </g>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- 02 — Agenda -->
+  <section data-label="A 20-minute map" data-screen-label="02 An 18-minute map" data-om-validate="no_overflowing_text,no_overlapping_text,slide_sized_text" data-deck-slide="1">
+    <div class="frame">
+      <div class="topbar">
+        <span class="chap"><span class="dot"></span>AGENDA</span>
+        <span class="meta">~20 MIN</span>
+      </div>
+      <div style="margin-top: 140px;">
+        <div class="eyebrow">A 20-minute map</div>
+        <h1 class="h-title">Four short acts.</h1>
+      </div>
+      <ol class="clean" style="list-style: none; padding: 0; margin-top: 100px; max-width: 1500px;">
+        <li><span class="num">01</span><span><strong style="color: var(--ink); font-weight: 600;">Where we came from.</strong> Two traditions of AI — symbolic and neural.</span></li>
+        <li><span class="num">02</span><span><strong style="color: var(--ink); font-weight: 600;">The limits of LLMs.</strong> Hallucination, provenance, and the absent ground truth.</span></li>
+        <li><span class="num">03</span><span><strong style="color: var(--ink); font-weight: 600;">Knowledge graphs &amp; ontologies.</strong> The quiet return of structured meaning.</span></li>
+        <li><span class="num">04</span><span><strong style="color: var(--ink); font-weight: 600;">Knowledge-Infused Learning.</strong> The synthesis — and what it unlocks.</span></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- 03 — Section header: History -->
+  <section data-label="Two traditions, one goal" data-screen-label="03 Two traditions, one goal" data-om-validate="no_overflowing_text,no_overlapping_text,slide_sized_text" data-deck-slide="2">
+    <div class="frame accent-bg" style="justify-content: center;">
+      <div class="topbar" style="color: oklch(0.92 0.04 255);">
+        <span class="chap">PART 01</span>
+        <span class="meta">HISTORY</span>
+      </div>
+      <div style="display: grid; grid-template-columns: 280px 1fr; gap: 80px; align-items: center;">
+        <div class="h-section-num" style="color: var(--paper);">01</div>
+        <div>
+          <div class="eyebrow" style="color: oklch(0.92 0.04 255);">Two traditions</div>
+          <h1 class="h-title" style="font-size: 120px; color: var(--paper);">One goal,<br>two main directions.</h1>
+          <p class="body-lg" style="color: oklch(0.97 0.02 255); margin-top: 36px; max-width: 1200px;">
+            Symbolists &amp; connectionists have argued about the nature of intelligence for seventy years. Today, for the first time, they have to collaborate.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 04 — Symbolic era -->
+  <section data-label="The symbolic era, 1956–2000" data-screen-label="04 The symbolic era, 1956–2000" data-om-validate="no_overflowing_text,no_overlapping_text,slide_sized_text" data-deck-slide="3">
+    <div class="frame">
+      <div class="topbar">
+        <span class="chap"><span class="dot"></span>01 · HISTORY</span>
+        <span class="meta">1956 — 2000</span>
+      </div>
+      <div style="margin-top: 120px;">
+        <div class="eyebrow">The symbolic era</div>
+        <h1 class="h-slide">Intelligence as the manipulation<br>of symbols.</h1>
+      </div>
+      <div class="timeline">
+        <div class="cell">
+          <div class="year">1956</div>
+          <div class="event">Dartmouth workshop</div>
+          <div class="note">AI is named. The field begins with logic and search.</div>
+        </div>
+        <div class="cell">
+          <div class="year">1970s</div>
+          <div class="event">Expert systems</div>
+          <div class="note">MYCIN, DENDRAL. Hand-coded rules, transparent reasoning.</div>
+        </div>
+        <div class="cell">
+          <div class="year">1990s</div>
+          <div class="event">Ontologies &amp; the Web</div>
+          <div class="note">Description logics, OWL, the Semantic Web vision.</div>
+        </div>
+        <div class="cell">
+          <div class="year">~2000</div>
+          <div class="event">The winter</div>
+          <div class="note">Brittleness. Scale failure. Funding collapses.</div>
+        </div>
+      </div>
+      <p class="body-md" style="margin-top: 80px; color: var(--muted); max-width: 1500px;">
+        Beautifully explainable — you could read the rules. But every edge case had to be written by hand, and the world had too many edges.
+      </p>
+    </div>
+  </section>
+
+  <!-- 05 — Neural renaissance -->
+  <section data-label="The neural renaissance, 2012–2022" data-screen-label="05 The neural renaissance, 2012–2022" data-om-validate="no_overflowing_text,no_overlapping_text,slide_sized_text" data-deck-slide="4">
+    <div class="frame dark">
+      <div class="topbar">
+        <span class="chap"><span class="dot"></span>01 · HISTORY</span>
+        <span class="meta">2012 — 2022</span>
+      </div>
+      <!-- ImageNet sparkline — top right corner -->
+      <div style="position:absolute; top:100px; right:100px; width:500px;">
+        <div style="font-family:var(--f-mono); font-size:20px; color:oklch(0.62 0.01 260); letter-spacing:0.06em; text-transform:uppercase; margin-bottom:12px;">ImageNet top-5 error rate (%)</div>
+        <svg viewBox="0 0 480 190" style="width:100%;height:auto;display:block;" xmlns="http://www.w3.org/2000/svg">
+          <line x1="48" y1="10" x2="48" y2="155" stroke="oklch(0.32 0.01 260)" stroke-width="1"/>
+          <line x1="48" y1="155" x2="470" y2="155" stroke="oklch(0.32 0.01 260)" stroke-width="1"/>
+          <text x="44" y="18" text-anchor="end" font-family="monospace" font-size="14" fill="oklch(0.55 0.01 260)">28</text>
+          <text x="44" y="58" text-anchor="end" font-family="monospace" font-size="14" fill="oklch(0.55 0.01 260)">20</text>
+          <text x="44" y="98" text-anchor="end" font-family="monospace" font-size="14" fill="oklch(0.55 0.01 260)">12</text>
+          <text x="44" y="138" text-anchor="end" font-family="monospace" font-size="14" fill="oklch(0.55 0.01 260)">4</text>
+          <line x1="48" y1="18" x2="470" y2="18" stroke="oklch(0.26 0.01 260)" stroke-width="1" stroke-dasharray="4 4"/>
+          <line x1="48" y1="58" x2="470" y2="58" stroke="oklch(0.26 0.01 260)" stroke-width="1" stroke-dasharray="4 4"/>
+          <line x1="48" y1="98" x2="470" y2="98" stroke="oklch(0.26 0.01 260)" stroke-width="1" stroke-dasharray="4 4"/>
+          <line x1="48" y1="138" x2="470" y2="138" stroke="oklch(0.26 0.01 260)" stroke-width="1" stroke-dasharray="4 4"/>
+          <text x="68" y="172" font-family="monospace" font-size="14" fill="oklch(0.55 0.01 260)">2010</text>
+          <text x="148" y="172" font-family="monospace" font-size="14" fill="oklch(0.55 0.01 260)">2012</text>
+          <text x="240" y="172" font-family="monospace" font-size="14" fill="oklch(0.55 0.01 260)">2014</text>
+          <text x="330" y="172" font-family="monospace" font-size="14" fill="oklch(0.55 0.01 260)">2016</text>
+          <text x="420" y="172" font-family="monospace" font-size="14" fill="oklch(0.55 0.01 260)">2017</text>
+          <polygon fill="var(--accent)" opacity="0.08" points="68,18 108,30 148,74 194,97 240,122 285,138 330,140 420,144 420,155 68,155"/>
+          <polyline fill="none" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" points="68,18 108,30 148,74 194,97 240,122 285,138 330,140 420,144"/>
+          <circle cx="68" cy="18" r="4" fill="var(--accent)"/>
+          <circle cx="148" cy="74" r="5" fill="var(--accent)"/>
+          <circle cx="285" cy="138" r="5" fill="var(--accent)"/>
+          <circle cx="420" cy="144" r="5" fill="var(--accent)"/>
+          <line x1="148" y1="74" x2="148" y2="48" stroke="var(--accent)" stroke-width="1" stroke-dasharray="3 3"/>
+          <text x="153" y="44" font-family="monospace" font-size="12" fill="oklch(0.65 0.01 260)">AlexNet 16.4%</text>
+          <line x1="285" y1="138" x2="285" y2="112" stroke="var(--accent)" stroke-width="1" stroke-dasharray="3 3"/>
+          <text x="290" y="108" font-family="monospace" font-size="12" fill="oklch(0.65 0.01 260)">ResNet 3.6%</text>
+          <text x="428" y="138" font-family="monospace" font-size="16" font-weight="700" fill="var(--accent)">2.3%</text>
+        </svg>
+      </div>
+
+      <div style="margin-top: 120px; max-width: 900px;">
+        <div class="eyebrow">The neural renaissance</div>
+        <h1 class="h-slide">Intelligence as pattern,<br>learned from data.</h1>
+      </div>
+      <div class="timeline" style="border-top-color: var(--line-dark); margin-top: 80px;">
+        <div class="cell" style="border-right-color: var(--line-dark);">
+          <div class="year">2012</div>
+          <div class="event">ImageNet &amp; AlexNet</div>
+          <div class="note">Deep CNNs crush image classification. GPUs take over.</div>
+        </div>
+        <div class="cell" style="border-right-color: var(--line-dark);">
+          <div class="year">2017</div>
+          <div class="event">Attention is all you need</div>
+          <div class="note">The Transformer arrives. Sequences become scalable.</div>
+        </div>
+        <div class="cell" style="border-right-color: var(--line-dark);">
+          <div class="year">2020</div>
+          <div class="event">GPT-3 &amp; scaling laws</div>
+          <div class="note">Bigger + more data = emergent capability.</div>
+        </div>
+        <div class="cell">
+          <div class="year">Nov 2022</div>
+          <div class="event">ChatGPT</div>
+          <div class="note">AI leaves the lab. A civilisational moment.</div>
+        </div>
+      </div>
+      <p class="body-md" style="margin-top: 48px; color: oklch(0.72 0.01 260); max-width: 1200px;">
+        What the symbolic tradition couldn’t do — see, hear, translate, converse — the neural tradition did, and decisively.
+      </p>
+    </div>
+  </section>
+
+  <!-- 06 — LLM revolution quote-like -->
+  <section data-label="LLMs: a methodological revolution" data-screen-label="06 LLMs: a methodological revolution" data-om-validate="no_overflowing_text,no_overlapping_text,slide_sized_text" data-deck-slide="5">
+    <div class="frame">
+      <div class="topbar">
+        <span class="chap"><span class="dot"></span>01 · HISTORY</span>
+        <span class="meta">THE PIVOT</span>
+      </div>
+      <div style="margin: 160px 0 0; max-width: 1650px;">
+        <div class="eyebrow">November 2022 — the methodological pivot</div>
+        <div class="quote">
+          A single prompt now does the work of an entire NLP pipeline.
+          Raw text goes in. Structured meaning comes out.
+        </div>
+        <div class="cite">— What took five tools &amp; a week now takes a sentence &amp; a second.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 07 — What deep learning got right -->
+  <section data-label="What deep learning got right" data-screen-label="07 What deep learning got right" data-om-validate="no_overflowing_text,no_overlapping_text,slide_sized_text" data-deck-slide="6">
+    <div class="frame">
+      <div class="topbar">
+        <span class="chap"><span class="dot"></span>01 · HISTORY</span>
+        <span class="meta">CREDIT WHERE IT’S DUE</span>
+      </div>
+      <div style="margin-top: 120px;">
+        <div class="eyebrow">Let’s be fair</div>
+        <h1 class="h-slide">What deep learning did —<br>that symbolic AI never could.</h1>
+      </div>
+      <div class="three-col" style="margin-top: 40px; gap: 56px;">
+        <div>
+          <div class="label">Perception</div>
+          <ul class="clean" style="margin-top: 20px;">
+            <li><span>Image &amp; scene recognition</span></li>
+            <li><span>Speech recognition</span></li>
+            <li><span>Handwriting transcription</span></li>
+          </ul>
+        </div>
+        <div>
+          <div class="label">Language</div>
+          <ul class="clean" style="margin-top: 20px;">
+            <li><span>Machine translation</span></li>
+            <li><span>Text-to-speech / TTS</span></li>
+            <li><span>Fluent conversational answers</span></li>
+          </ul>
+        </div>
+        <div>
+          <div class="label">Science &amp; autonomy</div>
+          <ul class="clean" style="margin-top: 20px;">
+            <li><span>Protein structure prediction</span></li>
+            <li><span>Autonomous driving</span></li>
+            <li><span>Superhuman game-play</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 08 — No free lunch quote -->
+  <section data-label="But there ain't no free lunch" data-screen-label="08 But there ain't no free lunch" data-om-validate="no_overflowing_text,no_overlapping_text,slide_sized_text" data-deck-slide="7">
+    <div class="frame dark" style="justify-content: center;">
+      <div class="topbar">
+        <span class="chap"><span class="dot"></span>01 · HISTORY</span>
+        <span class="meta">THE TURNING POINT</span>
+      </div>
+      <div style="max-width: 1600px;">
+        <div class="eyebrow">The turning point</div>
+        <div class="quote" style="font-size: 112px;">
+          “There ain’t no such thing<br>as a free lunch.”
+        </div>
+        <div class="cite">— Robert A. Heinlein, <em>The Moon is a Harsh Mistress</em> (1966)</div>
+      </div>
+      <div style="position: absolute; bottom: 90px; right: 100px; font-family: var(--f-mono); font-size: 24px; color: oklch(0.62 0.01 260); letter-spacing: 0.08em; text-transform: uppercase;">
+        ↓ Every gain in convenience has a cost.
+      </div>
+    </div>
+  </section>
+
+  <!-- 09 — Trust crisis -->
+  <section data-label="The LLM trust crisis" data-screen-label="09 The LLM trust crisis" data-om-validate="no_overflowing_text,no_overlapping_text,slide_sized_text" data-deck-slide="8">
+    <div class="frame">
+      <div class="topbar">
+        <span class="chap"><span class="dot"></span>02 · THE LIMITS</span>
+        <span class="meta">WHERE LLMs FAIL</span>
+      </div>
+      <div style="margin-top: 120px;">
+        <div class="eyebrow">The honest critique</div>
+        <h1 class="h-slide">Fluent. Confident.<br>Often ungrounded.</h1>
+      </div>
+      <ul class="clean" style="margin-top: 40px; max-width: 1700px;">
+        <li><span class="num">→</span><span><strong style="color: var(--ink); font-weight: 600;">Hallucination.</strong> Confidently wrong answers that are syntactically perfect.</span></li>
+        <li><span class="num">→</span><span><strong style="color: var(--ink); font-weight: 600;">No provenance.</strong> The model cannot tell you where a fact came from.</span></li>
+        <li><span class="num">→</span><span><strong style="color: var(--ink); font-weight: 600;">No consistency.</strong> The same question can return contradictory answers.</span></li>
+        <li><span class="num">→</span><span><strong style="color: var(--ink); font-weight: 600;">Hard to update.</strong> New facts require retraining — not editing.</span></li>
+        <li><span class="num">→</span><span><strong style="color: var(--ink); font-weight: 600;">GPU and Tokens hungry.</strong> Require multi-GPU and consume vast amounts of tokens </span></li>
+        <li><span class="num">→</span><span><strong style="color: var(--ink); font-weight: 600;">Opaque.</strong> Knowledge is entangled in billions of weights.</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 10 — Implicit vs explicit -->
+  <section data-label="What models can't see" data-screen-label="10 What models can't see" data-om-validate="no_overflowing_text,no_overlapping_text,slide_sized_text" data-deck-slide="9">
+    <div class="frame">
+      <div class="topbar">
+        <span class="chap"><span class="dot"></span>02 · THE LIMITS</span>
+        <span class="meta">THE DEEPER PROBLEM</span>
+      </div>
+      <div class="two-col-wide" style="margin-top: 120px;">
+        <div>
+          <div class="eyebrow">The deeper problem</div>
+          <h1 class="h-slide" style="font-size: 68px; margin-bottom: 32px;">Statistics<br>is not<br>knowledge.</h1>
+          <p class="body-md">
+            An LLM learns what words tend to follow what words. It does not, in any strong sense, know what a <em>patient</em>, a <em>contract</em>, or a <em>regulation</em> is.
+          </p>
+        </div>
+        <div>
+          <svg viewBox="0 0 760 440" style="width:100%;height:auto;display:block;" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <marker id="tri-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+                <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--accent-ink)"/>
+              </marker>
+            </defs>
+            <line x1="380" y1="30" x2="380" y2="400" stroke="var(--line)" stroke-width="1.5" stroke-dasharray="6 6"/>
+            <text x="190" y="26" text-anchor="middle" font-family="monospace" font-size="15" fill="var(--muted)" letter-spacing="0.08em" text-transform="uppercase">IMPLICIT (LLM WEIGHTS)</text>
+            <text x="570" y="26" text-anchor="middle" font-family="monospace" font-size="15" fill="var(--accent-ink)" letter-spacing="0.08em">EXPLICIT (KNOWLEDGE GRAPH)</text>
+            <g opacity="0.22" stroke="var(--muted)" stroke-width="1" fill="none">
+              <line x1="80" y1="110" x2="200" y2="80"/><line x1="80" y1="110" x2="155" y2="195"/>
+              <line x1="200" y1="80" x2="285" y2="135"/><line x1="200" y1="80" x2="130" y2="175"/>
+              <line x1="155" y1="195" x2="285" y2="215"/><line x1="155" y1="195" x2="95" y2="275"/>
+              <line x1="285" y1="135" x2="305" y2="245"/><line x1="130" y1="175" x2="235" y2="305"/>
+              <line x1="95" y1="275" x2="215" y2="335"/><line x1="305" y1="245" x2="235" y2="335"/>
+              <line x1="80" y1="110" x2="95" y2="275"/><line x1="130" y1="175" x2="305" y2="245"/>
+            </g>
+            <g fill="var(--muted)" opacity="0.45">
+              <circle cx="80" cy="110" r="6"/><circle cx="200" cy="80" r="5"/>
+              <circle cx="155" cy="195" r="7"/><circle cx="285" cy="135" r="5"/>
+              <circle cx="130" cy="175" r="4"/><circle cx="305" cy="245" r="6"/>
+              <circle cx="95" cy="275" r="5"/><circle cx="285" cy="215" r="4"/>
+              <circle cx="235" cy="305" r="6"/><circle cx="215" cy="335" r="5"/>
+            </g>
+            <text x="68" y="102" fill="var(--muted)" font-size="11" font-family="monospace" opacity="0.7">w₁</text>
+            <text x="290" y="133" fill="var(--muted)" font-size="11" font-family="monospace" opacity="0.7">w₄₂</text>
+            <text x="220" y="303" fill="var(--muted)" font-size="11" font-family="monospace" opacity="0.7">w₈₁₇</text>
+            <rect x="138" y="192" width="56" height="44" rx="4" fill="var(--paper-2)" stroke="var(--line)" stroke-width="1.5"/>
+            <path d="M154 192 v-10 a12 12 0 0 1 24 0 v10" fill="none" stroke="var(--muted)" stroke-width="2"/>
+            <text x="166" y="220" text-anchor="middle" fill="var(--muted)" font-size="18">&#128274;</text>
+            <text x="185" y="400" text-anchor="middle" font-family="var(--f-display)" font-weight="700" font-size="26" fill="var(--muted)">Black box</text>
+            <text x="185" y="425" text-anchor="middle" font-size="18" fill="var(--muted)">Opaque · uneditable</text>
+            <circle cx="470" cy="110" r="42" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="2"/>
+            <text x="470" y="106" text-anchor="middle" font-family="monospace" font-size="14" fill="var(--ink)">Ibuprofen</text>
+            <text x="470" y="124" text-anchor="middle" fill="var(--accent-ink)" font-size="11" font-family="monospace">:Drug</text>
+            <line x1="512" y1="110" x2="598" y2="110" stroke="var(--accent-ink)" stroke-width="2" marker-end="url(#tri-arrow)"/>
+            <text x="555" y="103" font-family="monospace" font-size="13" fill="var(--accent-ink)" letter-spacing="0.06em">treats</text>
+            <circle cx="645" cy="110" r="42" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="2"/>
+            <text x="645" y="106" text-anchor="middle" font-family="monospace" font-size="14" fill="var(--ink)">Arthritis</text>
+            <text x="645" y="124" text-anchor="middle" fill="var(--accent-ink)" font-size="11" font-family="monospace">:Condition</text>
+            <circle cx="470" cy="270" r="42" fill="var(--paper)" stroke="var(--line)" stroke-width="2"/>
+            <text x="470" y="266" text-anchor="middle" font-family="monospace" font-size="14" fill="var(--ink)">Patient</text>
+            <text x="470" y="284" text-anchor="middle" fill="var(--muted)" font-size="11" font-family="monospace">:Person</text>
+            <line x1="470" y1="152" x2="470" y2="226" stroke="var(--accent-ink)" stroke-width="2" stroke-dasharray="5 3" marker-end="url(#tri-arrow)"/>
+            <text x="478" y="194" font-family="monospace" font-size="13" fill="var(--accent-ink)" letter-spacing="0.06em">takes</text>
+            <rect x="415" y="328" width="260" height="50" rx="4" fill="var(--paper)" stroke="var(--accent)" stroke-width="1.5"/>
+            <text x="545" y="350" text-anchor="middle" fill="var(--accent-ink)" font-family="monospace" font-size="14">source: UMLS · conf: 0.97</text>
+            <text x="545" y="370" text-anchor="middle" fill="var(--muted)" font-family="monospace" font-size="12">updated: 2024-11 · auditable ✓</text>
+            <line x1="545" y1="312" x2="545" y2="326" stroke="var(--accent)" stroke-width="1.5" stroke-dasharray="4 3"/>
+            <text x="555" y="405" text-anchor="middle" font-weight="700" font-size="26" fill="var(--ink)">Glass box</text>
+            <text x="555" y="425" text-anchor="middle" font-size="18" fill="var(--muted)">Inspectable · queryable · auditable</text>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 11 — Knowledge graphs revisited: section header -->
+  <section data-label="Knowledge graphs, revisited" data-screen-label="11 Knowledge graphs, revisited" data-om-validate="no_overflowing_text,no_overlapping_text,slide_sized_text" data-deck-slide="10">
+    <div class="frame accent-bg" style="justify-content: center;">
+      <div class="topbar" style="color: oklch(0.92 0.04 255);">
+        <span class="chap">PART 03</span>
+        <span class="meta">STRUCTURE</span>
+      </div>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 100px; align-items: center;">
+        <div>
+          <div class="eyebrow" style="color: oklch(0.92 0.04 255);">Structure returns</div>
+          <h1 class="h-title" style="font-size: 108px; color: var(--paper);">The quiet<br>return of<br>meaning.</h1>
+          <p class="body-lg" style="color: oklch(0.97 0.02 255); margin-top: 36px; max-width: 780px;">
+            Knowledge graphs and ontologies — the unfashionable cousins of machine learning — are suddenly the hottest technology in enterprise AI.
+          </p>
+        </div>
+
+        <!-- Mini knowledge graph -->
+        <svg viewBox="0 0 780 630" style="width: 100%; height: auto; display: block;" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <marker id="kg-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+              <path d="M 0 0 L 10 5 L 0 10 z" fill="oklch(0.97 0.02 255)"></path>
+            </marker>
+          </defs>
+          <style>
+            .kg-edge { fill: none; stroke: oklch(0.97 0.02 255); stroke-width: 2; opacity: 0.75; }
+            .kg-edge-label { font-family: var(--f-mono); font-size: 18px; fill: oklch(0.97 0.02 255); letter-spacing: 0.04em; text-transform: uppercase; }
+            .kg-node { fill: oklch(0.97 0.02 255); stroke: var(--paper); stroke-width: 2; }
+            .kg-node-core { fill: var(--paper); stroke: var(--paper); stroke-width: 2; }
+            .kg-node-label-dark { font-family: var(--f-display); font-weight: 600; font-size: 22px; fill: var(--ink); text-anchor: middle; dominant-baseline: middle; }
+            .kg-type { font-family: var(--f-mono); font-size: 14px; fill: oklch(0.97 0.02 255); opacity: 0.95; letter-spacing: 0.08em; text-transform: uppercase; text-anchor: middle; }
+          </style>
+
+          <!-- Edges first (behind nodes) -->
+          <!-- Ibuprofen -> treats -> Arthritis -->
+          <line class="kg-edge" x1="148" y1="178" x2="385" y2="478" marker-end="url(#kg-arrow)"></line>
+          <text class="kg-edge-label" x="230" y="275" transform="rotate(52 230 298)">treats</text>
+
+          <!-- Ibuprofen -> is-a -> NSAID -->
+          <line class="kg-edge" x1="100" y1="192" x2="100" y2="326" marker-end="url(#kg-arrow)"></line>
+          <text class="kg-edge-label" x="50" y="265">is-a</text>
+
+          <!-- NSAID -> subClassOf -> Medication -->
+          <line class="kg-edge" x1="144" y1="360" x2="374" y2="370" marker-end="url(#kg-arrow)"></line>
+          <text class="kg-edge-label" x="180" y="390">subClassOf</text>
+
+          <!-- Ibuprofen -> interacts-with -> Warfarin -->
+          <line class="kg-edge" x1="152" y1="140" x2="630" y2="170" marker-end="url(#kg-arrow)"></line>
+          <text class="kg-edge-label" x="320" y="135">interacts</text>
+
+          <!-- Warfarin -> treats -> Thrombosis -->
+          <line class="kg-edge" x1="680" y1="220" x2="680" y2="436" marker-end="url(#kg-arrow)"></line>
+          <text class="kg-edge-label" x="696" y="332">treats</text>
+
+          <!-- Patient -> takes -> Ibuprofen -->
+          <line class="kg-edge" x1="180" y1="510" x2="118" y2="185" marker-end="url(#kg-arrow)"></line>
+          <text class="kg-edge-label" x="-90" y="470" transform="rotate(-98 50 370)">takes</text>
+
+          <!-- Patient -> hasCondition -> Arthritis -->
+          <line class="kg-edge" x1="240" y1="535" x2="385" y2="510" marker-end="url(#kg-arrow)"></line>
+          <text class="kg-edge-label" x="230" y="495">hasCondition</text>
+
+          <!-- Nodes (type labels placed outside circles for legibility) -->
+          <!-- Ibuprofen -->
+          <text class="kg-type" x="100" y="73">:Drug</text>
+          <circle class="kg-node" cx="100" cy="140" r="52"></circle>
+          <text class="kg-node-label-dark" x="100" y="140">Ibuprofen</text>
+
+          <!-- NSAID -->
+          <text class="kg-type" x="100" y="435">:Class</text>
+          <circle class="kg-node" cx="100" cy="370" r="44"></circle>
+          <text class="kg-node-label-dark" x="100" y="370">NSAID</text>
+
+          <!-- Medication (filled — the abstract class) -->
+          <text class="kg-type" x="430" y="299">:Class</text>
+          <circle class="kg-node-core" cx="430" cy="370" r="56"></circle>
+          <text class="kg-node-label-dark" x="430" y="370">Medication</text>
+
+          <!-- Warfarin -->
+          <text class="kg-type" x="680" y="103">:Drug</text>
+          <circle class="kg-node" cx="680" cy="170" r="50"></circle>
+          <text class="kg-node-label-dark" x="680" y="170">Warfarin</text>
+
+          <!-- Thrombosis -->
+          <circle class="kg-node" cx="680" cy="490" r="54"></circle>
+          <text class="kg-node-label-dark" x="680" y="490">Thrombosis</text>
+          <text class="kg-type" x="680" y="568">:Condition</text>
+
+          <!-- Arthritis -->
+          <circle class="kg-node" cx="430" cy="500" r="46"></circle>
+          <text class="kg-node-label-dark" x="430" y="500">Arthritis</text>
+          <text class="kg-type" x="430" y="574">:Condition</text>
+
+          <!-- Patient -->
+          <circle class="kg-node" cx="200" cy="545" r="40"></circle>
+          <text class="kg-node-label-dark" x="200" y="545">Patient</text>
+          <text class="kg-type" x="200" y="607">:Person</text>
+
+          <!-- ─── Inflammation + symptom-of (optional add-on) ───
+               To HIDE this block: change `display:inline` to `display:none` on the <g> below,
+               OR wrap the whole <g>…</g> in an HTML comment (<!-- … -->).            -->
+          <g data-block="inflammation" style="display:inline;">
+            <line class="kg-edge" x1="552" y1="367" x2="461" y2="466" marker-end="url(#kg-arrow)"></line>
+            <text class="kg-edge-label" x="505"" y="432">symptom-of</text>
+            <text class="kg-type" x="590" y="244">:Symptom</text>
+            <circle class="kg-node" cx="590" cy="320" r="60"></circle>
+            <text class="kg-node-label-dark" style="font-size: 18px;" x="590" y="320">Inflammation</text>
+          </g>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- 12 — Ontologies -->
+  <section data-label="Ontologies: the shape of meaning" data-screen-label="12 Ontologies: the shape of meaning" data-om-validate="no_overflowing_text,no_overlapping_text,slide_sized_text" data-deck-slide="11">
+    <div class="frame">
+      <div class="topbar">
+        <span class="chap"><span class="dot"></span>03 · STRUCTURE</span>
+        <span class="meta">THE SHAPE OF MEANING</span>
+      </div>
+      <div class="two-col-wide" style="margin-top: 120px;">
+        <div>
+          <div class="eyebrow">Graph vs. ontology</div>
+          <h1 class="h-slide" style="font-size: 64px;">The graph is<br>the memory.<br>The ontology<br>is the grammar.</h1>
+        </div>
+        <div>
+          <ul class="clean" style="margin-top: 0;">
+            <li>
+              <span class="num">KG</span>
+              <span>
+                <strong style="color: var(--ink); font-weight: 600;">Entities &amp; relationships.</strong>
+                <div style="font-size: 24px; color: var(--muted); margin-top: 10px; line-height: 1.4;">«Ibuprofen treats inflammation.»&nbsp;«Tehran is the capital of Iran.»</div>
+              </span>
+            </li>
+            <li>
+              <span class="num">OWL</span>
+              <span>
+                <strong style="color: var(--ink); font-weight: 600;">Classes, properties, constraints.</strong>
+                <div style="font-size: 24px; color: var(--muted); margin-top: 10px; line-height: 1.4;">«A Patient has exactly one DOB.» &nbsp;«A Contract has ≥2 Parties.»</div>
+              </span>
+            </li>
+            <li>
+              <span class="num">SHACL</span>
+              <span>
+                <strong style="color: var(--ink); font-weight: 600;">Rules &amp; validation.</strong>
+                <div style="font-size: 24px; color: var(--muted); margin-top: 10px; line-height: 1.4;">Enforce what must be true. Catch what cannot.</div>
+              </span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 13 — Ontology moment (Tony Seale) -->
+  <section data-label="Ontology is having its moment" data-screen-label="13 Ontology is having its moment" data-om-validate="no_overflowing_text,no_overlapping_text,slide_sized_text" data-deck-slide="12">
+    <div class="frame dark" style="justify-content: center;">
+      <div class="topbar">
+        <span class="chap"><span class="dot"></span>03 · STRUCTURE</span>
+        <span class="meta">INDUSTRY SIGNAL</span>
+      </div>
+      <div style="max-width: 1600px;">
+        <div class="eyebrow">An industry signal</div>
+        <div class="quote" style="font-size: 104px;">
+          Ontology is<br>having its moment.
+        </div>
+        <div class="cite" style="margin-top: 48px;">— Tony Seale, Knowledge Graph Engineer · LinkedIn, 2025</div>
+      </div>
+      <div style="position: absolute; bottom: 90px; right: 100px; max-width: 700px; font-size: 26px; color: oklch(0.75 0.01 260); line-height: 1.45; text-align: right;">
+        A quiet corner of CS for 20 years.<br>Now every major enterprise is building one.
+      </div>
+    </div>
+  </section>
+
+  <!-- 14 — KiL: section header / big idea -->
+  <section data-label="Knowledge-Infused Learning" data-screen-label="14 Knowledge-Infused Learning" data-om-validate="no_overflowing_text,no_overlapping_text,slide_sized_text" data-deck-slide="13">
+    <div class="frame">
+      <div class="topbar">
+        <span class="chap"><span class="dot"></span>04 · THE SYNTHESIS</span>
+        <span class="meta">THE PARADIGM</span>
+      </div>
+
+      <div style="display: grid; grid-template-columns: 0.85fr 1.15fr; gap: 80px; align-items: center; margin-top: 80px;">
+        <div>
+          <div class="eyebrow">Knowledge-Infused Learning — KiL</div>
+          <h1 class="h-display" style="font-size: 96px;">Neural intuition<br>× symbolic truth.</h1>
+          <p class="body-md" style="margin-top: 32px; color: var(--muted); max-width: 700px;">
+            Structured human knowledge — domain rules, knowledge graphs, physical laws — fed directly into statistical ML.
+          </p>
+        </div>
+
+        <!-- KiL architecture diagram (shifted up ~30px; Verifier & Output widened 220→260) -->
+        <svg viewBox="0 0 920 520" style="width: 100%; height: auto; display: block;" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+              <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--accent-ink)"></path>
+            </marker>
+            <marker id="arrow-muted" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+              <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--muted)"></path>
+            </marker>
+          </defs>
+
+          <style>
+            .kil-box { fill: var(--paper); stroke: var(--line); stroke-width: 1.5; }
+            .kil-box-accent { fill: var(--accent-soft); stroke: var(--accent); stroke-width: 1.5; }
+            .kil-box-ink { fill: var(--ink); stroke: var(--ink); stroke-width: 1.5; }
+            .kil-label { font-family: var(--f-mono); font-size: 14px; fill: var(--muted); letter-spacing: 0.08em; text-transform: uppercase; }
+            .kil-label-accent { font-family: var(--f-mono); font-size: 14px; fill: var(--accent-ink); letter-spacing: 0.08em; text-transform: uppercase; }
+            .kil-title { font-family: var(--f-display); font-weight: 700; font-size: 26px; fill: var(--ink); }
+            .kil-title-inv { font-family: var(--f-display); font-weight: 700; font-size: 26px; fill: var(--paper); }
+            .kil-sub { font-family: var(--f-body); font-size: 16px; fill: var(--muted); }
+            .kil-sub-inv { font-family: var(--f-body); font-size: 16px; fill: oklch(0.82 0.01 260); }
+            .kil-arrow { fill: none; stroke: var(--accent-ink); stroke-width: 2; }
+            .kil-arrow-soft { fill: none; stroke: var(--muted); stroke-width: 1.5; stroke-dasharray: 5 5; }
+          </style>
+
+          <!-- top label -->
+          <text class="kil-label" x="460" y="30" text-anchor="middle" style="font-size: 15px; fill: var(--accent-ink);">THE KiL LOOP</text>
+          <line x1="390" y1="50" x2="530" y2="50" stroke="var(--accent)" stroke-width="1.5"></line>
+
+          <!-- Query input -->
+          <rect class="kil-box" x="20" y="200" width="160" height="80" rx="4"></rect>
+          <text class="kil-label" x="100" y="230" text-anchor="middle">INPUT</text>
+          <text class="kil-title" x="100" y="258" text-anchor="middle">Query</text>
+
+          <!-- arrow into LLM -->
+          <line class="kil-arrow" x1="180" y1="240" x2="290" y2="240" marker-end="url(#arrow)"></line>
+
+          <!-- Neural: LLM -->
+          <rect class="kil-box" x="300" y="170" width="260" height="140" rx="4"></rect>
+          <text class="kil-label" x="320" y="202">NEURAL</text>
+          <text class="kil-title" x="320" y="236">LLM</text>
+          <text class="kil-sub" x="320" y="264">pattern · fluency</text>
+          <!-- little neuron glyph -->
+          <g stroke="var(--accent)" stroke-width="1" fill="none" opacity="0.7">
+            <circle cx="500" cy="210" r="4" fill="var(--accent)"></circle>
+            <circle cx="530" cy="240" r="4" fill="var(--accent)"></circle>
+            <circle cx="500" cy="270" r="4" fill="var(--accent)"></circle>
+            <line x1="500" y1="210" x2="530" y2="240"></line>
+            <line x1="500" y1="270" x2="530" y2="240"></line>
+          </g>
+
+          <!-- Symbolic: KG (below LLM) -->
+          <rect class="kil-box-accent" x="300" y="350" width="260" height="140" rx="4"></rect>
+          <text class="kil-label-accent" x="320" y="382">SYMBOLIC</text>
+          <text class="kil-title" x="320" y="416">Knowledge Graph</text>
+          <text class="kil-sub" x="320" y="444" style="fill: var(--accent-ink);">entities · rules · ontology</text>
+
+          <!-- bidirectional between LLM and KG -->
+          <line class="kil-arrow" x1="430" y1="310" x2="430" y2="340" marker-end="url(#arrow)"></line>
+          <line class="kil-arrow" x1="450" y1="340" x2="450" y2="310" marker-end="url(#arrow)"></line>
+          <text class="kil-label" x="470" y="330">RETRIEVE / GROUND</text>
+
+          <!-- arrow to verifier -->
+          <line class="kil-arrow" x1="560" y1="240" x2="630" y2="240" marker-end="url(#arrow)"></line>
+
+          <!-- Verifier (widened from 220 to 260) -->
+          <rect class="kil-box-ink" x="640" y="170" width="260" height="140" rx="4"></rect>
+          <text class="kil-label" x="660" y="202" style="fill: oklch(0.75 0.01 260);">VERIFY</text>
+          <text class="kil-title-inv" x="660" y="236">Symbolic check</text>
+          <text class="kil-sub-inv" x="660" y="264">SHACL · rules · consistency</text>
+          <!-- check glyph -->
+          <path d="M 850 280 l 10 10 l 20 -20" stroke="var(--accent)" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></path>
+
+          <!-- Output (widened from 220 to 260) -->
+          <rect class="kil-box" x="640" y="350" width="260" height="110" rx="4"></rect>
+          <text class="kil-label-accent" x="660" y="382">OUTPUT</text>
+          <text class="kil-title" x="660" y="416">Grounded answer</text>
+          <text class="kil-sub" x="660" y="440">+ provenance chain</text>
+
+          <!-- arrow verifier → output -->
+          <line class="kil-arrow" x1="770" y1="310" x2="770" y2="340" marker-end="url(#arrow)"></line>
+
+          <!-- feedback arrow from output back to KG (optional learning loop) -->
+          <path class="kil-arrow-soft" d="M 770 460 Q 700 500, 430 520 Q 430 500, 430 490" marker-end="url(#arrow-muted)"></path>
+          <text class="kil-label" x="680" y="520" text-anchor="middle">FEEDBACK · CURATE</text>
+        </svg>
+      </div>
+
+      <div class="three-col" style="margin-top: 40px; gap: 48px;">
+        <div>
+          <div class="stat" style="font-size: 56px;">+ Accurate</div>
+          <div class="label" style="margin-top: 10px; font-size: 24px;">Grounded in ground truth</div>
+        </div>
+        <div>
+          <div class="stat" style="font-size: 56px;">+ Explainable</div>
+          <div class="label" style="margin-top: 10px; font-size: 24px;">Provenance for every claim</div>
+        </div>
+        <div>
+          <div class="stat" style="font-size: 56px;">+ Efficient</div>
+          <div class="label" style="margin-top: 10px; font-size: 24px;">Less data, cleaner signal</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 15 — Evidence: published benchmarks -->
+  <section data-label="The evidence" data-screen-label="15 The evidence" data-om-validate="no_overflowing_text,no_overlapping_text,slide_sized_text" data-deck-slide="14">
+    <div class="frame">
+      <div class="topbar">
+        <span class="chap"><span class="dot"></span>04 · THE SYNTHESIS</span>
+        <span class="meta">EVIDENCE</span>
+      </div>
+      <div style="margin-top: 120px;">
+        <div class="eyebrow">The numbers behind the claim</div>
+        <h1 class="h-slide">Grounding isn't a hunch.<br>The benchmarks agree.</h1>
+      </div>
+      <div class="timeline" style="margin-top: 40px;">
+        <div class="cell">
+          <div class="year">+71%</div>
+          <div class="event">Biomedical multiple-choice QA</div>
+          <div class="note">Llama-2 with KG-RAG (SPOKE) vs. base model on biomedical MCQ.<br><em>Soman et al., Bioinformatics, 2023.</em></div>
+        </div>
+        <div class="cell">
+          <div class="year">+77.6%</div>
+          <div class="event">Retrieval quality (MRR)</div>
+          <div class="note">Customer-service KG-RAG deployed at LinkedIn &mdash; &minus;28.6% median resolution time.<br><em>Xu et al., ACM SIGIR, 2024.</em></div>
+        </div>
+        <div class="cell">
+          <div class="year">&gt; &minus;40%</div>
+          <div class="event">Hallucination rate</div>
+          <div class="note">Multi-evidence RAG with biomedical KGs in public-health QA.<br><em>Xu et al., Frontiers in Public Health, 2025.</em></div>
+        </div>
+        <div class="cell">
+          <div class="year">Substantial</div>
+          <div class="event">Comprehensiveness &amp; diversity</div>
+          <div class="note">GraphRAG vs. conventional RAG on global sense-making over 1M-token corpora.<br><em>Edge et al., Microsoft Research, 2024.</em></div>
+        </div>
+      </div>
+      <p class="body-md" style="margin-top: 56px; color: var(--muted); max-width: 1700px;">
+        Different domains, different metrics &mdash; same direction. Structure doesn't replace the model; it makes the model accountable.
+      </p>
+    </div>
+  </section>
+
+  <!-- 16 — Three ways to inject knowledge -->
+  <section data-label="Three ways to inject knowledge" data-screen-label="15 Three ways to inject knowledge" data-om-validate="no_overflowing_text,no_overlapping_text,slide_sized_text" data-deck-slide="14">
+    <div class="frame">
+      <div class="topbar">
+        <span class="chap"><span class="dot"></span>04 · THE SYNTHESIS</span>
+        <span class="meta">METHODS</span>
+      </div>
+      <div style="margin-top: 100px;">
+        <div class="eyebrow">Three points of entry</div>
+        <h1 class="h-slide">Before, during,<br>or after the model.</h1>
+      </div>
+      <!-- Three injection points pipeline diagram -->
+      <svg viewBox="0 0 1700 420" style="width:100%;height:auto;display:block;margin-top:28px;" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <marker id="pip-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+            <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--accent-ink)"/>
+          </marker>
+          <marker id="pip-arrow-muted" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+            <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--muted)"/>
+          </marker>
+          <marker id="pip-arrow-kg" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+            <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--accent)"/>
+          </marker>
+        </defs>
+
+        <!-- Pipeline spine -->
+        <!-- Raw Data -->
+        <rect x="20" y="140" width="150" height="80" rx="4" fill="var(--paper)" stroke="var(--line)" stroke-width="1.5"/>
+        <text x="95" y="168" text-anchor="middle" font-family="monospace" font-size="14" fill="var(--muted)" letter-spacing="0.07em" text-transform="uppercase">INPUT</text>
+        <text x="95" y="198" text-anchor="middle" font-family="var(--f-display)" font-weight="700" font-size="26" fill="var(--ink)">Raw Data</text>
+        <line x1="170" y1="180" x2="228" y2="180" stroke="var(--muted)" stroke-width="2" marker-end="url(#pip-arrow-muted)"/>
+
+        <!-- Stage 1: Pre-training highlighted -->
+        <rect x="238" y="110" width="240" height="140" rx="4" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="2"/>
+        <text x="358" y="140" text-anchor="middle" font-family="monospace" font-size="14" fill="var(--accent-ink)" letter-spacing="0.07em">① BEFORE</text>
+        <text x="358" y="172" text-anchor="middle" font-family="var(--f-display)" font-weight="700" font-size="28" fill="var(--ink)">Pre-training</text>
+        <text x="358" y="200" text-anchor="middle" font-family="monospace" font-size="16" fill="var(--muted)">K-BERT · KEPLER</text>
+        <!-- KG inject arrow -->
+        <path d="M 358 330 L 358 252" fill="none" stroke="var(--accent)" stroke-width="2.5" stroke-dasharray="6 3" marker-end="url(#pip-arrow-kg)"/>
+        <rect x="288" y="335" width="140" height="44" rx="4" fill="var(--accent)" stroke="none"/>
+        <text x="358" y="362" text-anchor="middle" font-family="monospace" font-size="13" fill="var(--paper)" letter-spacing="0.05em">Knowledge Graph</text>
+        <line x1="478" y1="180" x2="548" y2="180" stroke="var(--muted)" stroke-width="2" marker-end="url(#pip-arrow-muted)"/>
+
+        <!-- Stage 2: Embedding -->
+        <rect x="558" y="140" width="190" height="80" rx="4" fill="var(--paper)" stroke="var(--line)" stroke-width="1.5"/>
+        <text x="653" y="168" text-anchor="middle" font-family="monospace" font-size="14" fill="var(--muted)" letter-spacing="0.07em">ENCODE</text>
+        <text x="653" y="198" text-anchor="middle" font-family="var(--f-display)" font-weight="700" font-size="26" fill="var(--ink)">Embedding</text>
+        <line x1="748" y1="180" x2="818" y2="180" stroke="var(--muted)" stroke-width="2" marker-end="url(#pip-arrow-muted)"/>
+
+        <!-- Stage 3: Inference highlighted -->
+        <rect x="828" y="110" width="260" height="140" rx="4" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="2"/>
+        <text x="958" y="140" text-anchor="middle" font-family="monospace" font-size="14" fill="var(--accent-ink)" letter-spacing="0.07em">② DURING</text>
+        <text x="958" y="172" text-anchor="middle" font-family="var(--f-display)" font-weight="700" font-size="28" fill="var(--ink)">Inference</text>
+        <text x="958" y="200" text-anchor="middle" font-family="monospace" font-size="16" fill="var(--muted)">RAG · Graph-RAG</text>
+        <!-- KG inject arrow -->
+        <path d="M 958 330 L 958 252" fill="none" stroke="var(--accent)" stroke-width="2.5" stroke-dasharray="6 3" marker-end="url(#pip-arrow-kg)"/>
+        <rect x="888" y="335" width="140" height="44" rx="4" fill="var(--accent)" stroke="none"/>
+        <text x="958" y="362" text-anchor="middle" font-family="monospace" font-size="13" fill="var(--paper)" letter-spacing="0.05em">Knowledge Graph</text>
+        <line x1="1088" y1="180" x2="1158" y2="180" stroke="var(--muted)" stroke-width="2" marker-end="url(#pip-arrow-muted)"/>
+
+        <!-- Stage 4: Raw Output -->
+        <rect x="1168" y="140" width="190" height="80" rx="4" fill="var(--paper)" stroke="var(--line)" stroke-width="1.5"/>
+        <text x="1263" y="168" text-anchor="middle" font-family="monospace" font-size="14" fill="var(--muted)" letter-spacing="0.07em">GENERATE</text>
+        <text x="1263" y="198" text-anchor="middle" font-family="var(--f-display)" font-weight="700" font-size="26" fill="var(--ink)">LLM Output</text>
+        <line x1="1358" y1="180" x2="1418" y2="180" stroke="var(--muted)" stroke-width="2" marker-end="url(#pip-arrow-muted)"/>
+
+        <!-- Stage 5: Verification highlighted -->
+        <rect x="1428" y="110" width="250" height="140" rx="4" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="2"/>
+        <text x="1553" y="140" text-anchor="middle" font-family="monospace" font-size="14" fill="var(--accent-ink)" letter-spacing="0.07em">③ AFTER</text>
+        <text x="1553" y="172" text-anchor="middle" font-family="var(--f-display)" font-weight="700" font-size="28" fill="var(--ink)">Verification</text>
+        <text x="1553" y="200" text-anchor="middle" font-family="monospace" font-size="16" fill="var(--muted)">SHACL · rules</text>
+        <!-- Ontology inject arrow -->
+        <path d="M 1553 330 L 1553 252" fill="none" stroke="var(--accent)" stroke-width="2.5" stroke-dasharray="6 3" marker-end="url(#pip-arrow-kg)"/>
+        <rect x="1483" y="335" width="140" height="44" rx="4" fill="var(--accent)" stroke="none"/>
+        <text x="1553" y="362" text-anchor="middle" font-family="monospace" font-size="13" fill="var(--paper)" letter-spacing="0.05em">Ontology</text>
+        <!-- Final output arrow -->
+        <line x1="1678" y1="180" x2="1695" y2="180" stroke="var(--accent-ink)" stroke-width="2.5" marker-end="url(#pip-arrow)"/>
+
+        <!-- Brace over injection points -->
+        <text x="950" y="46" text-anchor="middle" font-family="monospace" font-size="15" fill="var(--accent-ink)" letter-spacing="0.1em">KNOWLEDGE INJECTION POINTS</text>
+        <line x1="318" y1="62" x2="1582" y2="62" stroke="var(--accent)" stroke-width="1" stroke-dasharray="4 4"/>
+        <line x1="318" y1="58" x2="318" y2="66" stroke="var(--accent)" stroke-width="1.5"/>
+        <line x1="1582" y1="58" x2="1582" y2="66" stroke="var(--accent)" stroke-width="1.5"/>
+        <text x="358" y="90" text-anchor="middle" font-family="monospace" font-size="13" fill="var(--accent)">①</text>
+        <text x="958" y="90" text-anchor="middle" font-family="monospace" font-size="13" fill="var(--accent)">②</text>
+        <text x="1553" y="90" text-anchor="middle" font-family="monospace" font-size="13" fill="var(--accent)">③</text>
+      </svg>
+      <p class="body-md" style="margin-top: 24px; color: var(--muted); max-width: 1500px;">
+        Real systems combine all three. The architecture is a pipeline, not a swap.
+      </p>
+    </div>
+  </section>
+
+  <!-- 16 — Case: Healthcare -->
+  <section data-label="In practice: healthcare QA" data-screen-label="16 In practice: healthcare QA" data-om-validate="no_overflowing_text,no_overlapping_text,slide_sized_text" data-deck-slide="15">
+    <div class="frame">
+      <div class="topbar">
+        <span class="chap"><span class="dot"></span>04 · IN PRACTICE</span>
+        <span class="meta">CASE 01 · HEALTHCARE</span>
+      </div>
+      <div class="case" style="margin-top: 100px;">
+        <div>
+          <div class="case-icon" aria-hidden="true">
+            <!-- stethoscope -->
+            <svg viewBox="0 0 48 48"><path d="M14 6v10a8 8 0 0 0 16 0V6"></path><path d="M10 6h8M26 6h8"></path><path d="M22 24v6a10 10 0 0 0 10 10h2a6 6 0 0 0 6-6v-2"></path><circle cx="40" cy="28" r="4"></circle></svg>
+          </div>
+          <div class="big-n">01</div>
+          <div class="domain" style="margin-top: 24px;">Healthcare &amp; medical QA</div>
+        </div>
+        <div>
+          <h3>A clinician asks about a drug interaction.</h3>
+          <div class="row">
+            <div class="tag">Without KG</div>
+            <div class="prob">The LLM invents imaginary facts. No source, no audit trail, no verification.</div>
+          </div>
+          <div class="row">
+            <div class="tag">With KG</div>
+            <div class="sol">Grounded in UMLS / SNOMED ontologies. Every claim traceable. Ontology catches contradictions before they reach the patient.</div>
+          </div>
+          <div class="row" style="margin-top: 8px;">
+            <div class="tag" style="color: var(--accent-ink);">Result</div>
+            <div class="sol" style="color: var(--accent-ink); font-weight: 500;">A toy becomes a tool. Regulators are now asking for this explicitly.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 17 — Case: Legal -->
+  <section data-label="In practice: legal &amp; compliance" data-screen-label="17 In practice: legal &amp; compliance" data-om-validate="no_overflowing_text,no_overlapping_text,slide_sized_text" data-deck-slide="16">
+    <div class="frame dark">
+      <div class="topbar">
+        <span class="chap"><span class="dot"></span>04 · IN PRACTICE</span>
+        <span class="meta">CASE 02 · LEGAL</span>
+      </div>
+      <div class="case" style="margin-top: 100px;">
+        <div>
+          <div class="case-icon" aria-hidden="true">
+            <!-- scales of justice -->
+            <svg viewBox="0 0 48 48"><path d="M24 8v32"></path><path d="M12 40h24"></path><path d="M10 14h28"></path><path d="M24 8a2 2 0 1 0 0 0"></path><circle cx="24" cy="9" r="2" fill="currentColor"></circle><path d="M14 14l-6 10h12l-6-10z"></path><path d="M34 14l-6 10h12l-6-10z"></path></svg>
+          </div>
+          <div class="big-n">02</div>
+          <div class="domain" style="margin-top: 24px; color: oklch(0.72 0.01 260);">Legal &amp; compliance</div>
+        </div>
+        <div>
+          <h3 style="color: var(--paper);">Review a thousand contracts without missing a clause.</h3>
+          <div class="row">
+            <div class="tag">Without KG</div>
+            <div class="prob" style="color: oklch(0.82 0.01 260);">LLM alone misses obligations, mis-attributes parties, contradicts itself across documents.</div>
+          </div>
+          <div class="row">
+            <div class="tag">With KG</div>
+            <div class="sol" style="color: oklch(0.82 0.01 260);">Legal ontology: parties, obligations, jurisdictions, effective dates. Cross-document reasoning becomes possible.</div>
+          </div>
+          <div class="row" style="margin-top: 8px;">
+            <div class="tag" style="color: var(--accent);">Result</div>
+            <div class="sol" style="color: var(--accent); font-weight: 500;">Consistency at scale. EU regulators are pushing this direction hard.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 18 — Case: Enterprise -->
+  <section data-label="In practice: enterprise knowledge" data-screen-label="18 In practice: enterprise knowledge" data-om-validate="no_overflowing_text,no_overlapping_text,slide_sized_text" data-deck-slide="17">
+    <div class="frame">
+      <div class="topbar">
+        <span class="chap"><span class="dot"></span>04 · IN PRACTICE</span>
+        <span class="meta">CASE 03 · ENTERPRISE</span>
+      </div>
+      <div class="case" style="margin-top: 100px;">
+        <div>
+          <div class="case-icon" aria-hidden="true">
+            <!-- building / enterprise -->
+            <svg viewBox="0 0 48 48"><path d="M8 42V12l14-4 14 4v30"></path><path d="M4 42h40"></path><path d="M16 20h4M16 26h4M16 32h4M28 20h4M28 26h4M28 32h4"></path><path d="M20 42v-8h8v8"></path></svg>
+          </div>
+          <div class="big-n">03</div>
+          <div class="domain" style="margin-top: 24px;">Enterprise knowledge</div>
+        </div>
+        <div>
+          <h3>Ten years of documents. One assistant that actually knows your business.</h3>
+          <div class="row">
+            <div class="tag">Without KG</div>
+            <div class="prob">A general model guesses. Answers drift. Private data must be pasted every time.</div>
+          </div>
+          <div class="row">
+            <div class="tag">With KG</div>
+            <div class="sol">Enterprise KG unifies wikis, databases, emails, product specs. The LLM becomes a natural-language interface over your own ground truth.</div>
+          </div>
+          <div class="row" style="margin-top: 8px;">
+            <div class="tag" style="color: var(--accent-ink);">Result</div>
+            <div class="sol" style="color: var(--accent-ink); font-weight: 500;">A decisive competitive advantage — and a moat no competitor can just download.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 19 — Case: Education -->
+  <section data-label="In practice: education" data-screen-label="19 In practice: education" data-om-validate="no_overflowing_text,no_overlapping_text,slide_sized_text" data-deck-slide="18">
+    <div class="frame">
+      <div class="topbar">
+        <span class="chap"><span class="dot"></span>04 · IN PRACTICE</span>
+        <span class="meta">CASE 04 · EDUCATION</span>
+      </div>
+      <div class="case" style="margin-top: 100px;">
+        <div>
+          <div class="case-icon" aria-hidden="true">
+            <!-- mortarboard -->
+            <svg viewBox="0 0 48 48"><path d="M4 18L24 10l20 8-20 8L4 18z"></path><path d="M12 22v10c0 3 5.4 6 12 6s12-3 12-6V22"></path><path d="M44 18v10"></path><path d="M44 28l-2 4h4l-2-4z" fill="currentColor"></path></svg>
+          </div>
+          <div class="big-n">04</div>
+          <div class="domain" style="margin-top: 24px;">Education &amp; research</div>
+        </div>
+        <div>
+          <h3>How do we train the next generation when LLMs seem to make the basics optional?</h3>
+          <div class="row">
+            <div class="tag">The risk</div>
+            <div class="prob">Students skip fundamentals — programming, querying, data design, ontology engineering — because the chatbot does it for them.</div>
+          </div>
+          <div class="row">
+            <div class="tag">The answer</div>
+            <div class="sol">
+              Teach them to build the <em>grounding layer</em> — three concrete tracks every CS programme can add now:
+              <div style="margin-top: 14px; line-height: 1.55;">
+                <div style="margin-bottom: 6px;"><strong style="color: var(--ink); font-weight: 600;">&#9312; Ontology engineering</strong> &nbsp;— OWL, SHACL, domain modelling.</div>
+                <div style="margin-bottom: 6px;"><strong style="color: var(--ink); font-weight: 600;">&#9313; Knowledge-graph systems</strong> &nbsp;— SPARQL / Cypher, Graph-RAG, evaluation.</div>
+                <div><strong style="color: var(--ink); font-weight: 600;">&#9314; A grounded-AI capstone</strong> &nbsp;— build &amp; SHACL-validate a KG-backed RAG system end-to-end.</div>
+              </div>
+            </div>
+          </div>
+          <div class="row" style="margin-top: 8px;">
+            <div class="tag" style="color: var(--accent-ink);">Why it matters here</div>
+            <div class="sol" style="color: var(--accent-ink); font-weight: 500;">The neural layer will commoditise. The knowledge layer is where expertise lives — and where Algerian research can lead.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 20 — Closing / CTA -->
+  <section data-label="The outlook &amp; a call to action" data-screen-label="20 The outlook &amp; a call to action" data-om-validate="no_overflowing_text,no_overlapping_text,slide_sized_text" data-deck-slide="19">
+    <div class="frame dark" style="justify-content: space-between;">
+      <div class="topbar">
+        <span class="chap"><span class="dot"></span>CLOSING</span>
+        <span class="meta">NCSDS-26</span>
+      </div>
+
+      <div style="margin-top: 100px; max-width: 1700px;">
+        <div class="eyebrow">A call to action</div>
+        <h1 class="h-display" style="font-size: 128px; color: var(--paper);">Build with<br>both hands.</h1>
+        <p class="body-lg" style="margin-top: 56px; color: oklch(0.82 0.01 260); max-width: 1500px; font-size: 38px;">
+          Generative AI is powerful and accessible — and it needs control. Knowledge graphs and symbolic reasoning provide that grounding. The future of AI is not neural, it is not symbolic. It is both.
+        </p>
+      </div>
+
+      <div class="kicker-row" style="align-items: end; margin-top: 80px;">
+        <div>
+          <div class="small-cap">Thank you</div>
+          <div style="font-family: var(--f-display); font-weight: 600; font-size: 40px; margin-top: 14px; color: var(--paper);">Dr. Samir Sellami</div>
+          <div style="font-size: 24px; color: oklch(0.72 0.01 260); margin-top: 10px; line-height: 1.4;">
+            LIRE Laboratory, Univ-Constantine 2 · ENSET-Skikda, Azzaba · NCSDS-26
+          </div>
+        </div>
+        <svg width="320" height="120" viewBox="0 0 320 120" fill="none" style="opacity: 0.95;">
+          <g stroke="var(--accent)" stroke-width="1.2" stroke-linecap="round" opacity="0.7">
+            <line x1="30" y1="60" x2="110" y2="30"></line>
+            <line x1="30" y1="60" x2="110" y2="90"></line>
+            <line x1="110" y1="30" x2="200" y2="60"></line>
+            <line x1="110" y1="90" x2="200" y2="60"></line>
+            <line x1="200" y1="60" x2="290" y2="30"></line>
+            <line x1="200" y1="60" x2="290" y2="90"></line>
+          </g>
+          <g fill="var(--accent)">
+            <circle cx="30" cy="60" r="6"></circle>
+            <circle cx="110" cy="30" r="6"></circle>
+            <circle cx="110" cy="90" r="6"></circle>
+            <circle cx="200" cy="60" r="6"></circle>
+            <circle cx="290" cy="30" r="6"></circle>
+            <circle cx="290" cy="90" r="6"></circle>
+          </g>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+</deck-stage>
+
+<!-- Tweaks panel -->
+<div id="tweaks" role="dialog" aria-label="Tweaks" class="open">
+  <h4>Color theme</h4>
+  <div class="swatches" id="themeSwatches">
+    <button class="sw" data-theme="cobalt" aria-pressed="false"><span class="dot" style="background:#3b6bff"></span>Cobalt</button>
+    <button class="sw" data-theme="ember" aria-pressed="false"><span class="dot" style="background:#e08a3c"></span>Ember</button>
+    <button class="sw" data-theme="sage" aria-pressed="true"><span class="dot" style="background:#4a8272"></span>Sage</button>
+  </div>
+  <h4>Font pairing</h4>
+  <div class="swatches" id="fontSwatches" style="grid-template-columns: 1fr;">
+    <button class="sw" data-fonts="inter" aria-pressed="false">Inter Tight + Inter</button>
+    <button class="sw" data-fonts="editorial" aria-pressed="false">Fraunces + Inter</button>
+    <button class="sw" data-fonts="technical" aria-pressed="true">Space Grotesk + Inter</button>
+  </div>
+</div>
+
+<script src="deck-stage.js"></script>
+<script>
+// ---- Apply tweaks on load
+(function applyTweaks() {
+  const t = window.__TWEAKS__ || {};
+  if (t.theme) document.documentElement.setAttribute('data-theme', t.theme);
+  if (t.fonts) document.documentElement.setAttribute('data-fonts', t.fonts);
+})();
+
+// ---- Tweak panel wiring
+(function tweakPanel() {
+  const panel = document.getElementById('tweaks');
+  const themeBtns = panel.querySelectorAll('[data-theme]');
+  const fontBtns = panel.querySelectorAll('[data-fonts]');
+  const t = window.__TWEAKS__ || { theme: 'cobalt', fonts: 'inter' };
+
+  function refreshPressed() {
+    themeBtns.forEach(b => b.setAttribute('aria-pressed', b.dataset.theme === t.theme ? 'true' : 'false'));
+    fontBtns.forEach(b => b.setAttribute('aria-pressed', b.dataset.fonts === t.fonts ? 'true' : 'false'));
+  }
+  refreshPressed();
+
+  themeBtns.forEach(b => b.addEventListener('click', () => {
+    t.theme = b.dataset.theme;
+    document.documentElement.setAttribute('data-theme', t.theme);
+    refreshPressed();
+    try { window.parent.postMessage({ type: '__edit_mode_set_keys', edits: { theme: t.theme } }, '*'); } catch(e) {}
+  }));
+  fontBtns.forEach(b => b.addEventListener('click', () => {
+    t.fonts = b.dataset.fonts;
+    document.documentElement.setAttribute('data-fonts', t.fonts);
+    refreshPressed();
+    try { window.parent.postMessage({ type: '__edit_mode_set_keys', edits: { fonts: t.fonts } }, '*'); } catch(e) {}
+  }));
+
+  // Register listener, then announce
+  window.addEventListener('message', (ev) => {
+    const d = ev.data;
+    if (!d || typeof d !== 'object') return;
+    if (d.type === '__activate_edit_mode') panel.classList.add('open');
+    if (d.type === '__deactivate_edit_mode') panel.classList.remove('open');
+  });
+  try { window.parent.postMessage({ type: '__edit_mode_available' }, '*'); } catch(e) {}
+})();
+
+// ---- Initial speaker-notes sync (deck-stage also broadcasts on change)
+window.addEventListener('load', () => {
+  try { window.postMessage({ slideIndexChanged: 0 }, '*'); } catch(e) {}
+});
+
+// ---- Presenter-view bridge: forward slide changes to the opener window
+//      and accept simple nav commands from it.
+(function presenterBridge() {
+  function forwardToOpener(data) {
+    try {
+      if (window.opener && !window.opener.closed) {
+        window.opener.postMessage(data, '*');
+      }
+    } catch (e) {}
+  }
+  // Forward slideIndexChanged events to the presenter window.
+  window.addEventListener('message', (ev) => {
+    const d = ev.data;
+    if (!d || typeof d !== 'object') return;
+    if ('slideIndexChanged' in d) forwardToOpener(d);
+  });
+  // Also listen for nav commands sent by the presenter window.
+  window.addEventListener('message', (ev) => {
+    const d = ev.data;
+    if (!d || typeof d !== 'object' || d.type !== 'presenter:nav') return;
+    const stage = document.querySelector('deck-stage');
+    if (!stage) return;
+    if (d.dir === 'next') stage.next();
+    else if (d.dir === 'prev') stage.prev();
+    else if (d.dir === 'reset') stage.reset();
+    else if (typeof d.index === 'number') stage.goTo(d.index);
+  });
+  // Announce ourselves once loaded; include notes + titles so the presenter
+  // can render without needing same-origin DOM access.
+  window.addEventListener('load', () => {
+    let notes = [];
+    try {
+      const tag = document.getElementById('speaker-notes');
+      if (tag) notes = JSON.parse(tag.textContent);
+    } catch (e) {}
+    const titles = Array.from(document.querySelectorAll('deck-stage > section[data-deck-slide]'))
+      .map(s => (s.getAttribute('data-screen-label') || s.getAttribute('data-label') || '').replace(/^\d+\s*/, ''));
+    forwardToOpener({ deckReady: true, notes, titles });
+  });
+})();
+</script>
+
+
+</body></html>
