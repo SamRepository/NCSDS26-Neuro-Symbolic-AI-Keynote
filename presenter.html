@@ -122,7 +122,7 @@
   <header class="bar">
     <div class="counter"><span class="now" id="num">1</span><span class="sep">/</span><span class="total" id="total">1</span></div>
     <div class="label-pill" id="slideLabel">—</div>
-    <div class="timer" id="timer"><span class="elapsed" id="elapsed">00:00</span><span class="target">/ 18:00</span></div>
+    <div class="timer" id="timer"><span class="elapsed" id="elapsed">00:00</span><span class="target">/ 20:00</span></div>
   </header>
 
   <main class="body">
@@ -152,60 +152,105 @@
 </div>
 
 <script>
-// Speaker notes — copy of the array in the deck. If you edit the deck's notes,
-// copy them here too. Source of truth lives in `Neuro-Symbolic AI.html`.
+// Speaker notes — 22 entries, one per slide. Source of truth lives in `Neuro-Symbolic AI.html`.
+// Order matches the deck after inserting slide 04 "AI landscape" between Two traditions and Symbolic era.
 const NOTES = [
-  "Good morning all, and thanks to the organizers at ENSET-Skikda. I am Samir SELLAMI researcher at LIRE Laboratory, Univ-Constantine 2 and Associate teacher at the Department of Mathematics & Computer Science, ENSET-Skikda. Over the next twenty minutes I want to share a short journey. How we got to large language models LLMs. Why they alone are not enough. And why the next decade belongs to a merge of neural networks and symbolic knowledge. Let's begin.",
-  "Four short acts for the agenda of today talk. First, where we came from — symbolic and neural. Second, the honest limits of today's LLMs. Third, the quiet return of knowledge graphs and ontologies. Fourth, the synthesis — Knowledge-Infused Learning — and what it unlocks. Finally, a simple call to action.",
+  // 01 — Title
+  "Good morning all, and thanks to the organizers at ENSET-Skikda. I am Samir SELLAMI, researcher at LIRE Laboratory, Univ-Constantine 2 and Associate teacher at the Department of Mathematics & Computer Science, ENSET-Skikda. Over the next twenty minutes I want to share a short journey. How we got to large language models — LLMs. Why they alone are not enough. And why the next decade belongs to a merge of neural networks and symbolic knowledge. Let's begin.",
+
+  // 02 — Agenda
+  "Four short acts for the agenda of today's talk. First, where we came from — symbolic and neural. Second, the honest limits of today's LLMs. Third, the quiet return of knowledge graphs and ontologies. Fourth, the synthesis — Knowledge-Infused Learning — and what it unlocks. Finally, a simple call to action.",
+
+  // 03 — Two traditions
   "AI has always had two main directions. Symbolists — intelligence as logic, rules and ontologies. Connectionists — intelligence as patterns learned from data. For seventy years they barely talked. Today, for the first time, they have to collaborate. That is the story of this talk.",
-  "From the nineteen-fifties to two thousand, symbolic AI ruled. Expert systems. Ontologies. The Semantic Web vision. Beautiful and transparent — you could read the rules. But brittle and too hard. Every edge case had to be coded by hand, and the world had too many edges and entities. By the late nineties, funding collapsed and we entered the AI winter big freeze. A beautiful theory frozen and it was time for data and deep learning.",
-  "Twenty-twelve everything changed  — ImageNet, deep CNNs, machines could see. Twenty-seventeen — Attention is all you need, the Transformer arrives. Twenty-twenty — GPT3 and scaling laws. November twenty-twenty-two — ChatGPT. AI left the lab. What symbolic AI could not do — see, hear, translate, converse — the neural tradition did, decisively.",
-  "In fact, LLMs started a methodological revolution we are living through. What used to take five tools and a week — tokenisation, parsing, entity extraction, the whole NLP pipeline — now takes one prompt and one second. Raw text in, structured meaning out. For a doctor, a lawyer, a researcher, this is extraordinarily empowering.",
-  "Let me be fair. Deep learning and transformers did things symbolic AI never could. Image and speech recognition. Machine translation. Protein folding. Autonomous driving. Superhuman game-play. The neural camp won the last decade, decisively. I am not here to argue against that. I am here to argue about what comes next.",
+
+  // 04 — AI landscape (NEW)
+  "Before the history, the discipline at a glance — AI has many tools. McCarthy set the goal in nineteen-fifty-six — develop machines that behave as though they were intelligent. Two families chase it, and the green badge on the left names where this talk lives: Neuro-Symbolic AI — the merge of one and two — grounded, explainable AI. On the left — Symbolic / Logical AI: knowledge graphs and ontologies — the two highlighted tiles, our main concern — backed by the Semantic Web formalisms RDF, OWL, SPARQL and SHACL — plus reasoning, planning and robotics, expert systems, and the classical NLP pipeline: tokenization, lemmatization, POS, parsing, NER. Explicit, queryable, auditable. On the right — Connectionist / Statistical AI: built on foundations like MLPs, embeddings and backprop; then machine learning, then deep learning with CNNs, RNNs, Transformers, and at the tip the highlighted Generative AI block — LLMs, Agentic AI on top of LLMs, and image-generation models like Diffusion and GANs. Learned, implicit, opaque. The argument in one line at the bottom: the left grounds and constrains the right.",
+
+  // 05 — Symbolic era
+  "From the nineteen-fifties to two thousand, symbolic AI ruled. Expert systems. Ontologies. The Semantic Web vision. Beautiful and transparent — you could read the rules. But brittle and too hard. Every edge case had to be coded by hand, and the world had too many edges and entities. By the late nineties, funding collapsed and we entered the AI winter — the big freeze. A beautiful theory frozen, and it was time for data and deep learning.",
+
+  // 06 — Neural renaissance
+  "Twenty-twelve everything changed — ImageNet, deep CNNs, machines could see. Twenty-seventeen — Attention is all you need, the Transformer arrives. Twenty-twenty — GPT-3 and scaling laws. November twenty-twenty-two — ChatGPT. AI left the lab. What symbolic AI could not do — see, hear, translate, converse — the neural tradition did, decisively.",
+
+  // 07 — LLMs methodological revolution
+  "In fact, LLMs started a methodological revolution we are living through. What used to take five tools and a week — tokenisation, parsing, entity extraction, the whole NLP pipeline — now takes one prompt and one second. Raw text in, structured meaning out. Look at the depiction at the bottom: before, a long faded chain of stages running for a week; now, a single LLM call delivering a structured JSON in seconds. For a doctor, a lawyer, a researcher, this is extraordinarily empowering.",
+
+  // 08 — What deep learning got right
+  "Let me be fair. Deep learning and transformers did things symbolic AI never could. Three columns with icons: Perception — image and speech recognition. Language manipulation — machine translation, text-to-speech, fluent conversation. Science and autonomy — protein folding, autonomous driving, superhuman game-play. The neural camp won the last decade, decisively. I am not here to argue against that. I am here to argue about what comes next.",
+
+  // 09 — No free lunch
   "But — there ain't no such thing as a free lunch. Robert Heinlein said it sixty years ago, and it fits AI perfectly. Every gain in convenience has a hidden cost. The cost of the LLM revolution is now starting to show. Let's be honest about what it is.",
-  "LLMs are fluent and confident. But often disconnected from reality. They hallucinate — wrong answers that sound perfect. No provenance. No consistency. Hard to update. GPU and Tokens hungry. Their knowledge is entangled in billions of weights. In medicine, law, finance — fluent confidence without grounding is not a feature. It is a liability.",
-  "Here is the deeper problem. An LLM learns what words follow what words. It does not really know what a patient, a contract, or a regulation is. The knowledge is implicit — entangled in weights, impossible to inspect. A knowledge graph is the opposite. Explicit. Queryable. Auditable. A glass box, not a black box.",
-  "This is what a knowledge graph looks like. Eight nodes, each represents a real thing. For example, Medication, Patient, Ibuprofen, Arthritis, Inflammation. The lines between them are typed relationships — not just lines, but meaning. Patient takes Ibuprofen which is Nonsteroidal Anti-Inflammatory Drugs, Ibuprofen treats Arthritis which had Inflammation as symptom. Ibuprofen interacts with Warfarin which treats Thrombosis. Now imagine this at the scale of a hospital, or all of medicine. Every fact written down, inspectable, updatable. That is what an LLM alone cannot give you.",
+
+  // 10 — LLM trust crisis
+  "LLMs are fluent and confident. But often disconnected from reality. Six honest critiques, each with its icon. Hallucination — wrong answers that sound perfect. No provenance — they can't tell you where a fact came from. No consistency — the same question can return contradictory answers. Hard to update — new facts need retraining, not editing. GPU and tokens hungry — multi-GPU, vast tokens. And opaque — knowledge entangled in billions of weights. In medicine, law, finance — fluent confidence without grounding is not a feature. It is a liability.",
+
+  // 11 — Statistics is not knowledge (analogy at the bottom)
+  "Here is the deeper problem. An LLM learns what words follow what words. It does not, in any strong sense, know what a patient, a contract, or a regulation is. The knowledge is implicit — entangled in weights, impossible to inspect. A knowledge graph is the opposite. Explicit. Queryable. Auditable. A glass box, not a black box. And the analogy at the bottom — the LLM on the left is the engine of the car, powerful but driving like a teenager by instinct; the knowledge graph on the right is the steering wheel, a city-map expert giving direction.",
+
+  // 12 — Knowledge graphs revisited
+  "This is what a knowledge graph looks like. Eight nodes, each represents a real thing. For example, Medication, Patient, Ibuprofen, Arthritis, Inflammation. The lines between them are typed relationships — not just lines, but meaning. Patient takes Ibuprofen, which is-a Nonsteroidal Anti-Inflammatory Drug. Ibuprofen treats Arthritis, which has Inflammation as a symptom. Ibuprofen interacts with Warfarin, which treats Thrombosis. Now imagine this at the scale of a hospital, or all of medicine. Every fact written down, inspectable, updatable. That is what an LLM alone cannot give you.",
+
+  // 13 — Ontologies
   "And above the graph sits the ontology. The ontology is the shape of meaning. For example, a patient has exactly one date of birth. A contract has at least two parties. These are not statistical tendencies — they are truths of the domain. Remember this line: the graph is the memory, the ontology is the grammar.",
-  "Tony Seale recently wrote in LinkedIn that ontology is having its moment. He is right. For twenty years ontologies were a quiet corner of computer science. Now every major enterprise is building one. Because to deploy AI at scale, inside a regulated business, you need a layer of ground truth the model can consult.",
-  "Look at this diagram — the architecture of the next decade of AI pipelines. A user asks a question. The LLM does not answer from memory alone. It queries the knowledge graph. The graph returns grounded facts. The LLM drafts an answer. Then a symbolic check — does it satisfy the ontology? Only then does it reach the user and gives and output, with provenance attached. And the dashed loop at the bottom — every interaction refines the graph. Neural intuition, times symbolic truth. More accurate. More explainable. More efficient. This is Knowledge-Infused Learning.",
-  "And the benchmarks now back this up. SPOKE plus Llama2 — 71% boost on biomedical multiple-choice QA. LinkedIn's customer-service knowledge graph cut median resolution time by 28.6%. MEGA-RAG, in public health, reduced hallucinations by over −40%. And Microsoft's GraphRAG showed substantial gains on million-token corpora. Different domains. Different metrics. Same direction. Structure does not replace the model. It makes the model accountable.",
-  "There are three points where you can inject knowledge. Before the model — pre-training phase on structured data. During inference — this is RAG, and Graph-RAG does it even better. Or after — a symbolic verifier checks the output against the ontology. Real systems combine all three. The architecture is a pipeline, not a swap.",
-  "IN PRACTICE, Healthcare for example. A clinician asks about a drug interaction. Without grounding, the model invents imaginary facts. With ontologies such as UMLS or SNOMED behind it, every claim is traceable. The ontology catches contradictions before they reach the patient. That is the difference between a toy and a tool. Regulators are now asking for this explicitly.",
-  "Another use case is Legal and compliance. The goal is to Review a thousand contracts without missing a clause. An LLM alone misses obligations and contradicts itself. With a legal ontology — parties, obligations, jurisdictions, dates — cross-document reasoning becomes possible. For example European regulators are pushing this direction hard.",
+
+  // 14 — Ontology moment
+  "Tony Seale recently wrote on LinkedIn that ontology is having its moment. He is right. For twenty years ontologies were a quiet corner of computer science. Now every major enterprise is building one. Because to deploy AI at scale, inside a regulated business, you need a layer of ground truth the model can consult.",
+
+  // 15 — Knowledge-Infused Learning (analogy + human in the loop)
+  "Look at this diagram — the architecture of the next decade of AI pipelines. A user asks a question. The LLM does not answer from memory alone. It queries the knowledge graph — retrieve and ground. The graph returns grounded facts. The LLM drafts an answer. Then a symbolic check — does it satisfy the ontology, SHACL, the rules? Only then does it exit to the user as a grounded answer with provenance attached. And the dashed loop at the bottom — every interaction refines the graph, with a human in the loop to curate. Neural intuition, times symbolic truth. More accurate, more explainable, more efficient. This is Knowledge-Infused Learning. The analogy at the bottom — the LLM is the smooth, charismatic salesperson promising a deal to the CEO; the knowledge graph and ontology are the strict back-room accountant, auditing every fact before the deal is signed.",
+
+  // 16 — The evidence
+  "And the benchmarks now back this up. SPOKE plus Llama-2 — 71% boost on biomedical multiple-choice QA. LinkedIn's customer-service knowledge graph cut median resolution time by 28.6%. MEGA-RAG in public health reduced hallucinations by over forty percent. And Microsoft's GraphRAG showed substantial gains on million-token corpora. Different domains. Different metrics. Same direction. Structure does not replace the model. It makes the model accountable.",
+
+  // 17 — Three ways to inject knowledge
+  "There are three points where you can inject knowledge. Before the model — pre-training on structured data. During inference — this is RAG, and Graph-RAG does it even better. Or after — a symbolic verifier checks the output against the ontology. Real systems combine all three. The architecture is a pipeline, not a swap.",
+
+  // 18 — Healthcare
+  "IN PRACTICE — Healthcare, for example. A clinician asks about a drug interaction. Without grounding, the model invents imaginary facts. With ontologies such as UMLS or SNOMED behind it, every claim is traceable. The ontology catches contradictions before they reach the patient. That is the difference between a toy and a tool. Regulators are now asking for this explicitly.",
+
+  // 19 — Legal & compliance
+  "Another use case is Legal and compliance. The goal is to review a thousand contracts without missing a clause. An LLM alone misses obligations and contradicts itself. With a legal ontology — parties, obligations, jurisdictions, dates — cross-document reasoning becomes possible. For example, European regulators are pushing this direction hard.",
+
+  // 20 — Enterprise knowledge
   "In Enterprises. Every large company has a decade of documents, databases, wikis, all siloed. Build a knowledge graph over it. Connect the LLM as a natural-language interface. Now you have an assistant that actually knows your business — grounded in your own truth, not a general model guessing. A competitive advantage that no competitor can simply download.",
-  "And finally education — which matters especially to us here in Algeria. How do we train the next generation when LLMs make the basics seem optional? My answer is concrete. Three tracks every CS programme can add now. One — ontology engineering: OWL and SHACL. Two — knowledge-graph systems: SPARQL, Cypher, Graph-RAG. Three — a grounded-AI capstone: build KG-backed SHACL-validated RAG system. The neural layer will commoditise. The knowledge layer is where expertise lives — and where Algerian research can lead.",
+
+  // 21 — Education
+  "And finally education — which matters especially to us here in Algeria. How do we train the next generation when LLMs make the basics seem optional? My answer is concrete. Three tracks every CS programme can add now. One — ontology engineering: OWL and SHACL. Two — knowledge-graph systems: SPARQL, Cypher, Graph-RAG. Three — a grounded-AI capstone: build a KG-backed, SHACL-validated RAG system. The neural layer will commoditise. The knowledge layer is where expertise lives — and where Algerian research can lead.",
+
+  // 22 — Closing
   "Here is what I want you to take away. Generative AI is powerful, accessible, empowering — and it needs control. Knowledge graphs and symbolic reasoning provide that grounding. The future of AI is not neural. It is not symbolic. It is both. Build with both hands. Thank you very much."
 ];
 
-// Optional: descriptive label for each slide (shown in the corner).
+// Descriptive label for each slide (shown in the corner).
 const SLIDE_LABELS = [
   "01 Title",
-  "02 An 18-minute map",
+  "02 A 20-minute map",
   "03 Two traditions",
-  "04 The symbolic era",
-  "05 The neural renaissance",
-  "06 LLMs: methodological pivot",
-  "07 What deep learning got right",
-  "08 No free lunch",
-  "09 The LLM trust crisis",
-  "10 Statistics is not knowledge",
-  "11 Knowledge graphs revisited",
-  "12 Ontologies",
-  "13 Ontology's moment",
-  "14 Knowledge-Infused Learning",
-  "15 The evidence",
-  "16 Three ways to inject knowledge",
-  "17 Healthcare",
-  "18 Legal & compliance",
-  "19 Enterprise knowledge",
-  "20 Education",
-  "21 Closing"
+  "04 AI landscape",
+  "05 The symbolic era",
+  "06 The neural renaissance",
+  "07 LLMs: methodological revolution",
+  "08 What deep learning got right",
+  "09 No free lunch",
+  "10 The LLM trust crisis",
+  "11 Statistics is not knowledge",
+  "12 Knowledge graphs revisited",
+  "13 Ontologies",
+  "14 Ontology's moment",
+  "15 Knowledge-Infused Learning",
+  "16 The evidence",
+  "17 Three ways to inject knowledge",
+  "18 Healthcare",
+  "19 Legal & compliance",
+  "20 Enterprise knowledge",
+  "21 Education",
+  "22 Closing"
 ];
 
 const DECK_URL = "Neuro-Symbolic AI.html";
-const TARGET_SEC = 18 * 60;
-const WARN_SEC = 16 * 60;
+const TARGET_SEC = 20 * 60;
+const WARN_SEC = 18 * 60;
 
 const $ = (id) => document.getElementById(id);
 let deckWin = null;

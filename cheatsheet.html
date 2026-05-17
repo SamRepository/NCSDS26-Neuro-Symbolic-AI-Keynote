@@ -10,8 +10,8 @@
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, system-ui, sans-serif;
     color: #111;
     background: #fff;
-    font-size: 9.5pt;
-    line-height: 1.35;
+    font-size: 9pt;
+    line-height: 1.32;
   }
   .page {
     width: 100%;
@@ -45,9 +45,9 @@
   .card {
     border: 0.8px solid #bbb;
     border-radius: 4px;
-    padding: 6px 7px;
+    padding: 5px 7px;
     page-break-inside: avoid;
-    min-height: 88px;
+    min-height: 80px;
     display: flex;
     flex-direction: column;
     gap: 3px;
@@ -67,14 +67,14 @@
   }
   .num {
     font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
-    font-size: 11pt;
+    font-size: 10.5pt;
     font-weight: 700;
     color: #4a8272;
     min-width: 22px;
   }
   .title {
     font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
-    font-size: 7.5pt;
+    font-size: 7pt;
     letter-spacing: 0.08em;
     text-transform: uppercase;
     color: #666;
@@ -82,17 +82,17 @@
   }
   .opening {
     font-weight: 600;
-    font-size: 10pt;
-    line-height: 1.3;
+    font-size: 9.5pt;
+    line-height: 1.28;
   }
   .anchor {
     margin-top: auto;
     padding-top: 3px;
     border-top: 0.5px solid #e2e2e2;
-    font-size: 8.5pt;
+    font-size: 8pt;
     color: #444;
     font-style: italic;
-    line-height: 1.3;
+    line-height: 1.28;
   }
   footer {
     margin-top: 8px;
@@ -101,7 +101,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    font-size: 8.5pt;
+    font-size: 8pt;
     color: #555;
   }
   footer .targets {
@@ -118,7 +118,7 @@
   }
   @media screen {
     body { padding: 24px; max-width: 1000px; margin: 0 auto; background: #f5f5f0; }
-    .page { background: white; box-shadow: 0 2px 12px rgba(0,0,0,0.08); padding: 18mm; }
+    .page { background: white; box-shadow: 0 2px 12px rgba(0,0,0,0.08); padding: 14mm; }
     .print-hint {
       max-width: 1000px; margin: 0 auto 12px;
       font-size: 13px; color: #555; font-style: italic;
@@ -131,13 +131,13 @@
 </head>
 <body>
 
-<div class="print-hint">Press <strong>Ctrl+P</strong> (Cmd+P on Mac) → Destination: Save as PDF or your printer → Margins: Default → Scale: 100% → Save / Print. Fits one A4 page.</div>
+<div class="print-hint">Press <strong>Ctrl+P</strong> (Cmd+P on Mac) → Destination: Save as PDF or your printer → Margins: Default → Scale: 100% → Save / Print. Fits one A4 page (22 slides).</div>
 
 <div class="page">
 
 <header>
   <h1>Cue Card · <span class="accent">Neuro-Symbolic AI</span> · NCSDS-26</h1>
-  <div class="meta">Dr. Samir Sellami · Target 20:00</div>
+  <div class="meta">Dr. Samir Sellami · Target 20:00 · 22 slides</div>
 </header>
 
 <div class="grid">
@@ -146,7 +146,7 @@
   <div class="card accent">
     <div class="row1"><span class="num">01</span><span class="title">Title · 0:00</span></div>
     <div class="opening">"Good morning all, and thanks to the organizers at ENSET-Skikda."</div>
-    <div class="anchor">→ <strong>Self-intro:</strong> LIRE Lab (Univ-Constantine 2) · ENSET-Skikda. 20-min journey: how we got to LLMs, why not enough, neural + symbolic.</div>
+    <div class="anchor">→ <strong>Self-intro:</strong> LIRE Lab · ENSET-Skikda. 20-min journey: how we got to LLMs, why not enough, neural + symbolic.</div>
   </div>
 
   <div class="card accent">
@@ -159,117 +159,123 @@
   <div class="card">
     <div class="row1"><span class="num">03</span><span class="title">Two directions · 2:00</span></div>
     <div class="opening">"AI has always had two main directions."</div>
-    <div class="anchor">→ Symbolists vs connectionists. Seventy years apart. Today they have to collaborate.</div>
+    <div class="anchor">→ Symbolists vs connectionists. 70 yrs apart. Today they have to collaborate.</div>
+  </div>
+
+  <div class="card hot">
+    <div class="row1"><span class="num">04</span><span class="title">AI landscape · 2:45</span></div>
+    <div class="opening">"AI has many tools — the discipline at a glance."</div>
+    <div class="anchor">→ McCarthy 1956. <strong>Sage badge L:</strong> Neuro-Symbolic = ① + ②. <strong>Symbolic ①:</strong> KGs, Onts (RDF/OWL/SPARQL/SHACL), Reason, Plan&amp;Robot, NLP. <strong>Connectionist ②:</strong> Foundation→ML→DL→GenAI (LLMs, Agentic, Diffusion).</div>
   </div>
 
   <div class="card">
-    <div class="row1"><span class="num">04</span><span class="title">Symbolic era · 2:45</span></div>
+    <div class="row1"><span class="num">05</span><span class="title">Symbolic era · 4:00</span></div>
     <div class="opening">"From the nineteen-fifties to two thousand, symbolic AI ruled."</div>
-    <div class="anchor">→ Beautiful and transparent — but brittle &amp; too hard. <strong>AI winter big freeze.</strong> Time for data and deep learning.</div>
+    <div class="anchor">→ Beautiful, transparent — but brittle &amp; too hard. <strong>AI winter big freeze.</strong> Time for data &amp; DL.</div>
   </div>
 
   <div class="card">
-    <div class="row1"><span class="num">05</span><span class="title">Neural era · 3:45</span></div>
+    <div class="row1"><span class="num">06</span><span class="title">Neural era · 5:00</span></div>
     <div class="opening">"Twenty-twelve everything changed — ImageNet, deep CNNs."</div>
     <div class="anchor">→ 2017 <em>Attention is all you need</em> · 2020 GPT-3 · Nov 2022 ChatGPT. AI left the lab.</div>
   </div>
 
   <div class="card">
-    <div class="row1"><span class="num">06</span><span class="title">LLM pivot · 4:45</span></div>
+    <div class="row1"><span class="num">07</span><span class="title">LLM pivot · 6:00</span></div>
     <div class="opening">"In fact, LLMs started a methodological revolution."</div>
-    <div class="anchor">→ Five tools and a week → one prompt and one second. Raw text in, meaning out.</div>
+    <div class="anchor">→ <strong>Before:</strong> 5 tools, 1 week. <strong>Now:</strong> 1 prompt, 1 second. Raw text in, JSON out.</div>
   </div>
 
   <div class="card">
-    <div class="row1"><span class="num">07</span><span class="title">Be fair · 5:30</span></div>
+    <div class="row1"><span class="num">08</span><span class="title">Be fair · 7:00</span></div>
     <div class="opening">"Let me be fair. Deep learning and transformers did what symbolic AI never could."</div>
-    <div class="anchor">→ Vision · speech · translation · protein folding · self-driving. Neural camp won the decade.</div>
+    <div class="anchor">→ 👁 Perception · 💬 Language · ⚛ Science &amp; autonomy. Neural camp won the decade.</div>
   </div>
 
   <div class="card hot">
-    <div class="row1"><span class="num">08</span><span class="title">Free lunch · 6:15</span></div>
+    <div class="row1"><span class="num">09</span><span class="title">Free lunch · 7:45</span></div>
     <div class="opening">"But — there ain't no such thing as a free lunch."</div>
-    <div class="anchor">→ <strong>TURNING POINT.</strong> Robert Heinlein. Every gain has a hidden cost. The LLM cost is showing.</div>
+    <div class="anchor">→ <strong>TURNING POINT.</strong> Robert Heinlein. Every gain has a hidden cost. LLM cost is showing.</div>
   </div>
 
   <!-- ACT 2 — Limits -->
   <div class="card">
-    <div class="row1"><span class="num">09</span><span class="title">Trust crisis · 7:00</span></div>
+    <div class="row1"><span class="num">10</span><span class="title">Trust crisis · 8:30</span></div>
     <div class="opening">"LLMs are fluent and confident. But often disconnected from reality."</div>
-    <div class="anchor">→ Hallucinate · no provenance · no consistency · hard to update · <strong>GPU/tokens hungry</strong>. Liability in high-stakes.</div>
+    <div class="anchor">→ ⚠ Hallucinate · ❓ No provenance · ⑀ No consistency · 🔒 Hard to update · ▦ GPU/tokens hungry · 👁/ Opaque.</div>
   </div>
 
-  <div class="card">
-    <div class="row1"><span class="num">10</span><span class="title">Stats ≠ knowledge · 7:50</span></div>
+  <div class="card hot">
+    <div class="row1"><span class="num">11</span><span class="title">Stats ≠ knowledge · 9:30</span></div>
     <div class="opening">"Here is the deeper problem."</div>
-    <div class="anchor">→ Words follow words ≠ knowing what a patient is. Black box vs glass box.</div>
+    <div class="anchor">→ Black box vs glass box. <strong>💡 Analogy:</strong> LLM (L) = engine / teenager by instinct; KG (R) = steering wheel / city-map expert.</div>
   </div>
 
   <!-- ACT 3 — Structure -->
   <div class="card">
-    <div class="row1"><span class="num">11</span><span class="title">KG revisited · 8:35</span></div>
+    <div class="row1"><span class="num">12</span><span class="title">KG revisited · 10:30</span></div>
     <div class="opening">"This is what a knowledge graph looks like. <strong>Eight nodes.</strong>"</div>
-    <div class="anchor">→ Patient takes Ibuprofen (NSAID) · treats Arthritis (has Inflammation as symptom) · interacts with Warfarin (treats Thrombosis).</div>
+    <div class="anchor">→ Patient takes Ibuprofen (NSAID) · treats Arthritis (Inflammation as symptom) · interacts Warfarin (treats Thrombosis).</div>
   </div>
 
   <div class="card">
-    <div class="row1"><span class="num">12</span><span class="title">Ontology · 9:50</span></div>
+    <div class="row1"><span class="num">13</span><span class="title">Ontology · 11:45</span></div>
     <div class="opening">"And above the graph sits the ontology."</div>
     <div class="anchor">→ <strong>KEY LINE:</strong> "The graph is the memory. The ontology is the grammar."</div>
   </div>
 
   <div class="card">
-    <div class="row1"><span class="num">13</span><span class="title">Ontology moment · 10:35</span></div>
+    <div class="row1"><span class="num">14</span><span class="title">Ontology moment · 12:30</span></div>
     <div class="opening">"Tony Seale recently wrote on LinkedIn that ontology is having its moment."</div>
     <div class="anchor">→ 20 years quiet → every major enterprise now building one. Ground truth for AI at scale.</div>
   </div>
 
   <!-- ACT 4 — Synthesis -->
   <div class="card hot">
-    <div class="row1"><span class="num">14</span><span class="title">KiL diagram · 11:20</span></div>
+    <div class="row1"><span class="num">15</span><span class="title">KiL diagram · 13:15</span></div>
     <div class="opening">"Look at this diagram — the architecture of the next decade of AI pipelines."</div>
-    <div class="anchor">→ Query → LLM ↔ KG → draft → SHACL check → grounded output + provenance. Feedback loop refines KG.</div>
+    <div class="anchor">→ Query→LLM↔KG→Verify→Output→<strong>TO USER</strong>. Feedback w/ <strong>🧑 human in the loop</strong>. <strong>💡 Analogy:</strong> LLM = smooth salesperson; KG&amp;Ont = strict accountant auditing facts.</div>
   </div>
 
   <div class="card hot">
-    <div class="row1"><span class="num">15</span><span class="title">Evidence · 12:35</span></div>
+    <div class="row1"><span class="num">16</span><span class="title">Evidence · 14:45</span></div>
     <div class="opening">"And the benchmarks now back this up."</div>
     <div class="anchor">→ SPOKE+Llama-2 <strong>+71%</strong> bio-QA · LinkedIn <strong>−28.6%</strong> resolution · MEGA-RAG <strong>−40%</strong> hallucination · MS GraphRAG.</div>
   </div>
 
   <div class="card">
-    <div class="row1"><span class="num">16</span><span class="title">3 injection points · 13:35</span></div>
+    <div class="row1"><span class="num">17</span><span class="title">3 injection points · 15:45</span></div>
     <div class="opening">"There are three points where you can inject knowledge."</div>
     <div class="anchor">→ <strong>Before</strong> (pre-training) · <strong>During</strong> (Graph-RAG) · <strong>After</strong> (SHACL verify). A <strong>pipeline</strong>, not a swap.</div>
   </div>
 
   <!-- Cases -->
   <div class="card">
-    <div class="row1"><span class="num">17</span><span class="title">Healthcare · 14:20</span></div>
+    <div class="row1"><span class="num">18</span><span class="title">Healthcare · 16:30</span></div>
     <div class="opening">"IN PRACTICE — Healthcare, for example."</div>
     <div class="anchor">→ UMLS / SNOMED grounding. Traceable claims. <strong>Toy → tool.</strong> Regulators demand this.</div>
   </div>
 
   <div class="card">
-    <div class="row1"><span class="num">18</span><span class="title">Legal · 15:05</span></div>
+    <div class="row1"><span class="num">19</span><span class="title">Legal · 17:15</span></div>
     <div class="opening">"Another use case is Legal and compliance."</div>
-    <div class="anchor">→ Legal ontology: parties, obligations, jurisdictions, dates. Cross-document reasoning. European regulators pushing.</div>
+    <div class="anchor">→ Legal ontology: parties, obligations, jurisdictions, dates. Cross-doc reasoning. EU regulators pushing.</div>
   </div>
 
   <div class="card">
-    <div class="row1"><span class="num">19</span><span class="title">Enterprise · 15:50</span></div>
+    <div class="row1"><span class="num">20</span><span class="title">Enterprise · 18:00</span></div>
     <div class="opening">"In Enterprises."</div>
-    <div class="anchor">→ A decade of siloed docs → unified KG → LLM as NL interface. <strong>A competitive advantage no one can download.</strong></div>
+    <div class="anchor">→ A decade of siloed docs → unified KG → LLM as NL interface. <strong>Competitive advantage no one can download.</strong></div>
   </div>
 
   <div class="card hot">
-    <div class="row1"><span class="num">20</span><span class="title">Education · 16:35</span></div>
+    <div class="row1"><span class="num">21</span><span class="title">Education · 18:45</span></div>
     <div class="opening">"And finally education — which matters especially to us here in Algeria."</div>
     <div class="anchor">→ <strong>3 tracks:</strong> ① Ontology eng. (OWL/SHACL) · ② KG systems (SPARQL/Cypher/Graph-RAG) · ③ Grounded-AI capstone. Algerian research can lead.</div>
   </div>
 
   <div class="card dark">
-    <div class="row1"><span class="num">21</span><span class="title">Close · 17:50</span></div>
+    <div class="row1"><span class="num">22</span><span class="title">Close · 20:00</span></div>
     <div class="opening">"Here is what I want you to take away."</div>
     <div class="anchor">→ <strong>The future of AI is not neural, not symbolic — it is both. Build with both hands. Thank you.</strong></div>
   </div>
@@ -277,7 +283,7 @@
 </div>
 
 <footer>
-  <div class="targets">07:00 end of Act 1 · 08:35 end of Act 2 · 11:20 end of Act 3 · 17:50 end of Act 4 · 18:35 close (target ≤ 20:00)</div>
+  <div class="targets">07:45 Act 1 end · 09:30 Act 2 end · 12:30 Act 3 end · 18:45 Act 4 end · 20:00 close · 💡 analogies on 11 &amp; 15</div>
   <div class="arc">Arc: History → Limits → Structure → Synthesis → Call to action</div>
 </footer>
 
