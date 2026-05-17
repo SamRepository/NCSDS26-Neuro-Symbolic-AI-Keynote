@@ -355,23 +355,34 @@ window.__TWEAKS__ = /*EDITMODE-BEGIN*/{
   <!-- 01 — Title -->
   <section data-label="Title" data-screen-label="01 Title" data-om-validate="no_overflowing_text,no_overlapping_text,slide_sized_text" data-deck-slide="0" data-deck-active="">
     <div class="frame" style="justify-content: space-between;">
+
+      <!-- Topbar -->
       <div class="topbar">
         <span class="chap"><span class="dot"></span>NCSDS-26 · KEYNOTE</span>
         <span class="meta">ENSET-Skikda · Azzaba, Algeria</span>
       </div>
 
-      <div style="margin-top: 120px; display: grid; grid-template-columns: 1fr auto; gap: 72px; align-items: center;">
+      <!-- Two-column main block: title on the left, banner + logos on the right -->
+      <div style="margin-top: 120px; display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 64px; align-items: center;">
+
+        <!-- LEFT: Title content -->
         <div>
           <div class="eyebrow">The shape of the next AI decade</div>
           <h1 class="h-display">Neuro-<br>Symbolic&nbsp;AI.</h1>
-          <p class="body-lg" style="margin-top: 48px; max-width: 1200px;">
+          <p class="body-lg" style="margin-top: 40px;">
             How we got to large language models — LLMs. How <em>"knowledge graphs"</em> and <em>"ontologies"</em> are learning to live inside them — and why that changes everything.
           </p>
         </div>
-        <div style="display: flex; flex-direction: column; gap: 40px; align-items: center;">
-          <img src="logos/NCSDS.webp" alt="NCSDS-26" style="height: 180px; width: auto; object-fit: contain; display: block;">
-          <img src="logos/Logo ENSET.png" alt="ENSET-Skikda" style="height: 180px; width: auto; object-fit: contain; display: block;">
+
+        <!-- RIGHT: Conference banner with the two logos placed directly underneath it -->
+        <div style="display: flex; flex-direction: column; align-items: center; gap: 28px;">
+          <img src="logos/Banner.png" alt="NCSDS-26 — National Conference on Statistics and Data Sciences, May 18–19, 2026, ENSET SKIKDA, Algeria" style="width: 200%; max-width: 840px; height: auto; object-fit: contain; display: block; -webkit-mask-image: radial-gradient(ellipse 95% 85% at 50% 50%, black 50%, transparent 100%); mask-image: radial-gradient(ellipse 95% 85% at 50% 50%, black 50%, transparent 100%); mix-blend-mode: multiply;">
+          <div style="display: flex; align-items: center; gap: 56px;">
+            <img src="logos/NCSDS.webp" alt="NCSDS-26" style="height: 190px; width: 190px; object-fit: cover; display: block; border-radius: 50%; box-shadow: 0 2px 10px oklch(0 0 0 / 0.12);">
+            <img src="logos/Logo ENSET.png" alt="ENSET-Skikda" style="height: 200px; width: auto; object-fit: contain; display: block;">
+          </div>
         </div>
+
       </div>
 
       <div class="kicker-row" style="align-items: end;">
@@ -1157,31 +1168,89 @@ window.__TWEAKS__ = /*EDITMODE-BEGIN*/{
         <span class="chap"><span class="dot"></span>03 · STRUCTURE</span>
         <span class="meta">THE SHAPE OF MEANING</span>
       </div>
-      <div class="two-col-wide" style="margin-top: 120px;">
+      <div class="two-col-wide" style="margin-top: 90px;">
         <div>
           <div class="eyebrow">Graph vs. ontology</div>
-          <h1 class="h-slide" style="font-size: 64px;">The graph is<br>the memory.<br>The ontology<br>is the grammar.</h1>
+          <h1 class="h-slide" style="font-size: 56px;">The graph is<br>the memory.<br>The ontology<br>is the grammar.</h1>
+
+          <!-- Memory vs Grammar depiction (anchors the title line) -->
+          <div style="margin-top: 40px; max-width: 640px; display: grid; grid-template-columns: 1fr 1fr; gap: 18px;">
+
+            <!-- Memory side: the graph -->
+            <div style="padding: 20px 24px; background: var(--paper-2); border: 1px solid var(--line); border-left: 4px solid var(--accent); border-radius: 5px;">
+              <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 10px;">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--accent-ink)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <!-- notebook with three lines of writing -->
+                  <rect x="4" y="3" width="16" height="18" rx="1"/>
+                  <line x1="8" y1="8" x2="16" y2="8"/>
+                  <line x1="8" y1="12" x2="16" y2="12"/>
+                  <line x1="8" y1="16" x2="13" y2="16"/>
+                </svg>
+                <span style="font-family: var(--f-mono); font-size: 15px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent-ink); font-weight: 700;">Memory</span>
+              </div>
+              <div style="font-size: 17px; color: var(--ink); line-height: 1.4; font-style: italic;">Facts of the world &mdash; written down, recallable.</div>
+            </div>
+
+            <!-- Grammar side: the ontology -->
+            <div style="padding: 20px 24px; background: var(--accent); border-radius: 5px; box-shadow: 0 3px 12px oklch(0 0 0 / 0.15);">
+              <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 10px;">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--paper)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <!-- "Aa" alphabet, representing language / grammar -->
+                  <text x="2" y="19" font-family="Georgia, serif" font-size="18" font-weight="700" fill="var(--paper)" stroke="none">A</text>
+                  <text x="13" y="19" font-family="Georgia, serif" font-size="13" font-weight="500" fill="var(--paper)" stroke="none">a</text>
+                </svg>
+                <span style="font-family: var(--f-mono); font-size: 15px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--paper); font-weight: 700;">Grammar</span>
+              </div>
+              <div style="font-size: 17px; color: var(--paper); line-height: 1.4; font-style: italic; opacity: 0.95;">Rules of form &mdash; what may combine with what.</div>
+            </div>
+
+          </div>
         </div>
+
         <div>
           <ul class="clean" style="margin-top: 0;">
             <li>
-              <span class="num">KG</span>
+              <span class="num" style="min-width: 56px;">
+                <!-- RDF/KG: connected nodes -->
+                <svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="var(--accent-ink)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <circle cx="5" cy="6" r="2.2" fill="var(--accent-ink)" stroke="none"/>
+                  <circle cx="19" cy="6" r="2.2" fill="var(--accent-ink)" stroke="none"/>
+                  <circle cx="12" cy="18" r="2.2" fill="var(--accent-ink)" stroke="none"/>
+                  <line x1="7.2" y1="6.5" x2="16.8" y2="6.5"/>
+                  <line x1="6.2" y1="8" x2="11" y2="16"/>
+                  <line x1="17.8" y1="8" x2="13" y2="16"/>
+                </svg>
+              </span>
               <span>
-                <strong style="color: var(--ink); font-weight: 600;">Entities &amp; relationships.</strong>
+                <strong style="color: var(--ink); font-weight: 600;">RDF / KG.</strong> Entities &amp; relationships.
                 <div style="font-size: 24px; color: var(--muted); margin-top: 10px; line-height: 1.4;">«Ibuprofen treats inflammation.»&nbsp;«Tehran is the capital of Iran.»</div>
               </span>
             </li>
             <li>
-              <span class="num">OWL</span>
+              <span class="num" style="min-width: 56px;">
+                <!-- OWL: class hierarchy / tree -->
+                <svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="var(--accent-ink)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <rect x="9" y="2" width="6" height="4" rx="0.6"/>
+                  <rect x="2" y="14" width="6" height="4" rx="0.6"/>
+                  <rect x="16" y="14" width="6" height="4" rx="0.6"/>
+                  <path d="M12 6 V10 M5 14 V10 H19 V14"/>
+                </svg>
+              </span>
               <span>
-                <strong style="color: var(--ink); font-weight: 600;">Classes, properties, constraints.</strong>
+                <strong style="color: var(--ink); font-weight: 600;">OWL.</strong> Classes, properties, constraints.
                 <div style="font-size: 24px; color: var(--muted); margin-top: 10px; line-height: 1.4;">«A Patient has exactly one DOB.» &nbsp;«A Contract has ≥2 Parties.»</div>
               </span>
             </li>
             <li>
-              <span class="num">SHACL</span>
+              <span class="num" style="min-width: 56px;">
+                <!-- SHACL: shield with checkmark -->
+                <svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="var(--accent-ink)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M12 2 L20 5 v7 c0 4 -3 8 -8 10 -5 -2 -8 -6 -8 -10 V5 z"/>
+                  <path d="M9 12 L11 14 L15 10"/>
+                </svg>
+              </span>
               <span>
-                <strong style="color: var(--ink); font-weight: 600;">Rules &amp; validation.</strong>
+                <strong style="color: var(--ink); font-weight: 600;">SHACL.</strong> Rules &amp; validation.
                 <div style="font-size: 24px; color: var(--muted); margin-top: 10px; line-height: 1.4;">Enforce what must be true. Catch what cannot.</div>
               </span>
             </li>
