@@ -24,6 +24,8 @@ window.__TWEAKS__ = /*EDITMODE-BEGIN*/{
 
   "AI has always had two main directions. Symbolists — intelligence as logic, rules and ontologies. Connectionists — intelligence as patterns learned from data. For seventy years they barely talked. Today, for the first time, they have to collaborate. That is the story of this talk.",
 
+  "Before the history, the discipline at a glance. McCarthy set the goal in nineteen-fifty-six — develop machines that behave as though they were intelligent. Two families chase it, and the green badge on the left names where this talk lives: Neuro-Symbolic AI — the merge of ① and ② — grounded, explainable AI. On the left — Symbolic AI, or Logical AI: knowledge graphs and ontologies — the two highlighted tiles, our main concern — backed by the Semantic Web formalisms RDF, OWL, SPARQL and SHACL — plus reasoning, planning and robotics, expert systems, and the classical NLP pipeline — tokenization, lemmatization, POS tagging, parsing, NER. Explicit, queryable, auditable. On the right — Connectionist AI: built on foundations like MLPs, embeddings and backprop; then machine learning, then deep learning with CNNs, RNNs, Transformers, and at the tip the highlighted Generative AI block — LLMs, Agentic AI on top of LLMs, and image-generation models like Diffusion and GANs. Learned, implicit, opaque. The talk's argument in one line at the bottom: the left grounds and constrains the right.",
+
   "From the nineteen-fifties to two thousand, symbolic AI ruled. Expert systems. Ontologies. The Semantic Web vision. Beautiful and transparent — you could read the rules. But brittle. Every edge case had to be coded by hand, and the world had too many edges. By the late nineties, funding collapsed. The AI winter.",
 
   "Then everything changed. Twenty-twelve — ImageNet, deep CNNs, machines could see. Twenty-seventeen — the Transformer. Twenty-twenty — GPT-three and scaling laws. November twenty-twenty-two — ChatGPT. AI left the lab. What symbolic AI could not do — see, hear, translate, converse — the neural tradition did, decisively.",
@@ -360,10 +362,10 @@ window.__TWEAKS__ = /*EDITMODE-BEGIN*/{
 
       <div style="margin-top: 120px; display: grid; grid-template-columns: 1fr auto; gap: 72px; align-items: center;">
         <div>
-          <div class="eyebrow">The shape of the next decade</div>
+          <div class="eyebrow">The shape of the next AI decade</div>
           <h1 class="h-display">Neuro-<br>Symbolic&nbsp;AI.</h1>
           <p class="body-lg" style="margin-top: 48px; max-width: 1200px;">
-            How knowledge graphs and ontologies are learning to live inside large language models — and why that changes everything.
+            How we got to large language models — LLMs. How <em>"knowledge graphs"</em> and <em>"ontologies"</em> are learning to live inside them — and why that changes everything.
           </p>
         </div>
         <div style="display: flex; flex-direction: column; gap: 40px; align-items: center;">
@@ -416,7 +418,7 @@ window.__TWEAKS__ = /*EDITMODE-BEGIN*/{
         <h1 class="h-title">Four short acts.</h1>
       </div>
       <ol class="clean" style="list-style: none; padding: 0; margin-top: 100px; max-width: 1500px;">
-        <li><span class="num">01</span><span><strong style="color: var(--ink); font-weight: 600;">Where we came from.</strong> Two traditions of AI — symbolic and neural.</span></li>
+        <li><span class="num">01</span><span><strong style="color: var(--ink); font-weight: 600;">Where we came from.</strong> Two schools of AI — symbolic and neural.</span></li>
         <li><span class="num">02</span><span><strong style="color: var(--ink); font-weight: 600;">The limits of LLMs.</strong> Hallucination, provenance, and the absent ground truth.</span></li>
         <li><span class="num">03</span><span><strong style="color: var(--ink); font-weight: 600;">Knowledge graphs &amp; ontologies.</strong> The quiet return of structured meaning.</span></li>
         <li><span class="num">04</span><span><strong style="color: var(--ink); font-weight: 600;">Knowledge-Infused Learning.</strong> The synthesis — and what it unlocks.</span></li>
@@ -425,7 +427,7 @@ window.__TWEAKS__ = /*EDITMODE-BEGIN*/{
   </section>
 
   <!-- 03 — Section header: History -->
-  <section data-label="Two traditions, one goal" data-screen-label="03 Two traditions, one goal" data-om-validate="no_overflowing_text,no_overlapping_text,slide_sized_text" data-deck-slide="2">
+  <section data-label="Two Big Schools, one goal" data-screen-label="03 Two Big Schools, one goal" data-om-validate="no_overflowing_text,no_overlapping_text,slide_sized_text" data-deck-slide="2">
     <div class="frame accent-bg" style="justify-content: center;">
       <div class="topbar" style="color: oklch(0.92 0.04 255);">
         <span class="chap">PART 01</span>
@@ -434,18 +436,170 @@ window.__TWEAKS__ = /*EDITMODE-BEGIN*/{
       <div style="display: grid; grid-template-columns: 280px 1fr; gap: 80px; align-items: center;">
         <div class="h-section-num" style="color: var(--paper);">01</div>
         <div>
-          <div class="eyebrow" style="color: oklch(0.92 0.04 255);">Two traditions</div>
+          <div class="eyebrow" style="color: oklch(0.92 0.04 255);">Two Big Schools</div>
           <h1 class="h-title" style="font-size: 120px; color: var(--paper);">One goal,<br>two main directions.</h1>
           <p class="body-lg" style="color: oklch(0.97 0.02 255); margin-top: 36px; max-width: 1200px;">
-            Symbolists &amp; connectionists have argued about the nature of intelligence for seventy years. Today, for the first time, they have to collaborate.
+            Symbolists &amp; connectionists (neural networks) have argued about the nature of intelligence for seventy years. Today, for the first time, they have to collaborate.
           </p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- 04 — Symbolic era -->
-  <section data-label="The symbolic era, 1956–2000" data-screen-label="04 The symbolic era, 1956–2000" data-om-validate="no_overflowing_text,no_overlapping_text,slide_sized_text" data-deck-slide="3">
+  <!-- 04 — AI discipline landscape -->
+  <section data-label="The AI landscape" data-screen-label="04 The AI landscape" data-om-validate="no_overflowing_text,no_overlapping_text,slide_sized_text" data-deck-slide="3">
+    <div class="frame">
+      <div class="topbar">
+        <span class="chap"><span class="dot"></span>01 · HISTORY</span>
+        <span class="meta">THE LANDSCAPE</span>
+      </div>
+
+      <div style="margin-top: 50px;">
+        <div class="eyebrow">The discipline at a glance</div>
+        <h1 class="h-slide" style="font-size: 56px;">AI has many tools</h1>
+      </div>
+
+      <!-- Neuro-Symbolic AI synthesis badge + McCarthy framing -->
+      <div style="margin-top: 18px; display: grid; grid-template-columns: auto 1fr; gap: 22px; align-items: stretch; max-width: 1700px;">
+
+        <!-- The Synthesis: Neuro-Symbolic AI = 1 + 2 -->
+        <div style="padding: 16px 26px; background: var(--accent); border-radius: 10px; box-shadow: 0 4px 14px oklch(0 0 0 / 0.18); display: flex; flex-direction: column; justify-content: center; min-width: 380px;">
+          <div style="font-family: var(--f-mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--paper); opacity: 0.9; margin-bottom: 8px;">The Synthesis &middot; This Talk</div>
+          <div style="font-family: var(--f-display); font-weight: 700; font-size: 32px; color: var(--paper); line-height: 1.05;">Neuro-Symbolic AI</div>
+          <div style="display: flex; align-items: center; gap: 8px; margin-top: 12px; font-family: var(--f-mono); font-size: 15px; color: var(--paper);">
+            <span style="font-weight: 700; font-size: 22px;">&#9312;</span>
+            <span style="opacity: 0.95;">Symbolic</span>
+            <span style="font-weight: 700; font-size: 18px; margin: 0 4px; opacity: 0.85;">&#x2295;</span>
+            <span style="font-weight: 700; font-size: 22px;">&#9313;</span>
+            <span style="opacity: 0.95;">Neural</span>
+          </div>
+          <div style="margin-top: 8px; font-family: var(--f-body); font-size: 13px; color: var(--paper); opacity: 0.85; font-style: italic;">= grounded, explainable AI</div>
+        </div>
+
+        <!-- The goal (McCarthy quote) -->
+        <div style="padding: 16px 28px; background: var(--paper-2); border-left: 4px solid var(--accent); display: flex; flex-direction: column; justify-content: center;">
+          <div style="font-family: var(--f-mono); font-size: 14px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 4px;">The goal &mdash; defined in 1956</div>
+          <div style="font-family: var(--f-display); font-size: 26px; color: var(--ink); font-style: italic; line-height: 1.35;">&ldquo;To develop machines that behave as though they were intelligent.&rdquo;</div>
+          <div style="font-size: 16px; color: var(--muted); margin-top: 4px;">&mdash; John McCarthy, Dartmouth Summer Research Project</div>
+        </div>
+
+      </div>
+
+      <!-- Two-column landscape -->
+      <div style="margin-top: 16px; display: grid; grid-template-columns: 1fr 1.18fr; gap: 28px; align-items: stretch;">
+
+        <!-- 1. Symbolic AI/ Logical AI (light, sage-tinted) -->
+        <div style="border: 2px solid var(--accent); border-radius: 10px; padding: 14px 18px 16px; background: var(--accent-soft); display: flex; flex-direction: column;">
+          <div style="display: flex; align-items: baseline; gap: 14px; margin-bottom: 12px;">
+            <span style="font-family: var(--f-display); font-weight: 700; font-size: 34px; color: var(--accent-ink);">&#9312;</span>
+            <span style="font-family: var(--f-display); font-weight: 700; font-size: 30px; color: var(--accent-ink);">Symbolic / Logical-AI </span>
+            <span style="font-family: var(--f-mono); font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent-ink); opacity: 0.75; margin-left: auto;">knowledge&middot;driven &middot; explicit</span>
+          </div>
+          <!-- Highlighted: the talk's main concern -->
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 14px;">
+            <div style="padding: 16px 12px; background: var(--paper); border: 2px solid var(--accent); border-radius: 6px; font-family: var(--f-display); font-weight: 700; font-size: 22px; color: var(--accent-ink); text-align: center;">Knowledge Graphs</div>
+            <div style="padding: 16px 12px; background: var(--paper); border: 2px solid var(--accent); border-radius: 6px; font-family: var(--f-display); font-weight: 700; font-size: 22px; color: var(--accent-ink); text-align: center;">Ontologies</div>
+          </div>
+
+          <!-- Semantic Web formalisms (pill row) -->
+          <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 14px; padding: 10px 14px; background: oklch(0.96 0.02 165); border: 1px dashed var(--accent); border-radius: 6px;">
+            <span style="font-family: var(--f-mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent-ink); font-weight: 700;">Semantic Web<br>Formalisms</span>
+            <span style="padding: 5px 12px; background: var(--paper); border: 1px solid var(--accent); border-radius: 999px; font-family: var(--f-mono); font-weight: 600; font-size: 14px; color: var(--accent-ink);">RDF</span>
+            <span style="padding: 5px 12px; background: var(--paper); border: 1px solid var(--accent); border-radius: 999px; font-family: var(--f-mono); font-weight: 600; font-size: 14px; color: var(--accent-ink);">OWL</span>
+            <span style="padding: 5px 12px; background: var(--paper); border: 1px solid var(--accent); border-radius: 999px; font-family: var(--f-mono); font-weight: 600; font-size: 14px; color: var(--accent-ink);">SPARQL</span>
+            <span style="padding: 5px 12px; background: var(--paper); border: 1px solid var(--accent); border-radius: 999px; font-family: var(--f-mono); font-weight: 600; font-size: 14px; color: var(--accent-ink);">SHACL</span>
+          </div>
+
+          <!-- Other symbolic techniques -->
+          <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin-bottom: 14px;">
+            <div style="padding: 12px 8px; background: var(--paper); border: 1px solid var(--line); border-radius: 5px; font-family: var(--f-display); font-weight: 500; font-size: 18px; color: var(--ink); text-align: center;">Reasoning</div>
+            <div style="padding: 12px 8px; background: var(--paper); border: 1px solid var(--line); border-radius: 5px; font-family: var(--f-display); font-weight: 500; font-size: 18px; color: var(--ink); text-align: center;">Planning &amp; Robotics</div>
+            <div style="padding: 12px 8px; background: var(--paper); border: 1px solid var(--line); border-radius: 5px; font-family: var(--f-display); font-weight: 500; font-size: 18px; color: var(--ink); text-align: center;">Expert Systems</div>
+          </div>
+
+          <!-- NLP container with the classical pipeline as pills inside -->
+          <div style="border: 1.5px dashed var(--accent); border-radius: 8px; padding: 14px 16px; background: oklch(0.96 0.02 165);">
+            <div style="display: flex; align-items: baseline; gap: 12px; margin-bottom: 12px;">
+              <span style="font-family: var(--f-display); font-weight: 700; font-size: 24px; color: var(--accent-ink); line-height: 1;">NLP</span>
+              <span style="font-family: var(--f-mono); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent-ink); opacity: 0.75;">Natural Language Processing &middot; classical pipeline</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+              <span style="padding: 6px 12px; background: var(--paper); border: 1px solid var(--accent); border-radius: 999px; font-family: var(--f-mono); font-weight: 600; font-size: 13px; color: var(--accent-ink);">Tokenization</span>
+              <span style="font-family: var(--f-mono); font-size: 14px; color: var(--accent-ink); opacity: 0.5;">&rsaquo;</span>
+              <span style="padding: 6px 12px; background: var(--paper); border: 1px solid var(--accent); border-radius: 999px; font-family: var(--f-mono); font-weight: 600; font-size: 13px; color: var(--accent-ink);">Lemmatization</span>
+              <span style="font-family: var(--f-mono); font-size: 14px; color: var(--accent-ink); opacity: 0.5;">&rsaquo;</span>
+              <span style="padding: 6px 12px; background: var(--paper); border: 1px solid var(--accent); border-radius: 999px; font-family: var(--f-mono); font-weight: 600; font-size: 13px; color: var(--accent-ink);">POS</span>
+              <span style="font-family: var(--f-mono); font-size: 14px; color: var(--accent-ink); opacity: 0.5;">&rsaquo;</span>
+              <span style="padding: 6px 12px; background: var(--paper); border: 1px solid var(--accent); border-radius: 999px; font-family: var(--f-mono); font-weight: 600; font-size: 13px; color: var(--accent-ink);">Parsing</span>
+              <span style="font-family: var(--f-mono); font-size: 14px; color: var(--accent-ink); opacity: 0.5;">&rsaquo;</span>
+              <span style="padding: 6px 12px; background: var(--paper); border: 1px solid var(--accent); border-radius: 999px; font-family: var(--f-mono); font-weight: 600; font-size: 13px; color: var(--accent-ink);">NER</span>
+            </div>
+          </div>
+
+          <div style="margin-top: auto; padding-top: 12px; font-family: var(--f-mono); font-size: 13px; letter-spacing: 0.04em; color: var(--accent-ink); font-style: italic;">&rarr; KGs &amp; Ontologies (with RDF/OWL/SPARQL/SHACL) are this talk's main concern.</div>
+        </div>
+
+        <!-- 2. Connectionist / Statistical-AI (dark, ink-toned) -->
+        <div style="border: 2px solid var(--ink); border-radius: 10px; padding: 14px 18px 16px; background: var(--ink); display: flex; flex-direction: column;">
+          <div style="display: flex; align-items: baseline; gap: 14px; margin-bottom: 12px;">
+            <span style="font-family: var(--f-display); font-weight: 700; font-size: 34px; color: var(--paper);">&#9313;</span>
+            <span style="font-family: var(--f-display); font-weight: 700; font-size: 30px; color: var(--paper);">Neural / Statistical-AI</span>
+            <span style="font-family: var(--f-mono); font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: oklch(0.72 0.01 260); margin-left: auto;">data&middot;driven &middot; learned</span>
+          </div>
+
+          <!-- Foundation (pill row, mirrors the Semantic Web formalisms strip on the left) -->
+          <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 14px; padding: 10px 14px; background: oklch(0.16 0.01 260); border: 1px dashed oklch(0.55 0.01 260); border-radius: 6px;">
+            <span style="font-family: var(--f-mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: oklch(0.82 0.01 260); font-weight: 700;">Foundation</span>
+            <span style="padding: 5px 12px; background: oklch(0.28 0.01 260); border: 1px solid oklch(0.55 0.01 260); border-radius: 999px; font-family: var(--f-mono); font-weight: 600; font-size: 14px; color: var(--paper);">MLPs</span>
+            <span style="padding: 5px 12px; background: oklch(0.28 0.01 260); border: 1px solid oklch(0.55 0.01 260); border-radius: 999px; font-family: var(--f-mono); font-weight: 600; font-size: 14px; color: var(--paper);">Embeddings</span>
+            <span style="padding: 5px 12px; background: oklch(0.28 0.01 260); border: 1px solid oklch(0.55 0.01 260); border-radius: 999px; font-family: var(--f-mono); font-weight: 600; font-size: 14px; color: var(--paper);">Backprop</span>
+          </div>
+
+          <!-- Machine Learning container -->
+          <div style="border: 1.5px dashed oklch(0.55 0.01 260); border-radius: 8px; padding: 14px; background: oklch(0.18 0.01 260);">
+            <div style="font-family: var(--f-mono); font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; color: oklch(0.82 0.01 260); margin-bottom: 10px;">Machine Learning</div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin-bottom: 14px;">
+              <div style="padding: 12px 6px; background: oklch(0.28 0.01 260); border: 1px solid oklch(0.45 0.01 260); border-radius: 5px; font-family: var(--f-display); font-weight: 500; font-size: 17px; color: var(--paper); text-align: center;">Supervised</div>
+              <div style="padding: 12px 6px; background: oklch(0.28 0.01 260); border: 1px solid oklch(0.45 0.01 260); border-radius: 5px; font-family: var(--f-display); font-weight: 500; font-size: 17px; color: var(--paper); text-align: center;">Unsupervised</div>
+              <div style="padding: 12px 6px; background: oklch(0.28 0.01 260); border: 1px solid oklch(0.45 0.01 260); border-radius: 5px; font-family: var(--f-display); font-weight: 500; font-size: 17px; color: var(--paper); text-align: center;">Reinforcement</div>
+            </div>
+
+            <!-- Deep Learning container -->
+            <div style="border: 1.5px dashed var(--accent); border-radius: 8px; padding: 12px; background: oklch(0.16 0.02 165);">
+              <div style="font-family: var(--f-mono); font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; color: oklch(0.85 0.05 145); margin-bottom: 10px;">Deep Learning &middot; Neural Networks</div>
+              <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin-bottom: 12px;">
+                <div style="padding: 10px 6px; background: oklch(0.28 0.02 165); border: 1px solid var(--accent); border-radius: 4px; font-family: var(--f-display); font-weight: 500; font-size: 17px; color: var(--paper); text-align: center;">CNN</div>
+                <div style="padding: 10px 6px; background: oklch(0.28 0.02 165); border: 1px solid var(--accent); border-radius: 4px; font-family: var(--f-display); font-weight: 500; font-size: 17px; color: var(--paper); text-align: center;">RNN</div>
+                <div style="padding: 10px 6px; background: oklch(0.28 0.02 165); border: 1px solid var(--accent); border-radius: 4px; font-family: var(--f-display); font-weight: 500; font-size: 17px; color: var(--paper); text-align: center;">Transformers</div>
+              </div>
+
+              <!-- Generative AI (highlighted on the connectionist side) -->
+              <div style="border: 2px solid var(--accent); border-radius: 6px; padding: 12px; background: var(--accent);">
+                <div style="display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 8px;">
+                  <span style="font-family: var(--f-mono); font-size: 14px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--paper); font-weight: 700;">Generative AI</span>
+                  <span style="font-family: var(--f-mono); font-size: 11px; color: var(--paper); opacity: 0.85;">&larr; the talk's focus on the right</span>
+                </div>
+                <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px;">
+                  <div style="padding: 12px 6px; background: var(--paper); border-radius: 4px; font-family: var(--f-display); font-weight: 700; font-size: 22px; color: var(--accent-ink); text-align: center;">LLMs</div>
+                  <div style="padding: 12px 6px; background: var(--paper); border-radius: 4px; font-family: var(--f-display); font-weight: 700; font-size: 20px; color: var(--accent-ink); text-align: center;">Agentic AI</div>
+                  <div style="padding: 12px 6px; background: var(--paper); border-radius: 4px; font-family: var(--f-display); font-weight: 500; font-size: 16px; color: var(--accent-ink); text-align: center;">Diffusion &middot; GANs</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom kicker — the argument in one line -->
+      <div style="margin-top: 12px; font-family: var(--f-mono); font-size: 13px; letter-spacing: 0.06em; color: var(--muted); text-transform: uppercase;">
+        &#9312; grounds and constrains &#9313; &nbsp;&rarr;&nbsp; Knowledge-Infused Learning (slides 14&ndash;15)
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 05 — Symbolic era -->
+  <section data-label="The symbolic era, 1956–2000" data-screen-label="05 The symbolic era, 1956–2000" data-om-validate="no_overflowing_text,no_overlapping_text,slide_sized_text" data-deck-slide="4">
     <div class="frame">
       <div class="topbar">
         <span class="chap"><span class="dot"></span>01 · HISTORY</span>
@@ -560,15 +714,71 @@ window.__TWEAKS__ = /*EDITMODE-BEGIN*/{
     <div class="frame">
       <div class="topbar">
         <span class="chap"><span class="dot"></span>01 · HISTORY</span>
-        <span class="meta">THE PIVOT</span>
+        <span class="meta">THE revolution</span>
       </div>
-      <div style="margin: 160px 0 0; max-width: 1650px;">
-        <div class="eyebrow">November 2022 — the methodological pivot</div>
+      <div style="margin: 120px 0 0; max-width: 1700px;">
+        <div class="eyebrow">November 2022 — LLMs started a methodological revolution</div>
         <div class="quote">
           A single prompt now does the work of an entire NLP pipeline.
           Raw text goes in. Structured meaning comes out.
         </div>
         <div class="cite">— What took five tools &amp; a week now takes a sentence &amp; a second.</div>
+
+        <!-- Before / After depiction: classical pipeline collapses into a single LLM call -->
+        <div style="margin-top: 52px; display: flex; flex-direction: column; gap: 30px;">
+
+          <!-- BEFORE row: faded chain of pipeline stages + cost badge right beside it -->
+          <div style="display: flex; align-items: center; gap: 20px; flex-wrap: nowrap;">
+            <div style="display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; background: var(--paper); border: 1.5px solid var(--muted); border-radius: 999px; min-width: 110px; flex-shrink: 0;">
+              <!-- Clock icon: slow / time-consuming -->
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--muted)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="12" cy="12" r="9"/>
+                <path d="M12 7v5l3 2"/>
+              </svg>
+              <span style="font-family: var(--f-mono); font-size: 14px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); font-weight: 700;">Before</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 7px; flex-wrap: nowrap; opacity: 0.6;">
+              <span style="padding: 10px 14px; background: var(--paper-2); border: 1px solid var(--line); border-radius: 5px; font-family: var(--f-mono); font-size: 15px; color: var(--ink); white-space: nowrap;">Raw text</span>
+              <span style="color: var(--muted); font-family: var(--f-mono); font-size: 16px;">&rsaquo;</span>
+              <span style="padding: 10px 14px; background: var(--paper-2); border: 1px solid var(--line); border-radius: 5px; font-family: var(--f-mono); font-size: 15px; color: var(--ink); white-space: nowrap;">Tokenize</span>
+              <span style="color: var(--muted); font-family: var(--f-mono); font-size: 16px;">&rsaquo;</span>
+              <span style="padding: 10px 14px; background: var(--paper-2); border: 1px solid var(--line); border-radius: 5px; font-family: var(--f-mono); font-size: 15px; color: var(--ink); white-space: nowrap;">POS</span>
+              <span style="color: var(--muted); font-family: var(--f-mono); font-size: 16px;">&rsaquo;</span>
+              <span style="padding: 10px 14px; background: var(--paper-2); border: 1px solid var(--line); border-radius: 5px; font-family: var(--f-mono); font-size: 15px; color: var(--ink); white-space: nowrap;">Parser</span>
+              <span style="color: var(--muted); font-family: var(--f-mono); font-size: 16px;">&rsaquo;</span>
+              <span style="padding: 10px 14px; background: var(--paper-2); border: 1px solid var(--line); border-radius: 5px; font-family: var(--f-mono); font-size: 15px; color: var(--ink); white-space: nowrap;">NER</span>
+              <span style="color: var(--muted); font-family: var(--f-mono); font-size: 16px;">&rsaquo;</span>
+              <span style="padding: 10px 14px; background: var(--paper-2); border: 1px solid var(--line); border-radius: 5px; font-family: var(--f-mono); font-size: 15px; color: var(--ink); white-space: nowrap;">Coref</span>
+              <span style="color: var(--muted); font-family: var(--f-mono); font-size: 16px;">&rsaquo;</span>
+              <span style="padding: 10px 14px; background: var(--paper-2); border: 1px solid var(--line); border-radius: 5px; font-family: var(--f-mono); font-size: 15px; color: var(--ink); white-space: nowrap;">Extractor</span>
+              <span style="color: var(--muted); font-family: var(--f-mono); font-size: 16px;">&rsaquo;</span>
+              <span style="padding: 10px 14px; background: var(--paper-2); border: 1px solid var(--line); border-radius: 5px; font-family: var(--f-mono); font-size: 15px; color: var(--ink); white-space: nowrap;">JSON</span>
+            </div>
+            <!-- Cost badge: pill shape with dashed border, neutral tone -->
+            <div style="padding: 8px 20px; background: var(--paper); border: 1.5px dashed var(--muted); border-radius: 999px; font-family: var(--f-mono); font-size: 15px; color: var(--muted); white-space: nowrap; font-weight: 600;">&asymp; 5 tools &middot; ~1 week</div>
+          </div>
+
+          <!-- NOW row: single LLM call + cost badge right beside it -->
+          <div style="display: flex; align-items: center; gap: 20px; flex-wrap: nowrap;">
+            <div style="display: inline-flex; align-items: center; gap: 8px; padding: 8px 18px; background: var(--accent); border-radius: 999px; min-width: 110px; flex-shrink: 0; box-shadow: 0 2px 10px oklch(0 0 0 / 0.18);">
+              <!-- Lightning bolt icon: fast / instant -->
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="var(--paper)" stroke="var(--paper)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M13 2 L3 14 h7 l-1 8 L19 10 h-7 l1 -8 z"/>
+              </svg>
+              <span style="font-family: var(--f-mono); font-size: 14px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--paper); font-weight: 700;">Now</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 18px;">
+              <span style="padding: 16px 26px; background: var(--paper); border: 2px solid var(--accent); border-radius: 6px; font-family: var(--f-mono); font-size: 18px; color: var(--accent-ink); font-weight: 600; white-space: nowrap;">Raw text + 1 prompt</span>
+              <span style="font-size: 30px; color: var(--accent); font-family: var(--f-mono); font-weight: 700;">&rarr;</span>
+              <span style="padding: 16px 44px; background: var(--accent); border-radius: 6px; font-family: var(--f-display); font-weight: 700; font-size: 30px; color: var(--paper); letter-spacing: 0.02em; box-shadow: 0 4px 16px oklch(0 0 0 / 0.22);">LLM</span>
+              <span style="font-size: 30px; color: var(--accent); font-family: var(--f-mono); font-weight: 700;">&rarr;</span>
+              <span style="padding: 16px 26px; background: var(--paper); border: 2px solid var(--accent); border-radius: 6px; font-family: var(--f-mono); font-size: 18px; color: var(--accent-ink); font-weight: 600; white-space: nowrap;">Structured JSON</span>
+            </div>
+            <!-- Cost badge: pill shape with solid sage fill, prominent -->
+            <div style="padding: 8px 20px; background: var(--accent); border-radius: 999px; font-family: var(--f-mono); font-size: 15px; color: var(--paper); white-space: nowrap; font-weight: 700; box-shadow: 0 2px 8px oklch(0 0 0 / 0.15);">&asymp; 1 prompt &middot; ~1 second</div>
+          </div>
+
+        </div>
       </div>
     </div>
   </section>
@@ -582,10 +792,15 @@ window.__TWEAKS__ = /*EDITMODE-BEGIN*/{
       </div>
       <div style="margin-top: 120px;">
         <div class="eyebrow">Let’s be fair</div>
-        <h1 class="h-slide">What deep learning did —<br>that symbolic AI never could.</h1>
+        <h1 class="h-slide">Deep learning / Transformer did —<br>what symbolic AI never could.</h1>
       </div>
       <div class="three-col" style="margin-top: 40px; gap: 56px;">
         <div>
+          <!-- Perception icon: eye -->
+          <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" style="display: block; margin-bottom: 18px;" aria-hidden="true">
+            <path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/>
+            <circle cx="12" cy="12" r="3"/>
+          </svg>
           <div class="label">Perception</div>
           <ul class="clean" style="margin-top: 20px;">
             <li><span>Image &amp; scene recognition</span></li>
@@ -594,7 +809,13 @@ window.__TWEAKS__ = /*EDITMODE-BEGIN*/{
           </ul>
         </div>
         <div>
-          <div class="label">Language</div>
+          <!-- Language icon: speech bubble with text lines -->
+          <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" style="display: block; margin-bottom: 18px;" aria-hidden="true">
+            <path d="M21 12a8 8 0 0 1-11.6 7.1L4 21l1.9-5.4A8 8 0 1 1 21 12z"/>
+            <line x1="8" y1="10" x2="16" y2="10"/>
+            <line x1="8" y1="14" x2="13" y2="14"/>
+          </svg>
+          <div class="label">Language manipulation</div>
           <ul class="clean" style="margin-top: 20px;">
             <li><span>Machine translation</span></li>
             <li><span>Text-to-speech / TTS</span></li>
@@ -602,6 +823,13 @@ window.__TWEAKS__ = /*EDITMODE-BEGIN*/{
           </ul>
         </div>
         <div>
+          <!-- Science & autonomy icon: atom / electrons orbiting nucleus -->
+          <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" style="display: block; margin-bottom: 18px;" aria-hidden="true">
+            <circle cx="12" cy="12" r="1.6" fill="var(--accent)" stroke="none"/>
+            <ellipse cx="12" cy="12" rx="9.5" ry="3.6"/>
+            <ellipse cx="12" cy="12" rx="9.5" ry="3.6" transform="rotate(60 12 12)"/>
+            <ellipse cx="12" cy="12" rx="9.5" ry="3.6" transform="rotate(120 12 12)"/>
+          </svg>
           <div class="label">Science &amp; autonomy</div>
           <ul class="clean" style="margin-top: 20px;">
             <li><span>Protein structure prediction</span></li>
@@ -640,17 +868,86 @@ window.__TWEAKS__ = /*EDITMODE-BEGIN*/{
         <span class="chap"><span class="dot"></span>02 · THE LIMITS</span>
         <span class="meta">WHERE LLMs FAIL</span>
       </div>
-      <div style="margin-top: 120px;">
+      <div style="margin-top: 70px;">
         <div class="eyebrow">The honest critique</div>
-        <h1 class="h-slide">Fluent. Confident.<br>Often ungrounded.</h1>
+        <h1 class="h-slide">LLMs are Fluent. Confident.<br> but Often ungrounded.</h1>
       </div>
-      <ul class="clean" style="margin-top: 40px; max-width: 1700px;">
-        <li><span class="num">→</span><span><strong style="color: var(--ink); font-weight: 600;">Hallucination.</strong> Confidently wrong answers that are syntactically perfect.</span></li>
-        <li><span class="num">→</span><span><strong style="color: var(--ink); font-weight: 600;">No provenance.</strong> The model cannot tell you where a fact came from.</span></li>
-        <li><span class="num">→</span><span><strong style="color: var(--ink); font-weight: 600;">No consistency.</strong> The same question can return contradictory answers.</span></li>
-        <li><span class="num">→</span><span><strong style="color: var(--ink); font-weight: 600;">Hard to update.</strong> New facts require retraining — not editing.</span></li>
-        <li><span class="num">→</span><span><strong style="color: var(--ink); font-weight: 600;">GPU and Tokens hungry.</strong> Require multi-GPU and consume vast amounts of tokens </span></li>
-        <li><span class="num">→</span><span><strong style="color: var(--ink); font-weight: 600;">Opaque.</strong> Knowledge is entangled in billions of weights.</span></li>
+      <ul class="clean" style="margin-top: 20px; max-width: 1700px; padding-left: 60px;">
+        <li>
+          <span class="num" style="min-width: 56px;">
+            <!-- Hallucination: warning triangle with exclamation -->
+            <svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="var(--accent-ink)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M12 3 L22 20 L2 20 Z"/>
+              <line x1="12" y1="10" x2="12" y2="14"/>
+              <circle cx="12" cy="17.2" r="0.6" fill="var(--accent-ink)" stroke="none"/>
+            </svg>
+          </span>
+          <span><strong style="color: var(--ink); font-weight: 600;">Hallucination.</strong> Confidently wrong answers that are syntactically perfect.</span>
+        </li>
+        <li>
+          <span class="num" style="min-width: 56px;">
+            <!-- No provenance: question mark in circle -->
+            <svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="var(--accent-ink)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="9"/>
+              <path d="M9.5 9.5 a2.5 2.5 0 0 1 5 0 c0 1.6 -2.5 2.1 -2.5 4"/>
+              <circle cx="12" cy="17.2" r="0.6" fill="var(--accent-ink)" stroke="none"/>
+            </svg>
+          </span>
+          <span><strong style="color: var(--ink); font-weight: 600;">No provenance.</strong> The model cannot tell you where a fact came from.</span>
+        </li>
+        <li>
+          <span class="num" style="min-width: 56px;">
+            <!-- No consistency: forking / diverging paths -->
+            <svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="var(--accent-ink)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M12 3 V10"/>
+              <path d="M12 10 L6 16 V20"/>
+              <path d="M12 10 L18 16 V20"/>
+              <path d="M3 20 H9"/>
+              <path d="M15 20 H21"/>
+            </svg>
+          </span>
+          <span><strong style="color: var(--ink); font-weight: 600;">No consistency.</strong> The same question can return contradictory answers.</span>
+        </li>
+        <li>
+          <span class="num" style="min-width: 56px;">
+            <!-- Hard to update: padlock -->
+            <svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="var(--accent-ink)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="5" y="11" width="14" height="10" rx="1.5"/>
+              <path d="M8 11 V7 a4 4 0 0 1 8 0 v4"/>
+              <circle cx="12" cy="16" r="1.2" fill="var(--accent-ink)" stroke="none"/>
+            </svg>
+          </span>
+          <span><strong style="color: var(--ink); font-weight: 600;">Hard to update.</strong> New facts require retraining &mdash; not editing.</span>
+        </li>
+        <li>
+          <span class="num" style="min-width: 56px;">
+            <!-- GPU / Tokens hungry: CPU chip -->
+            <svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="var(--accent-ink)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="5" y="5" width="14" height="14" rx="1.5"/>
+              <rect x="9" y="9" width="6" height="6" rx="0.5"/>
+              <line x1="3" y1="9" x2="5" y2="9"/>
+              <line x1="3" y1="15" x2="5" y2="15"/>
+              <line x1="9" y1="3" x2="9" y2="5"/>
+              <line x1="15" y1="3" x2="15" y2="5"/>
+              <line x1="19" y1="9" x2="21" y2="9"/>
+              <line x1="19" y1="15" x2="21" y2="15"/>
+              <line x1="9" y1="19" x2="9" y2="21"/>
+              <line x1="15" y1="19" x2="15" y2="21"/>
+            </svg>
+          </span>
+          <span><strong style="color: var(--ink); font-weight: 600;">GPU and Tokens hungry.</strong> Require multi-GPU and consume vast amounts of tokens.</span>
+        </li>
+        <li>
+          <span class="num" style="min-width: 56px;">
+            <!-- Opaque: eye with slash (can't inspect) -->
+            <svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="var(--accent-ink)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M2 12 s4 -7 10 -7 10 7 10 7 -4 7 -10 7 -10 -7 -10 -7z"/>
+              <circle cx="12" cy="12" r="3"/>
+              <line x1="3.5" y1="3.5" x2="20.5" y2="20.5"/>
+            </svg>
+          </span>
+          <span><strong style="color: var(--ink); font-weight: 600;">Opaque.</strong> Knowledge is entangled in billions of weights.</span>
+        </li>
       </ul>
     </div>
   </section>
@@ -724,6 +1021,19 @@ window.__TWEAKS__ = /*EDITMODE-BEGIN*/{
             <text x="555" y="425" text-anchor="middle" font-size="18" fill="var(--muted)">Inspectable · queryable · auditable</text>
           </svg>
         </div>
+      </div>
+
+      <!-- Speaker analogy cue: two-line note, both clauses aligned at the same indent -->
+      <div style="margin-top: auto; padding-top: 22px; max-width: 1700px; display: grid; grid-template-columns: auto auto 1fr; gap: 6px 12px; align-items: baseline; align-self: flex-start; font-family: var(--f-body); font-size: 22px; line-height: 1.5; font-style: italic; color: var(--muted);">
+        <!-- Row 1: 💡  Analogy:  the LLM ... -->
+        <span aria-hidden="true" style="font-size: 26px; font-style: normal;">&#128161;</span>
+        <strong style="color: var(--accent-ink); font-weight: 600; font-style: normal; white-space: nowrap;">Analogy:</strong>
+        <span>the <strong style="color: var(--ink); font-weight: 600; font-style: normal;">LLM (left)</strong> is the <em>engine</em> of the car &mdash; powerful, but driving like a teenager by instinct;</span>
+
+        <!-- Row 2: (blank) (blank) the knowledge graph ... — same column as "the LLM" -->
+        <span></span>
+        <span></span>
+        <span>the <strong style="color: var(--accent-ink); font-weight: 600; font-style: normal;">knowledge graph (right)</strong> is the <em>steering wheel</em> &mdash; a city-map expert giving direction.</span>
       </div>
     </div>
   </section>
@@ -918,8 +1228,8 @@ window.__TWEAKS__ = /*EDITMODE-BEGIN*/{
           </p>
         </div>
 
-        <!-- KiL architecture diagram (shifted up ~30px; Verifier & Output widened 220→260) -->
-        <svg viewBox="0 0 920 520" style="width: 100%; height: auto; display: block;" xmlns="http://www.w3.org/2000/svg">
+        <!-- KiL architecture diagram (top row: Query → LLM → Verifier → Output → user) -->
+        <svg viewBox="0 0 985 565" style="width: 100%; height: auto; display: block;" xmlns="http://www.w3.org/2000/svg">
           <defs>
             <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
               <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--accent-ink)"></path>
@@ -944,65 +1254,79 @@ window.__TWEAKS__ = /*EDITMODE-BEGIN*/{
           </style>
 
           <!-- top label -->
-          <text class="kil-label" x="460" y="30" text-anchor="middle" style="font-size: 15px; fill: var(--accent-ink);">THE KiL LOOP</text>
-          <line x1="390" y1="50" x2="530" y2="50" stroke="var(--accent)" stroke-width="1.5"></line>
+          <text class="kil-label" x="575" y="30" text-anchor="middle" style="font-size: 15px; fill: var(--accent-ink);">THE KiL LOOP</text>
+          <line x1="495" y1="50" x2="655" y2="50" stroke="var(--accent)" stroke-width="1.5"></line>
 
           <!-- Query input -->
-          <rect class="kil-box" x="20" y="200" width="160" height="80" rx="4"></rect>
-          <text class="kil-label" x="100" y="230" text-anchor="middle">INPUT</text>
-          <text class="kil-title" x="100" y="258" text-anchor="middle">Query</text>
+          <rect class="kil-box" x="20" y="200" width="130" height="80" rx="4"></rect>
+          <text class="kil-label" x="85" y="230" text-anchor="middle">INPUT</text>
+          <text class="kil-title" x="85" y="258" text-anchor="middle">Query</text>
 
-          <!-- arrow into LLM -->
-          <line class="kil-arrow" x1="180" y1="240" x2="290" y2="240" marker-end="url(#arrow)"></line>
+          <!-- arrow Query → LLM -->
+          <line class="kil-arrow" x1="150" y1="240" x2="195" y2="240" marker-end="url(#arrow)"></line>
 
           <!-- Neural: LLM -->
-          <rect class="kil-box" x="300" y="170" width="260" height="140" rx="4"></rect>
-          <text class="kil-label" x="320" y="202">NEURAL</text>
-          <text class="kil-title" x="320" y="236">LLM</text>
-          <text class="kil-sub" x="320" y="264">pattern · fluency</text>
+          <rect class="kil-box" x="200" y="170" width="210" height="140" rx="4"></rect>
+          <text class="kil-label" x="220" y="202">NEURAL</text>
+          <text class="kil-title" x="220" y="236">LLM</text>
+          <text class="kil-sub" x="220" y="264">pattern · fluency</text>
           <!-- little neuron glyph -->
           <g stroke="var(--accent)" stroke-width="1" fill="none" opacity="0.7">
-            <circle cx="500" cy="210" r="4" fill="var(--accent)"></circle>
-            <circle cx="530" cy="240" r="4" fill="var(--accent)"></circle>
-            <circle cx="500" cy="270" r="4" fill="var(--accent)"></circle>
-            <line x1="500" y1="210" x2="530" y2="240"></line>
-            <line x1="500" y1="270" x2="530" y2="240"></line>
+            <circle cx="365" cy="210" r="4" fill="var(--accent)"></circle>
+            <circle cx="385" cy="240" r="4" fill="var(--accent)"></circle>
+            <circle cx="365" cy="270" r="4" fill="var(--accent)"></circle>
+            <line x1="365" y1="210" x2="385" y2="240"></line>
+            <line x1="365" y1="270" x2="385" y2="240"></line>
           </g>
 
           <!-- Symbolic: KG (below LLM) -->
-          <rect class="kil-box-accent" x="300" y="350" width="260" height="140" rx="4"></rect>
-          <text class="kil-label-accent" x="320" y="382">SYMBOLIC</text>
-          <text class="kil-title" x="320" y="416">Knowledge Graph</text>
-          <text class="kil-sub" x="320" y="444" style="fill: var(--accent-ink);">entities · rules · ontology</text>
+          <rect class="kil-box-accent" x="200" y="350" width="210" height="140" rx="4"></rect>
+          <text class="kil-label-accent" x="220" y="382">SYMBOLIC</text>
+          <text class="kil-title" x="220" y="416">KG</text>
+          <text class="kil-sub" x="220" y="444" style="fill: var(--accent-ink);">Entities · Relationships </text>
 
           <!-- bidirectional between LLM and KG -->
-          <line class="kil-arrow" x1="430" y1="310" x2="430" y2="340" marker-end="url(#arrow)"></line>
-          <line class="kil-arrow" x1="450" y1="340" x2="450" y2="310" marker-end="url(#arrow)"></line>
-          <text class="kil-label" x="470" y="330">RETRIEVE / GROUND</text>
+          <line class="kil-arrow" x1="295" y1="310" x2="295" y2="340" marker-end="url(#arrow)"></line>
+          <line class="kil-arrow" x1="315" y1="340" x2="315" y2="310" marker-end="url(#arrow)"></line>
+          <text class="kil-label" x="335" y="330">RETRIEVE / GROUND</text>
 
-          <!-- arrow to verifier -->
-          <line class="kil-arrow" x1="560" y1="240" x2="630" y2="240" marker-end="url(#arrow)"></line>
+          <!-- arrow LLM → Verifier -->
+          <line class="kil-arrow" x1="410" y1="240" x2="455" y2="240" marker-end="url(#arrow)"></line>
 
-          <!-- Verifier (widened from 220 to 260) -->
-          <rect class="kil-box-ink" x="640" y="170" width="260" height="140" rx="4"></rect>
-          <text class="kil-label" x="660" y="202" style="fill: oklch(0.75 0.01 260);">VERIFY</text>
-          <text class="kil-title-inv" x="660" y="236">Symbolic check</text>
-          <text class="kil-sub-inv" x="660" y="264">SHACL · rules · consistency</text>
+          <!-- Verifier -->
+          <rect class="kil-box-ink" x="460" y="170" width="220" height="140" rx="4"></rect>
+          <text class="kil-label" x="480" y="202" style="fill: oklch(0.75 0.01 260);">VERIFY</text>
+          <text class="kil-title-inv" x="480" y="236">Symbolic check</text>
+          <text class="kil-sub-inv" x="480" y="264">Rules · consistency</text>
           <!-- check glyph -->
-          <path d="M 850 280 l 10 10 l 20 -20" stroke="var(--accent)" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></path>
+          <path d="M 645 285 l 8 8 l 16 -16" stroke="var(--accent)" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></path>
 
-          <!-- Output (widened from 220 to 260) -->
-          <rect class="kil-box" x="640" y="350" width="260" height="110" rx="4"></rect>
-          <text class="kil-label-accent" x="660" y="382">OUTPUT</text>
-          <text class="kil-title" x="660" y="416">Grounded answer</text>
-          <text class="kil-sub" x="660" y="440">+ provenance chain</text>
+          <!-- arrow Verifier → Output -->
+          <line class="kil-arrow" x1="680" y1="240" x2="715" y2="240" marker-end="url(#arrow)"></line>
 
-          <!-- arrow verifier → output -->
-          <line class="kil-arrow" x1="770" y1="310" x2="770" y2="340" marker-end="url(#arrow)"></line>
+          <!-- Output (now in the top row, same level as Symbolic check) -->
+          <rect class="kil-box" x="720" y="170" width="210" height="140" rx="4"></rect>
+          <text class="kil-label-accent" x="740" y="202">OUTPUT</text>
+          <text class="kil-title" x="740" y="236">Answer</text>
+          <text class="kil-sub" x="740" y="264">Grounded + provenance</text>
 
-          <!-- feedback arrow from output back to KG (optional learning loop) -->
-          <path class="kil-arrow-soft" d="M 770 460 Q 700 500, 430 520 Q 430 500, 430 490" marker-end="url(#arrow-muted)"></path>
-          <text class="kil-label" x="680" y="520" text-anchor="middle">FEEDBACK · CURATE</text>
+          <!-- Output arrow exit (TO USER) — at the same level as the others -->
+          <line class="kil-arrow" x1="955" y1="240" x2="985" y2="240" marker-end="url(#arrow)"></line>
+          <text class="kil-label-accent" x="970" y="222" text-anchor="middle" style="font-size: 12px;">USER</text>
+
+          <!-- Feedback dashed path: from Output bottom curves down through the human-in-the-loop, then up into KG -->
+          <path class="kil-arrow-soft" d="M 837 310 Q 837 510, 400 510 Q 305 510, 305 490" marker-end="url(#arrow-muted)"></path>
+
+          <!-- Human-in-the-loop icon (head + shoulders) at the bottom midpoint of the feedback curve -->
+          <g transform="translate(545 482)">
+            <!-- small white halo so the icon is visible over the dashed line -->
+            <circle cx="20" cy="20" r="22" fill="var(--paper)" stroke="var(--muted)" stroke-width="1.2"/>
+            <!-- head -->
+            <circle cx="20" cy="14" r="4.5" fill="none" stroke="var(--muted)" stroke-width="1.6"/>
+            <!-- shoulders -->
+            <path d="M 11 30 v-1.5 a5 5 0 0 1 5 -5 h8 a5 5 0 0 1 5 5 v1.5" fill="none" stroke="var(--muted)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+          </g>
+          <text class="kil-label" x="565" y="450" text-anchor="middle" style="font-size: 13px; font-weight: 700; fill: var(--muted);">HUMAN IN THE LOOP &middot; CURATION</text>
         </svg>
       </div>
 
@@ -1020,6 +1344,19 @@ window.__TWEAKS__ = /*EDITMODE-BEGIN*/{
           <div class="label" style="margin-top: 10px; font-size: 24px;">Less data, cleaner signal</div>
         </div>
       </div>
+
+      <!-- Speaker analogy cue: two-line note, pushed to the bottom of the slide -->
+      <div style="margin-top: auto; padding-top: 48px; max-width: 1700px; display: grid; grid-template-columns: auto auto 1fr; gap: 6px 12px; align-items: baseline; align-self: flex-start; font-family: var(--f-body); font-size: 22px; line-height: 1.5; font-style: italic; color: var(--muted);">
+        <!-- Row 1: 💡  Analogy:  the LLM ... -->
+        <span aria-hidden="true" style="font-size: 26px; font-style: normal;">&#128161;</span>
+        <strong style="color: var(--accent-ink); font-weight: 600; font-style: normal; white-space: nowrap;">Analogy:</strong>
+        <span>the <strong style="color: var(--ink); font-weight: 600; font-style: normal;">LLM</strong> is the <em>smooth, charismatic salesperson</em> &mdash; promising a deal to the CEO;</span>
+
+        <!-- Row 2: (blank) (blank) the knowledge graph + ontology ... — same column as "the LLM" -->
+        <span></span>
+        <span></span>
+        <span>the <strong style="color: var(--accent-ink); font-weight: 600; font-style: normal;">knowledge graph &amp; ontology</strong> are the <em>strict back-room accountant</em> &mdash; auditing every fact before the deal is signed.</span>
+      </div>
     </div>
   </section>
 
@@ -1032,7 +1369,7 @@ window.__TWEAKS__ = /*EDITMODE-BEGIN*/{
       </div>
       <div style="margin-top: 120px;">
         <div class="eyebrow">The numbers behind the claim</div>
-        <h1 class="h-slide">Grounding isn't a hunch.<br>The benchmarks agree.</h1>
+        <h1 class="h-slide">The benchmarks now back this up.</h1>
       </div>
       <div class="timeline" style="margin-top: 40px;">
         <div class="cell">
@@ -1071,7 +1408,7 @@ window.__TWEAKS__ = /*EDITMODE-BEGIN*/{
       </div>
       <div style="margin-top: 100px;">
         <div class="eyebrow">Three points of entry</div>
-        <h1 class="h-slide">Before, during,<br>or after the model.</h1>
+        <h1 class="h-slide">Three points where you can inject knowledge <br> Before, during, or after the model.</h1>
       </div>
       <!-- Three injection points pipeline diagram -->
       <svg viewBox="0 0 1700 420" style="width:100%;height:auto;display:block;margin-top:28px;" xmlns="http://www.w3.org/2000/svg">

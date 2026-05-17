@@ -125,8 +125,8 @@
     .overlay {
       position: fixed;
       left: 50%;
-      bottom: 22px;
-      transform: translate(-50%, 6px) scale(0.92);
+      top: 22px;
+      transform: translate(-50%, -6px) scale(0.92);
       filter: blur(6px);
       display: flex;
       align-items: center;
@@ -141,7 +141,7 @@
       opacity: 0;
       pointer-events: none;
       transition: opacity 260ms ease, transform 260ms cubic-bezier(.2,.8,.2,1), filter 260ms ease;
-      transform-origin: center bottom;
+      transform-origin: center top;
       z-index: 2147483000;
       user-select: none;
     }
